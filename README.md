@@ -6,41 +6,21 @@
 
 # Idea Machine Printing Server
 
-- [ ] Do you want to honor all kinds of contributions? Use [all-contributors](https://allcontributors.org/)
-
-```bash
-npx all-contributors-cli check
-npx all-contributors-cli add ff6347 doc
-```
-
-You can use it on GitHub just by commenting on PRs and issues:
-
-```plain
-@all-contributors please add @ff6347 for infrastructure, tests and code
-```
-
-- [ ] Add your project description
-- [ ] Get fancy shields at https://shields.io
-
 ## Prerequisites
 
-tbd...
+Please have a look at the main repository: [https://github.com/technologiestiftung/idea-machine](https://github.com/technologiestiftung/idea-machine)
 
 ## Installation
 
-tbd...
+```bash
+ npm ci
+ ```
 
 ## Usage or Deployment
 
-tbd...
-
-## Development
-
-tbd...
-
-## Tests
-
-tbd...
+```bash
+ npm run start
+ ```
 
 ## Contributing
 
@@ -68,12 +48,6 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
-
-## Content Licensing
-
-Texts and content available as [CC BY](https://creativecommons.org/licenses/by/3.0/de/).
-
-Illustrations by {MARIA_MUSTERFRAU}, all rights reserved.
 
 ## Credits
 
