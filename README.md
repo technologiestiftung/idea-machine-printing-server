@@ -6,6 +6,10 @@
 
 # Idea Machine Printing Server
 
+This code is meant to run a http server locally on a raspberry pi 32bit to orchestrate print requests coming from
+the idea-machine webapp ([see here](https://github.com/technologiestiftung/idea-machine)).
+
+
 ## Prerequisites
 
 Please have a look at the main repository: [https://github.com/technologiestiftung/idea-machine](https://github.com/technologiestiftung/idea-machine)
@@ -78,3 +82,7 @@ This project follows the [all-contributors](https://github.com/all-contributors/
 </table>
 
 ## Related Projects
+
+https://github.com/technologiestiftung/idea-machine
+
+https://github.com/technologiestiftung/idea-machine-dice
