@@ -10,6 +10,7 @@
   "author": "Raphael Arce <raphael.arce@ts.berlin>",
   "license": "MIT",
   "dependencies": {
-    "dotenv": "16.3.1"
+    "dotenv": "16.3.1",
+    "robotjs": "0.6.0"
   }
 }
