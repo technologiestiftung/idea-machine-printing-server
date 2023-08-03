@@ -1,6 +1,6 @@
 const { exec } = require("child_process");
 
-exec('chromium-browser', (error, stdout, stderr) => {
+exec('chromium-browser --start-fullscreen', (error, stdout, stderr) => {
     if (error) {
         console.error(error);
         return;
