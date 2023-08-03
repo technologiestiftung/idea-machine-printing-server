@@ -1,18 +1,18 @@
 const { exec } = require("child_process");
-const robot = require('robotjs');
+require('dotenv').config();
 
-exec('chromium-browser --start-fullscreen', (error, stdout, stderr) => {
-    if (error) {
-        console.error(error);
-        return;
+exec(`chromium-browser https://${process.env.HTTP_USER}:${process.env.HTTTP_SECRET}@${process.env.SERVER} --start-fullscreen`,
+    (error, stdout, stderr) => {
+        if (error) {
+            console.error(error);
+            return;
+        }
+
+        if (stderr) {
+            console.error(stderr);
+            return;
+        }
+
+        console.log('success');
     }
-
-    if (stderr) {
-        console.error(stderr);
-        return;
-    }
-
-    setTimeout(() => robot.keyTap("enter"), 5000);
-
-    console.log('success');
-})
+);
