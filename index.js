@@ -67,7 +67,7 @@ function handlePrinting(idea, response) {
     }
 
     if (stderr) {
-      console.error(error);
+      console.error(stderr);
       response.statusCode = 500;
       response.end('stderr');
       return;
