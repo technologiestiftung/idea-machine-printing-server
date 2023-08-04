@@ -35,6 +35,7 @@ admin@raspberrypi:~$ pm2 startup
 [PM2] Init System found: launchd
 [PM2] To setup the Startup Script, copy/paste the following command:
 sudo env PATH=$PATH:/home/admin/.config/nvm/versions/node/v18.16.0/bin /home/admin/.config/nvm/versions/node/v18.16.0/lib/node_modules/pm2/bin/pm2 startup systemd -u admin --hp /home/admin
+admin@raspberrypi:~$ sudo env PATH=$PATH:/home/admin/.config/nvm/versions/node/v18.16.0/bin /home/admin/.config/nvm/versions/node/v18.16.0/lib/node_modules/pm2/bin/pm2 startup systemd -u admin --hp /home/admin
 ```
 
 
