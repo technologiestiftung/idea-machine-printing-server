@@ -55,7 +55,7 @@ function handleRequest(request, response) {
 
 function handleShutdown(response) {
   response.end(JSON.stringify({message: "Raspi is being shut down ..."}));
-  exec("shutdown -h now");
+  exec("sudo shutdown -h now");
 }
 
 
