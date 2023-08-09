@@ -45,7 +45,7 @@ function handleRequest(request, response) {
 
     switch (request.url) {
       case "/shutdown":
-        handleShutdown(response)
+        process.env.SHUTDOWNABLE == "1" && handleShutdown(response)
         break
       default:
         handlePrinting(requestBody, response)
