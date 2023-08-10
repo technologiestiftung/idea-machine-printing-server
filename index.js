@@ -41,41 +41,52 @@ function handleRequest(request, response) {
   request.on('data', (chunk) => {
     body.push(chunk);
   }).on('end', () => {
-    const json = Buffer.concat(body).toString();
+    const requestBody = Buffer.concat(body).toString();
 
-    try {
-      const { message } = JSON.parse(json);
-      console.log(message);
-      handlePrinting(message, response);
-    } catch (error) {
-      response.statusCode = 500;
-      response.end();
+    switch (request.url) {
+      case "/shutdown":
+        process.env.SHUTDOWNABLE == "1" && handleShutdown(response)
+        break
+      default:
+        handlePrinting(requestBody, response)
     }
   })
 }
 
+function handleShutdown(response) {
+  response.end(JSON.stringify({message: "Raspi is being shut down ..."}));
+  exec("sudo shutdown -h now");
+}
 
-function handlePrinting(idea, response) {
-  const printingCommand = getPrintingCommand(idea);
 
-  exec(printingCommand, (error, stdout, stderr) => {
-    if (error) {
-      console.error(error);
-      response.statusCode = 500;
-      response.end('error');
-      return;
-    }
+function handlePrinting(requestBody, response) {
+  try {
+    const { message } = JSON.parse(requestBody);
+      
+    const printingCommand = getPrintingCommand(message);
 
-    if (stderr) {
-      console.error(stderr);
-      response.statusCode = 500;
-      response.end('stderr');
-      return;
-    }
-
-    response.statusCode = 200;
-    response.end('success');
-  });
+    exec(printingCommand, (error, stdout, stderr) => {
+      if (error) {
+        console.error(error);
+        response.statusCode = 500;
+        response.end('error');
+        return;
+      }
+  
+      if (stderr) {
+        console.error(stderr);
+        response.statusCode = 500;
+        response.end('stderr');
+        return;
+      }
+  
+      response.statusCode = 200;
+      response.end('success');
+    });
+  } catch (error) {
+    response.statusCode = 500;
+    response.end();
+  }
 }
 
 function getPrintingCommand(idea) {
