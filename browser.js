@@ -1,6 +1,22 @@
 const { exec } = require("child_process");
 require('dotenv').config();
 
+setTimeout(() => {
+    exec('xdotool key Return', (error, stdout, stderr) => {
+      if (error) {
+        console.error(error);
+        return;
+      }
+  
+      if (stderr) {
+        console.error(stderr);
+        return;
+      }
+  
+      console.log('successfully pressed enter');
+    })
+  }, 10_000)
+
 exec(`chromium-browser ${process.env.APP_ORIGIN} --start-fullscreen`,
     (error, stdout, stderr) => {
         if (error) {
