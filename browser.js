@@ -15,7 +15,7 @@ setTimeout(() => {
   
       console.log('successfully pressed enter');
     })
-  }, 10_000)
+  }, 20_000)
 
 exec(`chromium-browser ${process.env.APP_ORIGIN} --start-fullscreen`,
     (error, stdout, stderr) => {
