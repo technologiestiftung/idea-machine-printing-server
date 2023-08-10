@@ -78,6 +78,12 @@ pm2 save
 
 Pm2 will now automatically start processes from the ecosystem config on each system startup.
 
+### Shutdown
+
+We have implemented a `POST /shutdown` route that will result in this server and its host system shutting down gracefully. The route is necessary because we want to be able to control the shutdown of the system remotely.
+
+Note that the environment variable `SHUTDOWNABLE` needs to be set to `1` for this to work. This is useful because in development mode we might not want to trigger the actual shutdown of the development system.
+
 ## Contributing
 
 Before you create a pull request, write an issue so we can discuss your changes.
