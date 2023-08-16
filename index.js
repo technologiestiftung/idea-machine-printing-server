@@ -90,12 +90,9 @@ function handlePrinting(requestBody, response) {
 }
 
 function getPrintingCommand(idea) {
-
-//   return  `echo 'Betreff: Idee
-// Von: Ideenwürfel
-// An: idee@ts.berlin
-// ------------------
-//   ${idea}' | fold -w 18 -s | lp -d ${process.env.PRINTER_NAME}`
-
-  return `echo ${idea}`;
+  return  `echo 'Betreff: Idee
+Von: Ideenwürfel
+An: idee@ts.berlin
+------------------
+${idea}' | fold -w 18 -s | lp -d ${process.env.PRINTER_NAME}`
 }
