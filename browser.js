@@ -17,7 +17,7 @@ setTimeout(() => {
     })
   }, 20_000)
 
-exec(`chromium-browser ${process.env.APP_ORIGIN} --start-fullscreen`,
+exec(`chromium-browser ${process.env.APP_ORIGIN}${process.env.APP_PATH} --start-fullscreen`,
     (error, stdout, stderr) => {
         if (error) {
             console.error(error);
