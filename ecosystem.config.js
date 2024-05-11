@@ -1,9 +1,8 @@
-module.exports = {
-  apps : [{
-    name   : "printing-server",
-    script : "./index.js"
-  }, {
-    name: "browser",
-    script: "./browser.js"
+export default {
+  apps : [
+  {
+    name: "idea-machine-backend",
+    script: "index.js",
+    args: "--env-file=.env",
   }]
 }
