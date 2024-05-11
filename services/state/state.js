@@ -1,17 +1,32 @@
 const sides = [
-	"A1", "A2", "A3", "A4", "A5", "A6",
-	"B1", "B2", "B3", "B4", "B5", "B6",
-	"C1", "C2", "C3", "C4", "C5", "C6",
-]
+	"A1",
+	"A2",
+	"A3",
+	"A4",
+	"A5",
+	"A6",
+	"B1",
+	"B2",
+	"B3",
+	"B4",
+	"B5",
+	"B6",
+	"C1",
+	"C2",
+	"C3",
+	"C4",
+	"C5",
+	"C6",
+];
 
 const dices = {
 	A: "1",
 	B: "1",
 	C: "1",
-}
+};
 
 function parseDiceSide(input) {
-	return sides.filter(side => input.includes(side))[0];
+	return sides.filter((side) => input.includes(side))[0];
 }
 
 function setDiceSide(input) {
@@ -31,4 +46,4 @@ function getDices() {
 	return dices;
 }
 
-export { getDices, setDiceSide }
+export { getDices, setDiceSide };
