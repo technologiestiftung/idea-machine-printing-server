@@ -1,15 +1,13 @@
 {
   "name": "raspberry-pi-printing-server",
-  "version": "0.1.0",
+  "version": "2.0.0",
   "description": "",
   "main": "index.js",
+  "type": "module",
   "scripts": {
-    "start": "node index.js"
+    "start": "node --env-file=.env index.js"
   },
   "keywords": [],
   "author": "Raphael Arce <raphael.arce@ts.berlin>",
-  "license": "MIT",
-  "dependencies": {
-    "dotenv": "16.3.1"
-  }
+  "license": "MIT"
 }
