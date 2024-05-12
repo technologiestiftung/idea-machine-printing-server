@@ -11,6 +11,8 @@ const exec = promisify(execCallback);
  * <?>
  */
 
+// todo bind all mac addresses from esp32
+
 // todo get mac-address and binding number from env
 const { stdout, stderr } = await exec("sudo rfcomm bind 1 94:B9:7E:FE:F3:96");
 console.log("bind", { stdout, stderr });

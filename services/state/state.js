@@ -29,7 +29,7 @@ function parseDiceSide(input) {
 	return sides.filter((side) => input.includes(side))[0];
 }
 
-function setDiceSide(input) {
+export function setDiceSide(input) {
 	const diceSide = parseDiceSide(input);
 
 	if (!diceSide) {
@@ -42,8 +42,6 @@ function setDiceSide(input) {
 	dices[dice] = side;
 }
 
-function getDices() {
+export function getDices() {
 	return dices;
 }
-
-export { getDices, setDiceSide };

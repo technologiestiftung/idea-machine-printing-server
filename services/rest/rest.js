@@ -1,5 +1,7 @@
-import { exec } from "child_process";
 import http from "node:http";
+import { handleShutdown } from "./paths/shutdown.js";
+import { handlePrinting } from "./paths/print.js";
+import { handleIsApiAlive } from "./paths/default.js";
 
 const port = process.env.PORT;
 
@@ -7,14 +9,10 @@ const server = http.createServer();
 
 server.on("request", handleRequest);
 
-server.listen(port, () => {
-	console.info("listening on port:", port);
-});
-
 function handleRequest(request, response) {
 	const headers = {
 		"Access-Control-Allow-Origin": process.env.APP_ORIGIN,
-		"Access-Control-Allow-Methods": "OPTIONS, POST",
+		"Access-Control-Allow-Methods": "OPTIONS, POST, GET",
 		"Access-Control-Allow-Credentials": true,
 		"Access-Control-Allow-Headers": "Authorization, Content-Type",
 		"Access-Control-Max-Age": 2592000, // 30 days
@@ -26,13 +24,13 @@ function handleRequest(request, response) {
 		return;
 	}
 
-	if (request.headers.authorization !== `Bearer ${process.env.SECRET}`) {
-		response.statusCode = 403;
-		response.end();
-		return;
-	}
+	// if (request.headers.authorization !== `Bearer ${process.env.SECRET}`) {
+	// 	response.statusCode = 403;
+	// 	response.end();
+	// 	return;
+	// }
 
-	response.writeHead(200, { ...headers, "Content-Type": "text/plain" });
+	response.writeHead(200, { ...headers, "Content-Type": "application/json" });
 
 	let body = [];
 	request
@@ -40,59 +38,22 @@ function handleRequest(request, response) {
 			body.push(chunk);
 		})
 		.on("end", () => {
-			const requestBody = Buffer.concat(body).toString();
+			// const requestBody = Buffer.concat(body).toString();
 
 			switch (request.url) {
 				case "/shutdown":
-					process.env.SHUTDOWNABLE == "1" && handleShutdown(response);
+					handleShutdown(response);
+					break;
+				case "/print":
+					// handlePrinting(requestBody, response);
+					handlePrinting(response);
 					break;
 				default:
-					handlePrinting(requestBody, response);
+					handleIsApiAlive(response);
 			}
 		});
 }
 
-function handleShutdown(response) {
-	response.end(JSON.stringify({ message: "Raspi is being shut down ..." }));
-	exec("sudo shutdown -h now");
-}
-
-function handlePrinting(requestBody, response) {
-	try {
-		const { message } = JSON.parse(requestBody);
-
-		const printingCommand = getPrintingCommand(message);
-
-		console.log(printingCommand);
-
-		// exec(printingCommand, (error, stdout, stderr) => {
-		// 	if (error) {
-		// 		console.error(error);
-		// 		response.statusCode = 500;
-		// 		response.end('error');
-		// 		return;
-		// 	}
-		//
-		// 	if (stderr) {
-		// 		console.error(stderr);
-		// 		response.statusCode = 500;
-		// 		response.end('stderr');
-		// 		return;
-		// 	}
-		//
-		// 	response.statusCode = 200;
-		// 	response.end('success');
-		// });
-	} catch (error) {
-		response.statusCode = 500;
-		response.end();
-	}
-}
-
-function getPrintingCommand(idea) {
-	return `echo 'Betreff: Idee
-Von: Ideenwürfel
-An: idee@ts.berlin
-------------------
-${idea}' | fold -w 18 -s | lp -d ${process.env.PRINTER_NAME}`;
-}
+server.listen(port, () => {
+	console.info("listening on port:", port);
+});
