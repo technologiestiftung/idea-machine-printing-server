@@ -1,3 +1,7 @@
+import fs from "node:fs";
+import labelsJson from "./labels.json" with { type: "json" };
+let labels = labelsJson;
+
 const sides = [
 	"A1",
 	"A2",
@@ -44,4 +48,18 @@ export function setDiceSide(input) {
 
 export function getDices() {
 	return dices;
+}
+
+export function getLabels() {
+	return labels;
+}
+
+export function setLabels(newLabels) {
+	labels = newLabels;
+
+	try {
+		fs.writeFileSync("./services/state/labels.json", JSON.stringify(labels));
+	} catch (error) {
+		console.error(error);
+	}
 }
