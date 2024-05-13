@@ -1,7 +1,8 @@
 import http from "node:http";
-import { handleShutdown } from "./paths/shutdown.js";
-import { handlePrinting } from "./paths/print.js";
 import { handleIsApiAlive } from "./paths/default.js";
+import { handleLabels } from "./paths/labels.js";
+import { handlePrinting } from "./paths/print.js";
+import { handleShutdown } from "./paths/shutdown.js";
 
 const port = process.env.PORT;
 
@@ -11,8 +12,8 @@ server.on("request", handleRequest);
 
 function handleRequest(request, response) {
 	const headers = {
-		"Access-Control-Allow-Origin": process.env.APP_ORIGIN,
-		"Access-Control-Allow-Methods": "OPTIONS, POST, GET",
+		"Access-Control-Allow-Origin": "*",
+		"Access-Control-Allow-Methods": "OPTIONS, PUT, GET",
 		"Access-Control-Allow-Credentials": true,
 		"Access-Control-Allow-Headers": "Authorization, Content-Type",
 		"Access-Control-Max-Age": 2592000, // 30 days
@@ -38,15 +39,15 @@ function handleRequest(request, response) {
 			body.push(chunk);
 		})
 		.on("end", () => {
-			// const requestBody = Buffer.concat(body).toString();
-
 			switch (request.url) {
-				case "/shutdown":
-					handleShutdown(response);
+				case "/labels":
+					handleLabels({ request, body, response });
 					break;
 				case "/print":
-					// handlePrinting(requestBody, response);
 					handlePrinting(response);
+					break;
+				case "/shutdown":
+					handleShutdown(response);
 					break;
 				default:
 					handleIsApiAlive(response);

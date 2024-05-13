@@ -1,5 +1,4 @@
-import { getDices } from "../../state/state.js";
-import labels from "../../state/labels.json" with { type: "json" };
+import { getDices, getLabels } from "../../state/state.js";
 
 export function handlePrinting(/*requestBody,*/ response) {
 	const printingCommand = getPrintingCommand();
@@ -33,6 +32,8 @@ function getPrintingCommand() {
 	const focusGroupSide = `A${A}`;
 	const topicSide = `B${B}`;
 	const mediumSide = `C${C}`;
+
+	const labels = getLabels();
 
 	const focusGroup = labels[focusGroupSide];
 	const topic = labels[topicSide];
