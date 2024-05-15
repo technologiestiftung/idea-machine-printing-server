@@ -58,7 +58,10 @@ export function setLabels(newLabels) {
 	labels = newLabels;
 
 	try {
-		fs.writeFileSync("./services/state/labels.json", JSON.stringify(labels));
+		fs.writeFileSync(
+			"./services/state/labels.json",
+			JSON.stringify(labels, null, 2),
+		);
 	} catch (error) {
 		console.error(error);
 	}
