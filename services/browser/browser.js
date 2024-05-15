@@ -1,6 +1,6 @@
 import { exec } from "child_process";
 
-exec(`echo "simulating opening browser"`, (error, stdout, stderr) => {
+exec(`open index.html`, (error, stdout, stderr) => {
 	if (error) {
 		console.error(error);
 		return;
@@ -11,5 +11,5 @@ exec(`echo "simulating opening browser"`, (error, stdout, stderr) => {
 		return;
 	}
 
-	console.log("successfully opened chromium");
+	console.log(stdout);
 });
