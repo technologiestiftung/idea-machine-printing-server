@@ -16,18 +16,20 @@ body {
 
 	display: flex;
 	justify-content: center;
-	border: solid 2px;
+	border: solid 0.5px;
 	border-radius: 10px;
 	padding: 0.5rem;
+	background-color: #fdfaf3;
 }
 
 .backside {
-	height: 358px;
+	height: 375px;
 	display: flex;
 	justify-content: space-between;
 	flex-direction: row;
-	border: solid 2px;
+	border: solid 0.5px;
 	border-radius: 10px;
+	background-color: #fdfaf3;
 
 	.message {
 		flex: 1;
@@ -53,7 +55,7 @@ body {
 			display: flex;
 			justify-content: center;
 			width: 50%;
-			height: 10%;
+			height: 12%;
 		}
 
 		.address {

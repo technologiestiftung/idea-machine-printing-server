@@ -1,28 +1,42 @@
 import fs from "node:fs";
 import { execSync } from "child_process";
-import {
-	relativeIllustrationFilePath,
-	htmlFilePath,
-	pdfFilePath,
-} from "./constants.js";
+import { htmlFilePath, pdfFilePath } from "./constants.js";
 
-export async function createPostcard(idea) {
-	createPostcardHtml(idea);
+export async function createPostcard(idea, imgURL) {
+	createPostcardHtml(idea, imgURL);
+	console.log(imgURL);
 	createPostcardPdf();
 }
 
-function createPostcardHtml({ idea }) {
+function createPostcardHtml({ idea }, imgURL) {
 	const html = `<!DOCTYPE html>
-<html lang="de">
-	<head>
-		<title>Postcard</title>
-	</head>
-	<body>
-		<h1>${idea}</h1>
-		<img src="${relativeIllustrationFilePath}" alt="Illustration"/>
-	</body>
-</html>
-`;
+	<html lang="de">
+		<head>
+			<link rel="stylesheet" href="./postcard.css">
+			<title>Postcard</title>
+		</head>
+		<body>
+			<div class="frontside">
+				<img src="${imgURL}" alt="Illustration"/>
+			</div>
+			<div class="backside">
+				<div class="message">
+					<h4>${idea}</h4>
+				</div>
+				<div class="sender">
+					<div class="stamp">
+						<img src="https://logos.citylab-berlin.org/logo-citylab-color.svg" alt="Stamp" width="90%">
+					</div>
+					<div class="address">
+						<p>Platz der Luftbrücke 4</p>
+						<p>12101 Berlin</p>
+						<p>info@citylab-berlin.org</p>
+					</div>
+				</div>
+			</div>
+		</body>
+	</html>
+	`;
 
 	try {
 		fs.writeFileSync(htmlFilePath, html);
