@@ -25,12 +25,13 @@ export async function getIdea() {
 				{
 					role: "user",
 					content: `
-Generiere mir eine neue Produktidee für ein smartes Berlin, deren Funktion in einer Zeile beschrieben wird. 
-Themenfeld: ${topic}, Zielgruppe: ${focusGroup}, Medium: ${medium}. 
-Ein bisschen futuristisch und witzig kann die Antwort auch sein. 
-Die Antwort soll so formatiert sein: 
-"Titel": Beschreibung
-`,
+	Generiere mir eine neue Produktidee für ein smartes Berlin, deren Funktion in einer Zeile beschrieben wird.
+	Themenfeld: ${topic}, Zielgruppe: ${focusGroup}, Medium: ${medium}.
+	Ein bisschen futuristisch und witzig kann die Antwort auch sein.
+	Die Antwort soll wie ein persönlicher Postkarten Text formuliert sein.
+	Die Antwort ist von meinem zukünftifen ich an mich selbst geschrieben.
+	Maximal 350 Zeichen.
+	`,
 				},
 			],
 			temperature: 0.7,
@@ -45,5 +46,7 @@ Die Antwort soll so formatiert sein:
 
 	const idea = choices[0].message.content;
 
+	// const idea = `"ParkFit": Ein smartes Armband, das die Bewegung der Berliner:innen
+	// 	im Volkspark Friedrichshain überwacht und sie mit gesunden SnackEmpfehlungen belohnt, basierend auf ihrem Aktivitätslevel.`;
 	return { idea, focusGroup, topic, medium };
 }

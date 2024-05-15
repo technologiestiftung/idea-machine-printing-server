@@ -12,9 +12,9 @@ export async function handlePrinting(response) {
 async function print() {
 	const idea = await getIdea();
 
-	await getIllustration(idea);
+	const imgURL = await getIllustration(idea);
 
-	await createPostcard(idea);
+	await createPostcard(idea, imgURL);
 
 	await printPostcard();
 
