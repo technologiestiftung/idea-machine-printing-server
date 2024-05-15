@@ -1,7 +1,7 @@
 import http from "node:http";
 import { handleIsApiAlive } from "./paths/default.js";
 import { handleLabels } from "./paths/labels.js";
-import { handlePrinting } from "./paths/print.js";
+import { handlePrinting } from "./paths/print/print.js";
 import { handleShutdown } from "./paths/shutdown.js";
 
 const port = process.env.PORT;
@@ -38,13 +38,13 @@ function handleRequest(request, response) {
 		.on("data", (chunk) => {
 			body.push(chunk);
 		})
-		.on("end", () => {
+		.on("end", async () => {
 			switch (request.url) {
 				case "/labels":
 					handleLabels({ request, body, response });
 					break;
 				case "/print":
-					handlePrinting(response);
+					await handlePrinting(response);
 					break;
 				case "/shutdown":
 					handleShutdown(response);
