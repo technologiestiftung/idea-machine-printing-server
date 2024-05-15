@@ -24,9 +24,9 @@ const sides = [
 ];
 
 const dices = {
-	A: "1",
-	B: "1",
-	C: "1",
+	A: "3",
+	B: "4",
+	C: "2",
 };
 
 function parseDiceSide(input) {

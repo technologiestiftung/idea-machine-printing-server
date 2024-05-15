@@ -1,4 +1,3 @@
-export const relativeIllustrationFilePath = "illustration.png";
 export const illustrationFilePath =
 	"./services/rest/paths/print/illustration.png";
 export const htmlFilePath = "./services/rest/paths/print/postcard.html";
