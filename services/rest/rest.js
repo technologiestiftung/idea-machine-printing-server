@@ -11,17 +11,11 @@ const server = http.createServer();
 server.on("request", handleRequest);
 
 function handleRequest(request, response) {
+	response.once("readable", () => console.time("request-time"));
+	response.on("end", () => console.timeEnd("request-time"));
+
 	response.setHeader("Access-Control-Allow-Origin", "*");
 	response.setHeader("Access-Control-Request-Method", "OPTIONS, PUT, GET");
-
-	// const headers = {
-	// 	"Access-Control-Allow-Origin": "*",
-	// 	"Access-Control-Allow-Methods": "OPTIONS, PUT, GET",
-	// 	// todo not sure if we need those anymore
-	// 	// "Access-Control-Allow-Credentials": true,
-	// 	// "Access-Control-Allow-Headers": "Authorization, Content-Type",
-	// 	// "Access-Control-Max-Age": 2592000, // 30 days
-	// };
 
 	if (request.method === "OPTIONS") {
 		response.statusCode = 204;
@@ -53,8 +47,8 @@ function handleRequest(request, response) {
 		});
 }
 
-server.listen(port, () => {
-	console.info("listening on port:", port);
-});
+server.listen(port, () => console.info("listening on port:", port));
+
+server.on("close", () => console.log("server closed"));
 
 export default server;

@@ -1,6 +1,7 @@
 import { getIdea } from "./idea.js";
 import { getIllustration } from "./illustration.js";
 import { createPostcard } from "./postcard.js";
+import childProcess from "child_process";
 
 export async function handlePrinting(response) {
 	const debugResult = await print();
@@ -24,6 +25,7 @@ async function print() {
 async function printPostcard() {
 	// todo print pdf with lp -d ${process.env.PRINTER_NAME} idea.pdf
 	console.log("mock printing postcard...");
+	childProcess.execSync("open ./services/rest/paths/print/postcard.pdf");
 	// exec(printingCommand, (error, stdout, stderr) => {
 	// 	if (error) {
 	// 		console.error(error);
