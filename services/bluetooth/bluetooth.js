@@ -1,35 +1,49 @@
-import { promisify } from "node:util";
-import { spawn, exec as execCallback } from "child_process";
+import childProcess from "child_process";
 import { setDiceSide, getDices } from "../state/state.js";
-const exec = promisify(execCallback);
 
-/**
- * MAC-ADDRESSES:
- * 94:B9:7E:FE:F3:96
- * 94:B9:7E:FE:F8:EA
- * <?>
- * <?>
- */
+const diceA = process.env.DICE_A_MAC_ADDRESS;
+const rfcommA = "1";
+const diceB = process.env.DICE_B_MAC_ADDRESS;
+const rfcommB = "2";
 
-// todo bind all mac addresses from esp32
+const diceC = process.env.DICE_C_MAC_ADDRESS;
+const rfcommC = "3";
 
-// todo get mac-address and binding number from env
-const { stdout, stderr } = await exec("sudo rfcomm bind 1 94:B9:7E:FE:F3:96");
-console.log("bind", { stdout, stderr });
+const dices = [
+	{ dice: diceA, rfcomm: rfcommA },
+	{ dice: diceB, rfcomm: rfcommB },
+	{ dice: diceC, rfcomm: rfcommC },
+];
 
-process.on("SIGINT", async () => {});
-process.on("SIGTERM", () => {});
+const bluetoothSerialMonitors = dices.map(({ dice, rfcomm }) => {
+	const stdout = childProcess.execSync(`sudo rfcomm bind ${rfcomm} ${dice}`);
+	console.log(
+		`bound dice ${dice} to rfcomm${rfcomm}, stdout:`,
+		stdout.toString(),
+	);
 
-// todo get binding number from env
-const picocom = spawn("picocom", ["/dev/rfcomm1", "-b", "115200"]);
-picocom.stdout.on("data", (data) => {
-	setDiceSide(data);
-	console.log(getDices());
+	const picocom = childProcess.spawn("picocom", [
+		`/dev/rfcomm${rfcomm}`,
+		"-b",
+		"115200",
+	]);
+
+	picocom.stdout.on("data", (data) => {
+		setDiceSide(data);
+		console.log(getDices());
+	});
+
+	picocom.stderr.on("data", (data) => console.error(`stderr: ${data}`));
+
+	picocom.on("exit", async () => {
+		const stdout = childProcess.execSync(`sudo rfcomm release rfcomm${rfcomm}`);
+		console.log(
+			`released dice ${dice} from rfcomm${rfcomm}, stdout:`,
+			stdout.toString(),
+		);
+	});
+
+	return picocom;
 });
-picocom.stderr.on("data", (data) => console.error(`stderr: ${data}`));
 
-// todo get binding number from env
-picocom.on("exit", async () => {
-	const { stdout, stderr } = await exec("sudo rfcomm release rfcomm1");
-	console.log("release", { stdout, stderr });
-});
+export default bluetoothSerialMonitors;
