@@ -3,9 +3,13 @@ import { execSync } from "child_process";
 import { htmlFilePath, pdfFilePath } from "./constants.js";
 
 export async function createPostcard(idea, imgURL) {
-	console.log(idea);
+	console.time("createPostcardHtml");
 	createPostcardHtml(idea, imgURL);
+	console.timeEnd("createPostcardHtml");
+
+	console.time("createPostcardPdf");
 	createPostcardPdf();
+	console.timeEnd("createPostcardPdf");
 }
 
 function createPostcardHtml(idea, imgURL) {
