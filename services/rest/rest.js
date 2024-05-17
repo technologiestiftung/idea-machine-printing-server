@@ -3,6 +3,7 @@ import { handleIsApiAlive } from "./paths/default.js";
 import { handleLabels } from "./paths/labels.js";
 import { handlePrinting } from "./paths/print/print.js";
 import { handleShutdown } from "./paths/shutdown.js";
+import crypto from "node:crypto";
 
 const port = process.env.PORT;
 
@@ -11,8 +12,9 @@ const server = http.createServer();
 server.on("request", handleRequest);
 
 function handleRequest(request, response) {
-	response.once("readable", () => console.time("request-time"));
-	response.on("end", () => console.timeEnd("request-time"));
+	const requestId = crypto.randomUUID();
+	console.time(`request ${requestId} time`);
+	response.on("close", () => console.timeEnd(`request ${requestId} time`));
 
 	response.setHeader("Access-Control-Allow-Origin", "*");
 	response.setHeader("Access-Control-Request-Method", "OPTIONS, PUT, GET");
