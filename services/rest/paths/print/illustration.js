@@ -11,7 +11,7 @@ export async function getIllustration({ idea }) {
 			Generiere ein Bild das folgende als Idee als Illustration darstellt: ${idea}.
 			Die Illustration zeigt einen medium bis wide Shot der Stadtszene.
 			Die Stimmung is positiv. Menschen sollen im Mittelpunkt stehen.
-			Solarpunk, Retro-Futurism, Concept Art, 80s.
+			Solarpunk, Retro-Futurism, Concept Art.
 	`,
 			n: 1,
 			size: "1024x1024",
