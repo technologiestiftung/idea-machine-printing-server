@@ -11,11 +11,17 @@ export async function handlePrinting(response) {
 }
 
 async function print() {
+	console.time("idea-generation");
 	const idea = await getIdea();
+	console.timeEnd("idea-generation");
 
+	console.time("illustration-generation");
 	const imgURL = await getIllustration(idea);
+	console.timeEnd("illustration-generation");
 
+	console.time("postcard-creation");
 	await createPostcard(idea, imgURL);
+	console.timeEnd("postcard-creation");
 
 	await printPostcard();
 
