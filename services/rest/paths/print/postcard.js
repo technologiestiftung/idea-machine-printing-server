@@ -21,11 +21,11 @@ function createPostcardHtml({ idea }, imgURL) {
 			</div>
 			<div class="backside">
 				<div class="message">
-					<h4>${idea}</h4>
+					<h3>${idea}</h3>
 				</div>
 				<div class="sender">
 					<div class="stamp">
-						<img src="https://logos.citylab-berlin.org/logo-citylab-color.svg" alt="Stamp" width="90%">
+						<img src="img/citylab-logo_white.png" alt="Stamp" width="90%">
 					</div>
 					<div class="address">
 						<p>Platz der Luftbrücke 4</p>
