@@ -21,7 +21,7 @@ export async function getIllustration({ idea }) {
 	const dalleResponse = await response.json();
 	const imgURL = dalleResponse.data[0].url;
 
-	// const imgURL = "img_placeholder.png";
+	// const imgURL = "./img/img_placeholder.png";
 
 	if (!imgURL) {
 		return "error";
