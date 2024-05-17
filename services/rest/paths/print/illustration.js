@@ -8,7 +8,10 @@ export async function getIllustration({ idea }) {
 		body: JSON.stringify({
 			model: "dall-e-3",
 			prompt: `
-			Generiere ein Bild im 80er Jahre Postkarten Stil basierend auf folgende Idee: ${idea}.
+			Generiere ein Bild das folgende als Idee als Illustration darstellt: ${idea}.
+			Die Illustration zeigt einen medium bis wide Shot der Stadtszene.
+			Die Stimmung is positiv. Menschen sollen im Mittelpunkt stehen.
+			Solarpunk, Retro-Futurism, Concept Art, 80s.
 	`,
 			n: 1,
 			size: "1024x1024",
