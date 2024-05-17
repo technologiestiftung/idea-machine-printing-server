@@ -3,12 +3,12 @@ import { execSync } from "child_process";
 import { htmlFilePath, pdfFilePath } from "./constants.js";
 
 export async function createPostcard(idea, imgURL) {
+	console.log(idea);
 	createPostcardHtml(idea, imgURL);
-	console.log(imgURL);
 	createPostcardPdf();
 }
 
-function createPostcardHtml({ idea }, imgURL) {
+function createPostcardHtml(idea, imgURL) {
 	const html = `<!DOCTYPE html>
 	<html lang="de">
 		<head>
@@ -21,16 +21,35 @@ function createPostcardHtml({ idea }, imgURL) {
 			</div>
 			<div class="backside">
 				<div class="message">
-					<h3>${idea}</h3>
+					<h3>${idea.idea}</h3>
+					<div class="dices">
+						<div class="dice1">&#10066 ${idea.focusGroup}</div>
+						<div class="dice2">&#10066 ${idea.topic}</div>
+						<div class="dice3">&#10066 ${idea.medium}</div>
+					</div>
 				</div>
 				<div class="sender">
-					<div class="stamp">
-						<img src="img/citylab-logo_white.png" alt="Stamp" width="90%">
+					<div class="header">
+						<div class="credits">
+							Sommerkonferenz 
+							<br/>
+							27 Juni 2024
+						</div>
+						<div class="stamp">
+							<img src="img/citylab-logo_white.png" alt="Stamp" width="90%">
+						</div>
+
 					</div>
 					<div class="address">
-						<p>Platz der Luftbrücke 4</p>
-						<p>12101 Berlin</p>
-						<p>info@citylab-berlin.org</p>
+						<div class="line">
+							<p>Platz der Luftbrücke 4</p>
+						</div>
+						<div class="line">
+							<p>12101 Berlin</p>
+						</div>
+						<div class="line">
+							<p>info@citylab-berlin.org</p>
+						</div>
 					</div>
 				</div>
 			</div>
