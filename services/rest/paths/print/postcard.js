@@ -13,6 +13,7 @@ function createPostcardHtml(idea, imgURL) {
 	<html lang="de">
 		<head>
 			<link rel="stylesheet" href="./postcard.css">
+			<link href="./font/jersey20.woff2" rel="stylesheet">
 			<title>Postcard</title>
 		</head>
 		<body>
@@ -21,11 +22,15 @@ function createPostcardHtml(idea, imgURL) {
 			</div>
 			<div class="backside">
 				<div class="message">
-					<h3>${idea.idea}</h3>
+					<div class="text">
+						<div class="title-behind">Grüße aus der Zukunft!</div>
+						<div class="title">Grüße aus der Zukunft!</div>
+						<div class="idea">${idea.idea}</div>
+					</div>
 					<div class="dices">
-						<div class="dice1">&#10066 ${idea.focusGroup}</div>
-						<div class="dice2">&#10066 ${idea.topic}</div>
-						<div class="dice3">&#10066 ${idea.medium}</div>
+						<div class="dice1"><img src="./img/cube.svg" /> Wer? ${idea.focusGroup}</div>
+						<div class="dice2"><img src="./img/cube.svg" /> Was? ${idea.topic}</div>
+						<div class="dice3"><img src="./img/cube.svg" /> Wo? ${idea.medium}</div>
 					</div>
 				</div>
 				<div class="sender">
@@ -38,7 +43,6 @@ function createPostcardHtml(idea, imgURL) {
 						<div class="stamp">
 							<img src="img/citylab-logo_white.png" alt="Stamp" width="90%">
 						</div>
-
 					</div>
 					<div class="address">
 						<div class="line">
