@@ -24,9 +24,9 @@ const sides = [
 ];
 
 const dices = {
-	A: "3",
-	B: "4",
-	C: "2",
+	A: "6",
+	B: "6",
+	C: "6",
 };
 
 function parseDiceSide(input) {
@@ -40,8 +40,7 @@ export function setDiceSide(input) {
 		return;
 	}
 
-	const dice = diceSide[0];
-	const side = diceSide[1];
+	const [dice, side] = diceSide;
 
 	dices[dice] = side;
 }
@@ -52,6 +51,37 @@ export function getDices() {
 
 export function getLabels() {
 	return labels;
+}
+
+function getRandomElementFromArray(array) {
+	return array[Math.floor(Math.random() * array.length)];
+}
+
+export function getLabelsForCurrentSides() {
+	const focusGroupSide = `A${dices.A}`;
+	const topicSide = `B${dices.B}`;
+	const mediumSide = `C${dices.C}`;
+
+	let focusGroup = labels[focusGroupSide];
+	if (focusGroup.includes(",")) {
+		focusGroup = getRandomElementFromArray(focusGroup.split(",")).trim();
+	}
+
+	let topic = labels[topicSide];
+	if (topic.includes(",")) {
+		topic = getRandomElementFromArray(topic.split(",")).trim();
+	}
+
+	let medium = labels[mediumSide];
+	if (medium.includes(",")) {
+		medium = getRandomElementFromArray(medium.split(",")).trim();
+	}
+
+	return {
+		focusGroup,
+		topic,
+		medium,
+	};
 }
 
 export function setLabels(newLabels) {

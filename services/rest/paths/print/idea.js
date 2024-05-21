@@ -1,17 +1,7 @@
-import { getDices, getLabels } from "../../../state/state.js";
+import { getLabelsForCurrentSides } from "../../../state/state.js";
 
 export async function getIdea() {
-	const { A, B, C } = getDices();
-
-	const focusGroupSide = `A${A}`;
-	const topicSide = `B${B}`;
-	const mediumSide = `C${C}`;
-
-	const labels = getLabels();
-
-	const focusGroup = labels[focusGroupSide];
-	const topic = labels[topicSide];
-	const medium = labels[mediumSide];
+	const { focusGroup, topic, medium } = getLabelsForCurrentSides();
 
 	const response = await fetch("https://api.openai.com/v1/chat/completions", {
 		method: "POST",
