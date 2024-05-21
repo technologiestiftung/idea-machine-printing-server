@@ -13,45 +13,76 @@
 }
 
 body {
-	width: 740px;
+	width: 1000px;
 	font-family: Arial, Helvetica, sans-serif;
 	display: flex;
 	justify-content: center;
 	flex-direction: column;
-	gap: 5rem;
+	gap: 7rem;
 	color: #2f2fa2;
-
-	h3 {
-		font-size: 20px;
-		font-weight: normal;
-		line-height: 150%;
-	}
 }
 
 .frontside {
-	img {
-		height: 440px;
-		border-radius: 10px;
-		border: 2px solid #2f2fa2;
-	}
-	padding: 1rem;
+	height: 700px;
 	display: flex;
 	justify-content: center;
 	border: solid 0.5px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	img {
+		margin: 1rem;
+		height: 660px;
+		border-radius: 10px;
+		border: 2px solid #2f2fa2;
+	}
 }
 
 .backside {
-	height: 440px;
+	height: 700px;
 	display: flex;
 	justify-content: space-between;
 	flex-direction: row;
 	border: solid 0.5px;
-	padding: 2rem;
 
 	.message {
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		margin: 2rem;
+		gap: 2rem;
 		flex: 1;
-		padding-right: 2rem;
-		align-self: center;
+
+		.text {
+			.title-behind {
+				position: absolute;
+				font-family: "Jersey 20", sans-serif;
+				font-weight: 400;
+				font-size: 48px;
+				color: #2f2fa2;
+				font-style: normal;
+				padding-top: 2rem;
+				padding-bottom: 2rem;
+				z-index: -1;
+				translate: -2px 3px;
+			}
+			.title {
+				font-family: "Jersey 20", sans-serif;
+				font-weight: 400;
+				font-size: 48px;
+				color: #f64c72;
+				font-style: normal;
+				padding-top: 2rem;
+				padding-bottom: 2rem;
+			}
+
+			.idea {
+				font-size: 24px;
+				font-weight: normal;
+				line-height: 150%;
+			}
+		}
 
 		.dices {
 			display: flex;
@@ -59,26 +90,39 @@ body {
 			align-items: start;
 			flex-direction: column;
 			margin-top: 2rem;
-			font-size: 14px;
+			font-size: 18px;
+
+			.dice1,
+			.dice2,
+			.dice3 {
+				padding: 0.25rem 0.5rem;
+				color: white;
+
+				img {
+					transform: translateY(2px);
+					padding-right: 0.25rem;
+				}
+			}
 
 			.dice1 {
-				color: #2f2fa2;
+				background-color: #2f2fa2;
 			}
 			.dice2 {
-				color: #f64c72;
+				background-color: #f64c72;
 			}
 			.dice3 {
-				color: #d6bb2b;
+				background-color: #daaa00;
 			}
 		}
 	}
 
 	.sender {
+		margin: 2rem;
+		margin-left: 0;
 		flex: 1;
-		font-size: small;
 		display: flex;
 		flex-direction: column;
-		justify-content: space-between;
+		justify-content: start;
 		border-left: solid 1px;
 		padding-left: 2rem;
 
@@ -88,7 +132,7 @@ body {
 			justify-content: space-between;
 
 			.credits {
-				font-size: 14px;
+				font-size: 18px;
 			}
 
 			.stamp {
@@ -111,17 +155,16 @@ body {
 		}
 
 		.address {
-			line-height: 150%;
 			align-self: center;
-			padding-bottom: 5rem;
+			padding-top: 10rem;
 			width: 100%;
 
 			.line {
 				border-bottom: solid 1px #2f2fa2;
 			}
 			p {
-				font-size: 20px;
-				line-height: 80%;
+				font-size: 24px;
+				line-height: 90%;
 				margin: 0.5rem;
 				margin-top: 2rem;
 			}
