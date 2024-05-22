@@ -17,7 +17,7 @@ function handleRequest(request, response) {
 	response.on("close", () => console.timeEnd(`request ${requestId} time`));
 
 	response.setHeader("Access-Control-Allow-Origin", "*");
-	response.setHeader("Access-Control-Request-Method", "OPTIONS, PUT, GET");
+	response.setHeader("Access-Control-Allow-Methods", "OPTIONS, PUT, GET");
 
 	if (request.method === "OPTIONS") {
 		response.statusCode = 204;
