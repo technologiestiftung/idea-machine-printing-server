@@ -57,6 +57,27 @@ function getRandomElementFromArray(array) {
 	return array[Math.floor(Math.random() * array.length)];
 }
 
+export function replaceWildcards(label) {
+	switch (label) {
+		case "such dir selbst ein Medium aus":
+			return "Joker (?)";
+		case "wähle selbst eine Gruppe an Menschen":
+			return "Joker (?)";
+		case "wähle selbst eine Kategorie":
+			return "Joker (?)";
+		default:
+			return label;
+	}
+}
+
+function getLabelFromCSV(label) {
+	const labels = label.split(",");
+
+	const randomLabel = getRandomElementFromArray(labels);
+
+	return randomLabel.trim();
+}
+
 export function getLabelsForCurrentSides() {
 	const focusGroupSide = `A${dices.A}`;
 	const topicSide = `B${dices.B}`;
@@ -64,17 +85,17 @@ export function getLabelsForCurrentSides() {
 
 	let focusGroup = labels[focusGroupSide];
 	if (focusGroup.includes(",")) {
-		focusGroup = getRandomElementFromArray(focusGroup.split(",")).trim();
+		focusGroup = getLabelFromCSV(focusGroup);
 	}
 
 	let topic = labels[topicSide];
 	if (topic.includes(",")) {
-		topic = getRandomElementFromArray(topic.split(",")).trim();
+		topic = getLabelFromCSV(topic);
 	}
 
 	let medium = labels[mediumSide];
 	if (medium.includes(",")) {
-		medium = getRandomElementFromArray(medium.split(",")).trim();
+		medium = getLabelFromCSV(medium);
 	}
 
 	return {

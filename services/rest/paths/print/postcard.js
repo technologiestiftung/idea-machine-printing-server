@@ -1,6 +1,7 @@
 import fs from "node:fs";
 import { execSync } from "child_process";
 import { htmlFilePath, pdfFilePath } from "./constants.js";
+import { replaceWildcards } from "../../../state/state.js";
 
 export async function createPostcard(idea, imgURL) {
 	console.time("createPostcardHtml");
@@ -13,6 +14,10 @@ export async function createPostcard(idea, imgURL) {
 }
 
 function createPostcardHtml(idea, imgURL) {
+	const focusGroup = replaceWildcards(idea.focusGroup);
+	const medium = replaceWildcards(idea.medium);
+	const topic = replaceWildcards(idea.topic);
+
 	const html = `<!DOCTYPE html>
 	<html lang="de">
 		<head>
@@ -32,9 +37,9 @@ function createPostcardHtml(idea, imgURL) {
 						<div class="idea">${idea.idea.product_idea}</div>
 					</div>
 					<div class="dices">
-						<div class="dice1"><img src="./img/cube.svg" /> Wer? ${idea.focusGroup}</div>
-						<div class="dice2"><img src="./img/cube.svg" /> Was? ${idea.topic}</div>
-						<div class="dice3"><img src="./img/cube.svg" /> Wo? ${idea.medium}</div>
+						<div class="dice1"><img src="./img/cube.svg" /> Wer? ${focusGroup}</div>
+						<div class="dice2"><img src="./img/cube.svg" /> Was? ${topic}</div>
+						<div class="dice3"><img src="./img/cube.svg" /> Wo? ${medium}</div>
 					</div>
 				</div>
 				<div class="sender">
