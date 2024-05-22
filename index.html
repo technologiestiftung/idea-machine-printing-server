@@ -3,695 +3,702 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link
+			href="./services/rest/paths/print/font/jersey20.woff2"
+			rel="stylesheet"
+		/>
+		<link rel="stylesheet" href="./index.css" />
 		<title>Ideenwürfel</title>
 	</head>
 	<body>
-		<!--		<header>-->
-		<!--			<a aria-label="Startseite" href="/">-->
-		<!--				<img src="/citylab-logo-monochrome.svg" alt="CityLab Logo" />-->
-		<!--			</a>-->
-		<!--		</header>-->
 		<main>
-			<section>
-				<div>
-					<h1>Würfel aktualisieren</h1>
+			<div class="heading">
+				<h1>Ideenwürfel</h1>
+				<img
+					src="https://logos.citylab-berlin.org/logo-citylab-color.svg"
+					alt="CityLab Logo"
+					width="120px"
+				/>
+			</div>
+			<div>
+				Nach Anpassung der Labels, bitte <b>speichern</b> am Ende der Seite
+				klicken.
+			</div>
+			<form id="form">
+				<h3 class="focus-group">Fokus Gruppe</h3>
+
+				<!--A1-->
+				<div class="label-block">
+					<label for="A1">Label 1</label>
+					<input type="text" name="A1" id="A1" />
+					<!--						<details>-->
+					<!--							<summary>-->
+					<!--								<label for="A1_variations">Abweichende Begriffe?</label>-->
+					<!--							</summary>-->
+					<!--							<div>-->
+					<!--								<input-->
+					<!--									type="text"-->
+					<!--									value=""-->
+					<!--									name="A1_variations"-->
+					<!--									id="A1_variations"-->
+					<!--								/>-->
+					<!--								<span>Bitte separiert mit Semikolon (;)</span>-->
+					<!--								<p>-->
+					<!--									Nur nötig, wenn du andere Begriffe als das sichtbare Label für-->
+					<!--									die Ideengenerierung benutzen willst.-->
+					<!--								</p>-->
+					<!--								<p>-->
+					<!--									Beispiel 1: Das sichtbare Label ist "?", soll aber nicht zur-->
+					<!--									Ideengenerierung benutzt werden. Dann trage unten bitte etwas-->
+					<!--									ein wie z.B. "Begriff A;Begriff B;Begriff C" (ohne-->
+					<!--									Anführungszeichen)-->
+					<!--								</p>-->
+					<!--								<p>-->
+					<!--									Beispiel 2: Das sichtbare Label ist "Berliner:innen", du-->
+					<!--									möchtest aber zusätzlich "Berliner" und "Berlinerinnen" als-->
+					<!--									mögliche Option. Dann trage unten bitte ein:-->
+					<!--									"Berliner:innen;Berliner;Berlinerinnen" (ohne-->
+					<!--									Anführungszeichen)-->
+					<!--								</p>-->
+					<!--							</div>-->
+					<!--						</details>-->
 				</div>
-				<form id="form">
-					<h2>focus_group</h2>
 
-					<!--A1-->
-					<div>
-						<label for="A1">Sichtbares Label</label>
-						<input type="text" name="A1" id="A1" />
-						<!--						<details>-->
-						<!--							<summary>-->
-						<!--								<label for="A1_variations">Abweichende Begriffe?</label>-->
-						<!--							</summary>-->
-						<!--							<div>-->
-						<!--								<input-->
-						<!--									type="text"-->
-						<!--									value=""-->
-						<!--									name="A1_variations"-->
-						<!--									id="A1_variations"-->
-						<!--								/>-->
-						<!--								<span>Bitte separiert mit Semikolon (;)</span>-->
-						<!--								<p>-->
-						<!--									Nur nötig, wenn du andere Begriffe als das sichtbare Label für-->
-						<!--									die Ideengenerierung benutzen willst.-->
-						<!--								</p>-->
-						<!--								<p>-->
-						<!--									Beispiel 1: Das sichtbare Label ist "?", soll aber nicht zur-->
-						<!--									Ideengenerierung benutzt werden. Dann trage unten bitte etwas-->
-						<!--									ein wie z.B. "Begriff A;Begriff B;Begriff C" (ohne-->
-						<!--									Anführungszeichen)-->
-						<!--								</p>-->
-						<!--								<p>-->
-						<!--									Beispiel 2: Das sichtbare Label ist "Berliner:innen", du-->
-						<!--									möchtest aber zusätzlich "Berliner" und "Berlinerinnen" als-->
-						<!--									mögliche Option. Dann trage unten bitte ein:-->
-						<!--									"Berliner:innen;Berliner;Berlinerinnen" (ohne-->
-						<!--									Anführungszeichen)-->
-						<!--								</p>-->
-						<!--							</div>-->
-						<!--						</details>-->
-					</div>
+				<!--A2-->
+				<div class="label-block">
+					<label for="A2">Label 2</label>
+					<input type="text" name="A2" id="A2" />
+					<!--						<details>-->
+					<!--							<summary>-->
+					<!--								<label for="A2_variations">Abweichende Begriffe?</label>-->
+					<!--							</summary>-->
+					<!--							<div>-->
+					<!--								<input-->
+					<!--									type="text"-->
+					<!--									value=""-->
+					<!--									name="A2_variations"-->
+					<!--									id="A2_variations"-->
+					<!--								/>-->
+					<!--								<span>Bitte separiert mit Semikolon (;)</span>-->
+					<!--								<p>-->
+					<!--									Nur nötig, wenn du andere Begriffe als das sichtbare Label für-->
+					<!--									die Ideengenerierung benutzen willst.-->
+					<!--								</p>-->
+					<!--								<p>-->
+					<!--									Beispiel 1: Das sichtbare Label ist "?", soll aber nicht zur-->
+					<!--									Ideengenerierung benutzt werden. Dann trage unten bitte etwas-->
+					<!--									ein wie z.B. "Begriff A;Begriff B;Begriff C" (ohne-->
+					<!--									Anführungszeichen)-->
+					<!--								</p>-->
+					<!--								<p>-->
+					<!--									Beispiel 2: Das sichtbare Label ist "Berliner:innen", du-->
+					<!--									möchtest aber zusätzlich "Berliner" und "Berlinerinnen" als-->
+					<!--									mögliche Option. Dann trage unten bitte ein:-->
+					<!--									"Berliner:innen;Berliner;Berlinerinnen" (ohne-->
+					<!--									Anführungszeichen)-->
+					<!--								</p>-->
+					<!--							</div>-->
+					<!--						</details>-->
+				</div>
 
-					<!--A2-->
-					<div>
-						<label for="A2">Sichtbares Label</label>
-						<input type="text" name="A2" id="A2" />
-						<!--						<details>-->
-						<!--							<summary>-->
-						<!--								<label for="A2_variations">Abweichende Begriffe?</label>-->
-						<!--							</summary>-->
-						<!--							<div>-->
-						<!--								<input-->
-						<!--									type="text"-->
-						<!--									value=""-->
-						<!--									name="A2_variations"-->
-						<!--									id="A2_variations"-->
-						<!--								/>-->
-						<!--								<span>Bitte separiert mit Semikolon (;)</span>-->
-						<!--								<p>-->
-						<!--									Nur nötig, wenn du andere Begriffe als das sichtbare Label für-->
-						<!--									die Ideengenerierung benutzen willst.-->
-						<!--								</p>-->
-						<!--								<p>-->
-						<!--									Beispiel 1: Das sichtbare Label ist "?", soll aber nicht zur-->
-						<!--									Ideengenerierung benutzt werden. Dann trage unten bitte etwas-->
-						<!--									ein wie z.B. "Begriff A;Begriff B;Begriff C" (ohne-->
-						<!--									Anführungszeichen)-->
-						<!--								</p>-->
-						<!--								<p>-->
-						<!--									Beispiel 2: Das sichtbare Label ist "Berliner:innen", du-->
-						<!--									möchtest aber zusätzlich "Berliner" und "Berlinerinnen" als-->
-						<!--									mögliche Option. Dann trage unten bitte ein:-->
-						<!--									"Berliner:innen;Berliner;Berlinerinnen" (ohne-->
-						<!--									Anführungszeichen)-->
-						<!--								</p>-->
-						<!--							</div>-->
-						<!--						</details>-->
-					</div>
+				<!--A3-->
+				<div class="label-block">
+					<label for="A3">Label 3</label>
+					<input type="text" name="A3" id="A3" />
+					<!--						<details>-->
+					<!--							<summary>-->
+					<!--								<label for="A3_variations">Abweichende Begriffe?</label>-->
+					<!--							</summary>-->
+					<!--							<div>-->
+					<!--								<input-->
+					<!--									type="text"-->
+					<!--									value=""-->
+					<!--									name="A3_variations"-->
+					<!--									id="A3_variations"-->
+					<!--								/>-->
+					<!--								<span>Bitte separiert mit Semikolon (;)</span>-->
+					<!--								<p>-->
+					<!--									Nur nötig, wenn du andere Begriffe als das sichtbare Label für-->
+					<!--									die Ideengenerierung benutzen willst.-->
+					<!--								</p>-->
+					<!--								<p>-->
+					<!--									Beispiel 1: Das sichtbare Label ist "?", soll aber nicht zur-->
+					<!--									Ideengenerierung benutzt werden. Dann trage unten bitte etwas-->
+					<!--									ein wie z.B. "Begriff A;Begriff B;Begriff C" (ohne-->
+					<!--									Anführungszeichen)-->
+					<!--								</p>-->
+					<!--								<p>-->
+					<!--									Beispiel 2: Das sichtbare Label ist "Berliner:innen", du-->
+					<!--									möchtest aber zusätzlich "Berliner" und "Berlinerinnen" als-->
+					<!--									mögliche Option. Dann trage unten bitte ein:-->
+					<!--									"Berliner:innen;Berliner;Berlinerinnen" (ohne-->
+					<!--									Anführungszeichen)-->
+					<!--								</p>-->
+					<!--							</div>-->
+					<!--						</details>-->
+				</div>
 
-					<!--A3-->
-					<div>
-						<label for="A3">Sichtbares Label</label>
-						<input type="text" name="A3" id="A3" />
-						<!--						<details>-->
-						<!--							<summary>-->
-						<!--								<label for="A3_variations">Abweichende Begriffe?</label>-->
-						<!--							</summary>-->
-						<!--							<div>-->
-						<!--								<input-->
-						<!--									type="text"-->
-						<!--									value=""-->
-						<!--									name="A3_variations"-->
-						<!--									id="A3_variations"-->
-						<!--								/>-->
-						<!--								<span>Bitte separiert mit Semikolon (;)</span>-->
-						<!--								<p>-->
-						<!--									Nur nötig, wenn du andere Begriffe als das sichtbare Label für-->
-						<!--									die Ideengenerierung benutzen willst.-->
-						<!--								</p>-->
-						<!--								<p>-->
-						<!--									Beispiel 1: Das sichtbare Label ist "?", soll aber nicht zur-->
-						<!--									Ideengenerierung benutzt werden. Dann trage unten bitte etwas-->
-						<!--									ein wie z.B. "Begriff A;Begriff B;Begriff C" (ohne-->
-						<!--									Anführungszeichen)-->
-						<!--								</p>-->
-						<!--								<p>-->
-						<!--									Beispiel 2: Das sichtbare Label ist "Berliner:innen", du-->
-						<!--									möchtest aber zusätzlich "Berliner" und "Berlinerinnen" als-->
-						<!--									mögliche Option. Dann trage unten bitte ein:-->
-						<!--									"Berliner:innen;Berliner;Berlinerinnen" (ohne-->
-						<!--									Anführungszeichen)-->
-						<!--								</p>-->
-						<!--							</div>-->
-						<!--						</details>-->
-					</div>
+				<!--A4-->
+				<div class="label-block">
+					<label for="A4">Label 4</label>
+					<input type="text" name="A4" id="A4" />
+					<!--						<details>-->
+					<!--							<summary>-->
+					<!--								<label for="A4_variations">Abweichende Begriffe?</label>-->
+					<!--							</summary>-->
+					<!--							<div>-->
+					<!--								<input-->
+					<!--									type="text"-->
+					<!--									value=""-->
+					<!--									name="A4_variations"-->
+					<!--									id="A4_variations"-->
+					<!--								/>-->
+					<!--								<span>Bitte separiert mit Semikolon (;)</span>-->
+					<!--								<p>-->
+					<!--									Nur nötig, wenn du andere Begriffe als das sichtbare Label für-->
+					<!--									die Ideengenerierung benutzen willst.-->
+					<!--								</p>-->
+					<!--								<p>-->
+					<!--									Beispiel 1: Das sichtbare Label ist "?", soll aber nicht zur-->
+					<!--									Ideengenerierung benutzt werden. Dann trage unten bitte etwas-->
+					<!--									ein wie z.B. "Begriff A;Begriff B;Begriff C" (ohne-->
+					<!--									Anführungszeichen)-->
+					<!--								</p>-->
+					<!--								<p>-->
+					<!--									Beispiel 2: Das sichtbare Label ist "Berliner:innen", du-->
+					<!--									möchtest aber zusätzlich "Berliner" und "Berlinerinnen" als-->
+					<!--									mögliche Option. Dann trage unten bitte ein:-->
+					<!--									"Berliner:innen;Berliner;Berlinerinnen" (ohne-->
+					<!--									Anführungszeichen)-->
+					<!--								</p>-->
+					<!--							</div>-->
+					<!--						</details>-->
+				</div>
 
-					<!--A4-->
-					<div>
-						<label for="A4">Sichtbares Label</label>
-						<input type="text" name="A4" id="A4" />
-						<!--						<details>-->
-						<!--							<summary>-->
-						<!--								<label for="A4_variations">Abweichende Begriffe?</label>-->
-						<!--							</summary>-->
-						<!--							<div>-->
-						<!--								<input-->
-						<!--									type="text"-->
-						<!--									value=""-->
-						<!--									name="A4_variations"-->
-						<!--									id="A4_variations"-->
-						<!--								/>-->
-						<!--								<span>Bitte separiert mit Semikolon (;)</span>-->
-						<!--								<p>-->
-						<!--									Nur nötig, wenn du andere Begriffe als das sichtbare Label für-->
-						<!--									die Ideengenerierung benutzen willst.-->
-						<!--								</p>-->
-						<!--								<p>-->
-						<!--									Beispiel 1: Das sichtbare Label ist "?", soll aber nicht zur-->
-						<!--									Ideengenerierung benutzt werden. Dann trage unten bitte etwas-->
-						<!--									ein wie z.B. "Begriff A;Begriff B;Begriff C" (ohne-->
-						<!--									Anführungszeichen)-->
-						<!--								</p>-->
-						<!--								<p>-->
-						<!--									Beispiel 2: Das sichtbare Label ist "Berliner:innen", du-->
-						<!--									möchtest aber zusätzlich "Berliner" und "Berlinerinnen" als-->
-						<!--									mögliche Option. Dann trage unten bitte ein:-->
-						<!--									"Berliner:innen;Berliner;Berlinerinnen" (ohne-->
-						<!--									Anführungszeichen)-->
-						<!--								</p>-->
-						<!--							</div>-->
-						<!--						</details>-->
-					</div>
+				<!--A5-->
+				<div class="label-block">
+					<label for="A5">Label 5</label>
+					<input type="text" name="A5" id="A5" />
+					<!--						<details>-->
+					<!--							<summary>-->
+					<!--								<label for="A5_variations">Abweichende Begriffe?</label>-->
+					<!--							</summary>-->
+					<!--							<div>-->
+					<!--								<input-->
+					<!--									type="text"-->
+					<!--									value=""-->
+					<!--									name="A5_variations"-->
+					<!--									id="A5_variations"-->
+					<!--								/>-->
+					<!--								<span>Bitte separiert mit Semikolon (;)</span>-->
+					<!--								<p>-->
+					<!--									Nur nötig, wenn du andere Begriffe als das sichtbare Label für-->
+					<!--									die Ideengenerierung benutzen willst.-->
+					<!--								</p>-->
+					<!--								<p>-->
+					<!--									Beispiel 1: Das sichtbare Label ist "?", soll aber nicht zur-->
+					<!--									Ideengenerierung benutzt werden. Dann trage unten bitte etwas-->
+					<!--									ein wie z.B. "Begriff A;Begriff B;Begriff C" (ohne-->
+					<!--									Anführungszeichen)-->
+					<!--								</p>-->
+					<!--								<p>-->
+					<!--									Beispiel 2: Das sichtbare Label ist "Berliner:innen", du-->
+					<!--									möchtest aber zusätzlich "Berliner" und "Berlinerinnen" als-->
+					<!--									mögliche Option. Dann trage unten bitte ein:-->
+					<!--									"Berliner:innen;Berliner;Berlinerinnen" (ohne-->
+					<!--									Anführungszeichen)-->
+					<!--								</p>-->
+					<!--							</div>-->
+					<!--						</details>-->
+				</div>
 
-					<!--A5-->
-					<div>
-						<label for="A5">Sichtbares Label</label>
-						<input type="text" name="A5" id="A5" />
-						<!--						<details>-->
-						<!--							<summary>-->
-						<!--								<label for="A5_variations">Abweichende Begriffe?</label>-->
-						<!--							</summary>-->
-						<!--							<div>-->
-						<!--								<input-->
-						<!--									type="text"-->
-						<!--									value=""-->
-						<!--									name="A5_variations"-->
-						<!--									id="A5_variations"-->
-						<!--								/>-->
-						<!--								<span>Bitte separiert mit Semikolon (;)</span>-->
-						<!--								<p>-->
-						<!--									Nur nötig, wenn du andere Begriffe als das sichtbare Label für-->
-						<!--									die Ideengenerierung benutzen willst.-->
-						<!--								</p>-->
-						<!--								<p>-->
-						<!--									Beispiel 1: Das sichtbare Label ist "?", soll aber nicht zur-->
-						<!--									Ideengenerierung benutzt werden. Dann trage unten bitte etwas-->
-						<!--									ein wie z.B. "Begriff A;Begriff B;Begriff C" (ohne-->
-						<!--									Anführungszeichen)-->
-						<!--								</p>-->
-						<!--								<p>-->
-						<!--									Beispiel 2: Das sichtbare Label ist "Berliner:innen", du-->
-						<!--									möchtest aber zusätzlich "Berliner" und "Berlinerinnen" als-->
-						<!--									mögliche Option. Dann trage unten bitte ein:-->
-						<!--									"Berliner:innen;Berliner;Berlinerinnen" (ohne-->
-						<!--									Anführungszeichen)-->
-						<!--								</p>-->
-						<!--							</div>-->
-						<!--						</details>-->
-					</div>
+				<!--A6-->
+				<div class="label-block">
+					<label for="A6">Label 6</label>
+					<input type="text" name="A6" id="A6" />
+					<!--						<details>-->
+					<!--							<summary>-->
+					<!--								<label for="A6_variations">Abweichende Begriffe?</label>-->
+					<!--							</summary>-->
+					<!--							<div>-->
+					<!--								<input-->
+					<!--									type="text"-->
+					<!--									value=""-->
+					<!--									name="A6_variations"-->
+					<!--									id="A6_variations"-->
+					<!--								/>-->
+					<!--								<span>Bitte separiert mit Semikolon (;)</span>-->
+					<!--								<p>-->
+					<!--									Nur nötig, wenn du andere Begriffe als das sichtbare Label für-->
+					<!--									die Ideengenerierung benutzen willst.-->
+					<!--								</p>-->
+					<!--								<p>-->
+					<!--									Beispiel 1: Das sichtbare Label ist "?", soll aber nicht zur-->
+					<!--									Ideengenerierung benutzt werden. Dann trage unten bitte etwas-->
+					<!--									ein wie z.B. "Begriff A;Begriff B;Begriff C" (ohne-->
+					<!--									Anführungszeichen)-->
+					<!--								</p>-->
+					<!--								<p>-->
+					<!--									Beispiel 2: Das sichtbare Label ist "Berliner:innen", du-->
+					<!--									möchtest aber zusätzlich "Berliner" und "Berlinerinnen" als-->
+					<!--									mögliche Option. Dann trage unten bitte ein:-->
+					<!--									"Berliner:innen;Berliner;Berlinerinnen" (ohne-->
+					<!--									Anführungszeichen)-->
+					<!--								</p>-->
+					<!--							</div>-->
+					<!--						</details>-->
+				</div>
 
-					<!--A6-->
-					<div>
-						<label for="A6">Sichtbares Label</label>
-						<input type="text" name="A6" id="A6" />
-						<!--						<details>-->
-						<!--							<summary>-->
-						<!--								<label for="A6_variations">Abweichende Begriffe?</label>-->
-						<!--							</summary>-->
-						<!--							<div>-->
-						<!--								<input-->
-						<!--									type="text"-->
-						<!--									value=""-->
-						<!--									name="A6_variations"-->
-						<!--									id="A6_variations"-->
-						<!--								/>-->
-						<!--								<span>Bitte separiert mit Semikolon (;)</span>-->
-						<!--								<p>-->
-						<!--									Nur nötig, wenn du andere Begriffe als das sichtbare Label für-->
-						<!--									die Ideengenerierung benutzen willst.-->
-						<!--								</p>-->
-						<!--								<p>-->
-						<!--									Beispiel 1: Das sichtbare Label ist "?", soll aber nicht zur-->
-						<!--									Ideengenerierung benutzt werden. Dann trage unten bitte etwas-->
-						<!--									ein wie z.B. "Begriff A;Begriff B;Begriff C" (ohne-->
-						<!--									Anführungszeichen)-->
-						<!--								</p>-->
-						<!--								<p>-->
-						<!--									Beispiel 2: Das sichtbare Label ist "Berliner:innen", du-->
-						<!--									möchtest aber zusätzlich "Berliner" und "Berlinerinnen" als-->
-						<!--									mögliche Option. Dann trage unten bitte ein:-->
-						<!--									"Berliner:innen;Berliner;Berlinerinnen" (ohne-->
-						<!--									Anführungszeichen)-->
-						<!--								</p>-->
-						<!--							</div>-->
-						<!--						</details>-->
-					</div>
+				<h3 class="topic">Thema</h3>
 
-					<h2>topic</h2>
+				<!--B1-->
+				<div class="label-block">
+					<label for="B1">Label 1</label>
+					<input type="text" name="B1" id="B1" />
+					<!--						<details>-->
+					<!--							<summary>-->
+					<!--								<label for="B1_variations">Abweichende Begriffe?</label>-->
+					<!--							</summary>-->
+					<!--							<div>-->
+					<!--								<input-->
+					<!--									type="text"-->
+					<!--									value=""-->
+					<!--									name="B1_variations"-->
+					<!--									id="B1_variations"-->
+					<!--								/>-->
+					<!--								<span>Bitte separiert mit Semikolon (;)</span>-->
+					<!--								<p>-->
+					<!--									Nur nötig, wenn du andere Begriffe als das sichtbare Label für-->
+					<!--									die Ideengenerierung benutzen willst.-->
+					<!--								</p>-->
+					<!--								<p>-->
+					<!--									Beispiel 1: Das sichtbare Label ist "?", soll aber nicht zur-->
+					<!--									Ideengenerierung benutzt werden. Dann trage unten bitte etwas-->
+					<!--									ein wie z.B. "Begriff A;Begriff B;Begriff C" (ohne-->
+					<!--									Anführungszeichen)-->
+					<!--								</p>-->
+					<!--								<p>-->
+					<!--									Beispiel 2: Das sichtbare Label ist "Berliner:innen", du-->
+					<!--									möchtest aber zusätzlich "Berliner" und "Berlinerinnen" als-->
+					<!--									mögliche Option. Dann trage unten bitte ein:-->
+					<!--									"Berliner:innen;Berliner;Berlinerinnen" (ohne-->
+					<!--									Anführungszeichen)-->
+					<!--								</p>-->
+					<!--							</div>-->
+					<!--						</details>-->
+				</div>
 
-					<!--B1-->
-					<div>
-						<label for="B1">Sichtbares Label</label>
-						<input type="text" name="B1" id="B1" />
-						<!--						<details>-->
-						<!--							<summary>-->
-						<!--								<label for="B1_variations">Abweichende Begriffe?</label>-->
-						<!--							</summary>-->
-						<!--							<div>-->
-						<!--								<input-->
-						<!--									type="text"-->
-						<!--									value=""-->
-						<!--									name="B1_variations"-->
-						<!--									id="B1_variations"-->
-						<!--								/>-->
-						<!--								<span>Bitte separiert mit Semikolon (;)</span>-->
-						<!--								<p>-->
-						<!--									Nur nötig, wenn du andere Begriffe als das sichtbare Label für-->
-						<!--									die Ideengenerierung benutzen willst.-->
-						<!--								</p>-->
-						<!--								<p>-->
-						<!--									Beispiel 1: Das sichtbare Label ist "?", soll aber nicht zur-->
-						<!--									Ideengenerierung benutzt werden. Dann trage unten bitte etwas-->
-						<!--									ein wie z.B. "Begriff A;Begriff B;Begriff C" (ohne-->
-						<!--									Anführungszeichen)-->
-						<!--								</p>-->
-						<!--								<p>-->
-						<!--									Beispiel 2: Das sichtbare Label ist "Berliner:innen", du-->
-						<!--									möchtest aber zusätzlich "Berliner" und "Berlinerinnen" als-->
-						<!--									mögliche Option. Dann trage unten bitte ein:-->
-						<!--									"Berliner:innen;Berliner;Berlinerinnen" (ohne-->
-						<!--									Anführungszeichen)-->
-						<!--								</p>-->
-						<!--							</div>-->
-						<!--						</details>-->
-					</div>
+				<!--B2-->
+				<div class="label-block">
+					<label for="B2">Label 2</label>
+					<input type="text" name="B2" id="B2" />
+					<!--						<details>-->
+					<!--							<summary>-->
+					<!--								<label for="B2_variations">Abweichende Begriffe?</label>-->
+					<!--							</summary>-->
+					<!--							<div>-->
+					<!--								<input-->
+					<!--									type="text"-->
+					<!--									value=""-->
+					<!--									name="B2_variations"-->
+					<!--									id="B2_variations"-->
+					<!--								/>-->
+					<!--								<span>Bitte separiert mit Semikolon (;)</span>-->
+					<!--								<p>-->
+					<!--									Nur nötig, wenn du andere Begriffe als das sichtbare Label für-->
+					<!--									die Ideengenerierung benutzen willst.-->
+					<!--								</p>-->
+					<!--								<p>-->
+					<!--									Beispiel 1: Das sichtbare Label ist "?", soll aber nicht zur-->
+					<!--									Ideengenerierung benutzt werden. Dann trage unten bitte etwas-->
+					<!--									ein wie z.B. "Begriff A;Begriff B;Begriff C" (ohne-->
+					<!--									Anführungszeichen)-->
+					<!--								</p>-->
+					<!--								<p>-->
+					<!--									Beispiel 2: Das sichtbare Label ist "Berliner:innen", du-->
+					<!--									möchtest aber zusätzlich "Berliner" und "Berlinerinnen" als-->
+					<!--									mögliche Option. Dann trage unten bitte ein:-->
+					<!--									"Berliner:innen;Berliner;Berlinerinnen" (ohne-->
+					<!--									Anführungszeichen)-->
+					<!--								</p>-->
+					<!--							</div>-->
+					<!--						</details>-->
+				</div>
 
-					<!--B2-->
-					<div>
-						<label for="B2">Sichtbares Label</label>
-						<input type="text" name="B2" id="B2" />
-						<!--						<details>-->
-						<!--							<summary>-->
-						<!--								<label for="B2_variations">Abweichende Begriffe?</label>-->
-						<!--							</summary>-->
-						<!--							<div>-->
-						<!--								<input-->
-						<!--									type="text"-->
-						<!--									value=""-->
-						<!--									name="B2_variations"-->
-						<!--									id="B2_variations"-->
-						<!--								/>-->
-						<!--								<span>Bitte separiert mit Semikolon (;)</span>-->
-						<!--								<p>-->
-						<!--									Nur nötig, wenn du andere Begriffe als das sichtbare Label für-->
-						<!--									die Ideengenerierung benutzen willst.-->
-						<!--								</p>-->
-						<!--								<p>-->
-						<!--									Beispiel 1: Das sichtbare Label ist "?", soll aber nicht zur-->
-						<!--									Ideengenerierung benutzt werden. Dann trage unten bitte etwas-->
-						<!--									ein wie z.B. "Begriff A;Begriff B;Begriff C" (ohne-->
-						<!--									Anführungszeichen)-->
-						<!--								</p>-->
-						<!--								<p>-->
-						<!--									Beispiel 2: Das sichtbare Label ist "Berliner:innen", du-->
-						<!--									möchtest aber zusätzlich "Berliner" und "Berlinerinnen" als-->
-						<!--									mögliche Option. Dann trage unten bitte ein:-->
-						<!--									"Berliner:innen;Berliner;Berlinerinnen" (ohne-->
-						<!--									Anführungszeichen)-->
-						<!--								</p>-->
-						<!--							</div>-->
-						<!--						</details>-->
-					</div>
+				<!--B3-->
+				<div class="label-block">
+					<label for="B3">Label 3</label>
+					<input type="text" name="B3" id="B3" />
+					<!--						<details>-->
+					<!--							<summary>-->
+					<!--								<label for="B3_variations">Abweichende Begriffe?</label>-->
+					<!--							</summary>-->
+					<!--							<div>-->
+					<!--								<input-->
+					<!--									type="text"-->
+					<!--									value=""-->
+					<!--									name="B3_variations"-->
+					<!--									id="B3_variations"-->
+					<!--								/>-->
+					<!--								<span>Bitte separiert mit Semikolon (;)</span>-->
+					<!--								<p>-->
+					<!--									Nur nötig, wenn du andere Begriffe als das sichtbare Label für-->
+					<!--									die Ideengenerierung benutzen willst.-->
+					<!--								</p>-->
+					<!--								<p>-->
+					<!--									Beispiel 1: Das sichtbare Label ist "?", soll aber nicht zur-->
+					<!--									Ideengenerierung benutzt werden. Dann trage unten bitte etwas-->
+					<!--									ein wie z.B. "Begriff A;Begriff B;Begriff C" (ohne-->
+					<!--									Anführungszeichen)-->
+					<!--								</p>-->
+					<!--								<p>-->
+					<!--									Beispiel 2: Das sichtbare Label ist "Berliner:innen", du-->
+					<!--									möchtest aber zusätzlich "Berliner" und "Berlinerinnen" als-->
+					<!--									mögliche Option. Dann trage unten bitte ein:-->
+					<!--									"Berliner:innen;Berliner;Berlinerinnen" (ohne-->
+					<!--									Anführungszeichen)-->
+					<!--								</p>-->
+					<!--							</div>-->
+					<!--						</details>-->
+				</div>
 
-					<!--B3-->
-					<div>
-						<label for="B3">Sichtbares Label</label>
-						<input type="text" name="B3" id="B3" />
-						<!--						<details>-->
-						<!--							<summary>-->
-						<!--								<label for="B3_variations">Abweichende Begriffe?</label>-->
-						<!--							</summary>-->
-						<!--							<div>-->
-						<!--								<input-->
-						<!--									type="text"-->
-						<!--									value=""-->
-						<!--									name="B3_variations"-->
-						<!--									id="B3_variations"-->
-						<!--								/>-->
-						<!--								<span>Bitte separiert mit Semikolon (;)</span>-->
-						<!--								<p>-->
-						<!--									Nur nötig, wenn du andere Begriffe als das sichtbare Label für-->
-						<!--									die Ideengenerierung benutzen willst.-->
-						<!--								</p>-->
-						<!--								<p>-->
-						<!--									Beispiel 1: Das sichtbare Label ist "?", soll aber nicht zur-->
-						<!--									Ideengenerierung benutzt werden. Dann trage unten bitte etwas-->
-						<!--									ein wie z.B. "Begriff A;Begriff B;Begriff C" (ohne-->
-						<!--									Anführungszeichen)-->
-						<!--								</p>-->
-						<!--								<p>-->
-						<!--									Beispiel 2: Das sichtbare Label ist "Berliner:innen", du-->
-						<!--									möchtest aber zusätzlich "Berliner" und "Berlinerinnen" als-->
-						<!--									mögliche Option. Dann trage unten bitte ein:-->
-						<!--									"Berliner:innen;Berliner;Berlinerinnen" (ohne-->
-						<!--									Anführungszeichen)-->
-						<!--								</p>-->
-						<!--							</div>-->
-						<!--						</details>-->
-					</div>
+				<!--B4-->
+				<div class="label-block">
+					<label for="B4">Label 4</label>
+					<input type="text" name="B4" id="B4" />
+					<!--						<details>-->
+					<!--							<summary>-->
+					<!--								<label for="B4_variations">Abweichende Begriffe?</label>-->
+					<!--							</summary>-->
+					<!--							<div>-->
+					<!--								<input-->
+					<!--									type="text"-->
+					<!--									value=""-->
+					<!--									name="B4_variations"-->
+					<!--									id="B4_variations"-->
+					<!--								/>-->
+					<!--								<span>Bitte separiert mit Semikolon (;)</span>-->
+					<!--								<p>-->
+					<!--									Nur nötig, wenn du andere Begriffe als das sichtbare Label für-->
+					<!--									die Ideengenerierung benutzen willst.-->
+					<!--								</p>-->
+					<!--								<p>-->
+					<!--									Beispiel 1: Das sichtbare Label ist "?", soll aber nicht zur-->
+					<!--									Ideengenerierung benutzt werden. Dann trage unten bitte etwas-->
+					<!--									ein wie z.B. "Begriff A;Begriff B;Begriff C" (ohne-->
+					<!--									Anführungszeichen)-->
+					<!--								</p>-->
+					<!--								<p>-->
+					<!--									Beispiel 2: Das sichtbare Label ist "Berliner:innen", du-->
+					<!--									möchtest aber zusätzlich "Berliner" und "Berlinerinnen" als-->
+					<!--									mögliche Option. Dann trage unten bitte ein:-->
+					<!--									"Berliner:innen;Berliner;Berlinerinnen" (ohne-->
+					<!--									Anführungszeichen)-->
+					<!--								</p>-->
+					<!--							</div>-->
+					<!--						</details>-->
+				</div>
 
-					<!--B4-->
-					<div>
-						<label for="B4">Sichtbares Label</label>
-						<input type="text" name="B4" id="B4" />
-						<!--						<details>-->
-						<!--							<summary>-->
-						<!--								<label for="B4_variations">Abweichende Begriffe?</label>-->
-						<!--							</summary>-->
-						<!--							<div>-->
-						<!--								<input-->
-						<!--									type="text"-->
-						<!--									value=""-->
-						<!--									name="B4_variations"-->
-						<!--									id="B4_variations"-->
-						<!--								/>-->
-						<!--								<span>Bitte separiert mit Semikolon (;)</span>-->
-						<!--								<p>-->
-						<!--									Nur nötig, wenn du andere Begriffe als das sichtbare Label für-->
-						<!--									die Ideengenerierung benutzen willst.-->
-						<!--								</p>-->
-						<!--								<p>-->
-						<!--									Beispiel 1: Das sichtbare Label ist "?", soll aber nicht zur-->
-						<!--									Ideengenerierung benutzt werden. Dann trage unten bitte etwas-->
-						<!--									ein wie z.B. "Begriff A;Begriff B;Begriff C" (ohne-->
-						<!--									Anführungszeichen)-->
-						<!--								</p>-->
-						<!--								<p>-->
-						<!--									Beispiel 2: Das sichtbare Label ist "Berliner:innen", du-->
-						<!--									möchtest aber zusätzlich "Berliner" und "Berlinerinnen" als-->
-						<!--									mögliche Option. Dann trage unten bitte ein:-->
-						<!--									"Berliner:innen;Berliner;Berlinerinnen" (ohne-->
-						<!--									Anführungszeichen)-->
-						<!--								</p>-->
-						<!--							</div>-->
-						<!--						</details>-->
-					</div>
+				<!--B5-->
+				<div class="label-block">
+					<label for="B5">Label 5</label>
+					<input type="text" name="B5" id="B5" />
+					<!--						<details>-->
+					<!--							<summary>-->
+					<!--								<label for="B5_variations">Abweichende Begriffe?</label>-->
+					<!--							</summary>-->
+					<!--							<div>-->
+					<!--								<input-->
+					<!--									type="text"-->
+					<!--									value=""-->
+					<!--									name="B5_variations"-->
+					<!--									id="B5_variations"-->
+					<!--								/>-->
+					<!--								<span>Bitte separiert mit Semikolon (;)</span>-->
+					<!--								<p>-->
+					<!--									Nur nötig, wenn du andere Begriffe als das sichtbare Label für-->
+					<!--									die Ideengenerierung benutzen willst.-->
+					<!--								</p>-->
+					<!--								<p>-->
+					<!--									Beispiel 1: Das sichtbare Label ist "?", soll aber nicht zur-->
+					<!--									Ideengenerierung benutzt werden. Dann trage unten bitte etwas-->
+					<!--									ein wie z.B. "Begriff A;Begriff B;Begriff C" (ohne-->
+					<!--									Anführungszeichen)-->
+					<!--								</p>-->
+					<!--								<p>-->
+					<!--									Beispiel 2: Das sichtbare Label ist "Berliner:innen", du-->
+					<!--									möchtest aber zusätzlich "Berliner" und "Berlinerinnen" als-->
+					<!--									mögliche Option. Dann trage unten bitte ein:-->
+					<!--									"Berliner:innen;Berliner;Berlinerinnen" (ohne-->
+					<!--									Anführungszeichen)-->
+					<!--								</p>-->
+					<!--							</div>-->
+					<!--						</details>-->
+				</div>
 
-					<!--B5-->
-					<div>
-						<label for="B5">Sichtbares Label</label>
-						<input type="text" name="B5" id="B5" />
-						<!--						<details>-->
-						<!--							<summary>-->
-						<!--								<label for="B5_variations">Abweichende Begriffe?</label>-->
-						<!--							</summary>-->
-						<!--							<div>-->
-						<!--								<input-->
-						<!--									type="text"-->
-						<!--									value=""-->
-						<!--									name="B5_variations"-->
-						<!--									id="B5_variations"-->
-						<!--								/>-->
-						<!--								<span>Bitte separiert mit Semikolon (;)</span>-->
-						<!--								<p>-->
-						<!--									Nur nötig, wenn du andere Begriffe als das sichtbare Label für-->
-						<!--									die Ideengenerierung benutzen willst.-->
-						<!--								</p>-->
-						<!--								<p>-->
-						<!--									Beispiel 1: Das sichtbare Label ist "?", soll aber nicht zur-->
-						<!--									Ideengenerierung benutzt werden. Dann trage unten bitte etwas-->
-						<!--									ein wie z.B. "Begriff A;Begriff B;Begriff C" (ohne-->
-						<!--									Anführungszeichen)-->
-						<!--								</p>-->
-						<!--								<p>-->
-						<!--									Beispiel 2: Das sichtbare Label ist "Berliner:innen", du-->
-						<!--									möchtest aber zusätzlich "Berliner" und "Berlinerinnen" als-->
-						<!--									mögliche Option. Dann trage unten bitte ein:-->
-						<!--									"Berliner:innen;Berliner;Berlinerinnen" (ohne-->
-						<!--									Anführungszeichen)-->
-						<!--								</p>-->
-						<!--							</div>-->
-						<!--						</details>-->
-					</div>
+				<!--B6-->
+				<div class="label-block">
+					<label for="B6">Label 6</label>
+					<input type="text" name="B6" id="B6" />
+					<!--						<details>-->
+					<!--							<summary>-->
+					<!--								<label for="B6_variations">Abweichende Begriffe?</label>-->
+					<!--							</summary>-->
+					<!--							<div>-->
+					<!--								<input-->
+					<!--									type="text"-->
+					<!--									value=""-->
+					<!--									name="B6_variations"-->
+					<!--									id="B6_variations"-->
+					<!--								/>-->
+					<!--								<span>Bitte separiert mit Semikolon (;)</span>-->
+					<!--								<p>-->
+					<!--									Nur nötig, wenn du andere Begriffe als das sichtbare Label für-->
+					<!--									die Ideengenerierung benutzen willst.-->
+					<!--								</p>-->
+					<!--								<p>-->
+					<!--									Beispiel 1: Das sichtbare Label ist "?", soll aber nicht zur-->
+					<!--									Ideengenerierung benutzt werden. Dann trage unten bitte etwas-->
+					<!--									ein wie z.B. "Begriff A;Begriff B;Begriff C" (ohne-->
+					<!--									Anführungszeichen)-->
+					<!--								</p>-->
+					<!--								<p>-->
+					<!--									Beispiel 2: Das sichtbare Label ist "Berliner:innen", du-->
+					<!--									möchtest aber zusätzlich "Berliner" und "Berlinerinnen" als-->
+					<!--									mögliche Option. Dann trage unten bitte ein:-->
+					<!--									"Berliner:innen;Berliner;Berlinerinnen" (ohne-->
+					<!--									Anführungszeichen)-->
+					<!--								</p>-->
+					<!--							</div>-->
+					<!--						</details>-->
+				</div>
 
-					<!--B6-->
-					<div>
-						<label for="B6">Sichtbares Label</label>
-						<input type="text" name="B6" id="B6" />
-						<!--						<details>-->
-						<!--							<summary>-->
-						<!--								<label for="B6_variations">Abweichende Begriffe?</label>-->
-						<!--							</summary>-->
-						<!--							<div>-->
-						<!--								<input-->
-						<!--									type="text"-->
-						<!--									value=""-->
-						<!--									name="B6_variations"-->
-						<!--									id="B6_variations"-->
-						<!--								/>-->
-						<!--								<span>Bitte separiert mit Semikolon (;)</span>-->
-						<!--								<p>-->
-						<!--									Nur nötig, wenn du andere Begriffe als das sichtbare Label für-->
-						<!--									die Ideengenerierung benutzen willst.-->
-						<!--								</p>-->
-						<!--								<p>-->
-						<!--									Beispiel 1: Das sichtbare Label ist "?", soll aber nicht zur-->
-						<!--									Ideengenerierung benutzt werden. Dann trage unten bitte etwas-->
-						<!--									ein wie z.B. "Begriff A;Begriff B;Begriff C" (ohne-->
-						<!--									Anführungszeichen)-->
-						<!--								</p>-->
-						<!--								<p>-->
-						<!--									Beispiel 2: Das sichtbare Label ist "Berliner:innen", du-->
-						<!--									möchtest aber zusätzlich "Berliner" und "Berlinerinnen" als-->
-						<!--									mögliche Option. Dann trage unten bitte ein:-->
-						<!--									"Berliner:innen;Berliner;Berlinerinnen" (ohne-->
-						<!--									Anführungszeichen)-->
-						<!--								</p>-->
-						<!--							</div>-->
-						<!--						</details>-->
-					</div>
+				<h3 class="medium">Medium</h3>
 
-					<h2>medium</h2>
+				<!--C1-->
+				<div class="label-block">
+					<label for="C1">Label 1</label>
+					<input type="text" name="C1" id="C1" />
+					<!--						<details>-->
+					<!--							<summary>-->
+					<!--								<label for="C1_variations">Abweichende Begriffe?</label>-->
+					<!--							</summary>-->
+					<!--							<div>-->
+					<!--								<input-->
+					<!--									type="text"-->
+					<!--									value=""-->
+					<!--									name="C1_variations"-->
+					<!--									id="C1_variations"-->
+					<!--								/>-->
+					<!--								<span>Bitte separiert mit Semikolon (;)</span>-->
+					<!--								<p>-->
+					<!--									Nur nötig, wenn du andere Begriffe als das sichtbare Label für-->
+					<!--									die Ideengenerierung benutzen willst.-->
+					<!--								</p>-->
+					<!--								<p>-->
+					<!--									Beispiel 1: Das sichtbare Label ist "?", soll aber nicht zur-->
+					<!--									Ideengenerierung benutzt werden. Dann trage unten bitte etwas-->
+					<!--									ein wie z.B. "Begriff A;Begriff B;Begriff C" (ohne-->
+					<!--									Anführungszeichen)-->
+					<!--								</p>-->
+					<!--								<p>-->
+					<!--									Beispiel 2: Das sichtbare Label ist "Berliner:innen", du-->
+					<!--									möchtest aber zusätzlich "Berliner" und "Berlinerinnen" als-->
+					<!--									mögliche Option. Dann trage unten bitte ein:-->
+					<!--									"Berliner:innen;Berliner;Berlinerinnen" (ohne-->
+					<!--									Anführungszeichen)-->
+					<!--								</p>-->
+					<!--							</div>-->
+					<!--						</details>-->
+				</div>
 
-					<!--C1-->
-					<div>
-						<label for="C1">Sichtbares Label</label>
-						<input type="text" name="C1" id="C1" />
-						<!--						<details>-->
-						<!--							<summary>-->
-						<!--								<label for="C1_variations">Abweichende Begriffe?</label>-->
-						<!--							</summary>-->
-						<!--							<div>-->
-						<!--								<input-->
-						<!--									type="text"-->
-						<!--									value=""-->
-						<!--									name="C1_variations"-->
-						<!--									id="C1_variations"-->
-						<!--								/>-->
-						<!--								<span>Bitte separiert mit Semikolon (;)</span>-->
-						<!--								<p>-->
-						<!--									Nur nötig, wenn du andere Begriffe als das sichtbare Label für-->
-						<!--									die Ideengenerierung benutzen willst.-->
-						<!--								</p>-->
-						<!--								<p>-->
-						<!--									Beispiel 1: Das sichtbare Label ist "?", soll aber nicht zur-->
-						<!--									Ideengenerierung benutzt werden. Dann trage unten bitte etwas-->
-						<!--									ein wie z.B. "Begriff A;Begriff B;Begriff C" (ohne-->
-						<!--									Anführungszeichen)-->
-						<!--								</p>-->
-						<!--								<p>-->
-						<!--									Beispiel 2: Das sichtbare Label ist "Berliner:innen", du-->
-						<!--									möchtest aber zusätzlich "Berliner" und "Berlinerinnen" als-->
-						<!--									mögliche Option. Dann trage unten bitte ein:-->
-						<!--									"Berliner:innen;Berliner;Berlinerinnen" (ohne-->
-						<!--									Anführungszeichen)-->
-						<!--								</p>-->
-						<!--							</div>-->
-						<!--						</details>-->
-					</div>
+				<!--C2-->
+				<div class="label-block">
+					<label for="C2">Label 2</label>
+					<input type="text" name="C2" id="C2" />
+					<!--						<details>-->
+					<!--							<summary>-->
+					<!--								<label for="C2_variations">Abweichende Begriffe?</label>-->
+					<!--							</summary>-->
+					<!--							<div>-->
+					<!--								<input-->
+					<!--									type="text"-->
+					<!--									value=""-->
+					<!--									name="C2_variations"-->
+					<!--									id="C2_variations"-->
+					<!--								/>-->
+					<!--								<span>Bitte separiert mit Semikolon (;)</span>-->
+					<!--								<p>-->
+					<!--									Nur nötig, wenn du andere Begriffe als das sichtbare Label für-->
+					<!--									die Ideengenerierung benutzen willst.-->
+					<!--								</p>-->
+					<!--								<p>-->
+					<!--									Beispiel 1: Das sichtbare Label ist "?", soll aber nicht zur-->
+					<!--									Ideengenerierung benutzt werden. Dann trage unten bitte etwas-->
+					<!--									ein wie z.B. "Begriff A;Begriff B;Begriff C" (ohne-->
+					<!--									Anführungszeichen)-->
+					<!--								</p>-->
+					<!--								<p>-->
+					<!--									Beispiel 2: Das sichtbare Label ist "Berliner:innen", du-->
+					<!--									möchtest aber zusätzlich "Berliner" und "Berlinerinnen" als-->
+					<!--									mögliche Option. Dann trage unten bitte ein:-->
+					<!--									"Berliner:innen;Berliner;Berlinerinnen" (ohne-->
+					<!--									Anführungszeichen)-->
+					<!--								</p>-->
+					<!--							</div>-->
+					<!--						</details>-->
+				</div>
 
-					<!--C2-->
-					<div>
-						<label for="C2">Sichtbares Label</label>
-						<input type="text" name="C2" id="C2" />
-						<!--						<details>-->
-						<!--							<summary>-->
-						<!--								<label for="C2_variations">Abweichende Begriffe?</label>-->
-						<!--							</summary>-->
-						<!--							<div>-->
-						<!--								<input-->
-						<!--									type="text"-->
-						<!--									value=""-->
-						<!--									name="C2_variations"-->
-						<!--									id="C2_variations"-->
-						<!--								/>-->
-						<!--								<span>Bitte separiert mit Semikolon (;)</span>-->
-						<!--								<p>-->
-						<!--									Nur nötig, wenn du andere Begriffe als das sichtbare Label für-->
-						<!--									die Ideengenerierung benutzen willst.-->
-						<!--								</p>-->
-						<!--								<p>-->
-						<!--									Beispiel 1: Das sichtbare Label ist "?", soll aber nicht zur-->
-						<!--									Ideengenerierung benutzt werden. Dann trage unten bitte etwas-->
-						<!--									ein wie z.B. "Begriff A;Begriff B;Begriff C" (ohne-->
-						<!--									Anführungszeichen)-->
-						<!--								</p>-->
-						<!--								<p>-->
-						<!--									Beispiel 2: Das sichtbare Label ist "Berliner:innen", du-->
-						<!--									möchtest aber zusätzlich "Berliner" und "Berlinerinnen" als-->
-						<!--									mögliche Option. Dann trage unten bitte ein:-->
-						<!--									"Berliner:innen;Berliner;Berlinerinnen" (ohne-->
-						<!--									Anführungszeichen)-->
-						<!--								</p>-->
-						<!--							</div>-->
-						<!--						</details>-->
-					</div>
+				<!--C3-->
+				<div class="label-block">
+					<label for="C3">Label 3</label>
+					<input type="text" name="C3" id="C3" />
+					<!--						<details>-->
+					<!--							<summary>-->
+					<!--								<label for="C3_variations">Abweichende Begriffe?</label>-->
+					<!--							</summary>-->
+					<!--							<div>-->
+					<!--								<input-->
+					<!--									type="text"-->
+					<!--									value=""-->
+					<!--									name="C3_variations"-->
+					<!--									id="C3_variations"-->
+					<!--								/>-->
+					<!--								<span>Bitte separiert mit Semikolon (;)</span>-->
+					<!--								<p>-->
+					<!--									Nur nötig, wenn du andere Begriffe als das sichtbare Label für-->
+					<!--									die Ideengenerierung benutzen willst.-->
+					<!--								</p>-->
+					<!--								<p>-->
+					<!--									Beispiel 1: Das sichtbare Label ist "?", soll aber nicht zur-->
+					<!--									Ideengenerierung benutzt werden. Dann trage unten bitte etwas-->
+					<!--									ein wie z.B. "Begriff A;Begriff B;Begriff C" (ohne-->
+					<!--									Anführungszeichen)-->
+					<!--								</p>-->
+					<!--								<p>-->
+					<!--									Beispiel 2: Das sichtbare Label ist "Berliner:innen", du-->
+					<!--									möchtest aber zusätzlich "Berliner" und "Berlinerinnen" als-->
+					<!--									mögliche Option. Dann trage unten bitte ein:-->
+					<!--									"Berliner:innen;Berliner;Berlinerinnen" (ohne-->
+					<!--									Anführungszeichen)-->
+					<!--								</p>-->
+					<!--							</div>-->
+					<!--						</details>-->
+				</div>
 
-					<!--C3-->
-					<div>
-						<label for="C3">Sichtbares Label</label>
-						<input type="text" name="C3" id="C3" />
-						<!--						<details>-->
-						<!--							<summary>-->
-						<!--								<label for="C3_variations">Abweichende Begriffe?</label>-->
-						<!--							</summary>-->
-						<!--							<div>-->
-						<!--								<input-->
-						<!--									type="text"-->
-						<!--									value=""-->
-						<!--									name="C3_variations"-->
-						<!--									id="C3_variations"-->
-						<!--								/>-->
-						<!--								<span>Bitte separiert mit Semikolon (;)</span>-->
-						<!--								<p>-->
-						<!--									Nur nötig, wenn du andere Begriffe als das sichtbare Label für-->
-						<!--									die Ideengenerierung benutzen willst.-->
-						<!--								</p>-->
-						<!--								<p>-->
-						<!--									Beispiel 1: Das sichtbare Label ist "?", soll aber nicht zur-->
-						<!--									Ideengenerierung benutzt werden. Dann trage unten bitte etwas-->
-						<!--									ein wie z.B. "Begriff A;Begriff B;Begriff C" (ohne-->
-						<!--									Anführungszeichen)-->
-						<!--								</p>-->
-						<!--								<p>-->
-						<!--									Beispiel 2: Das sichtbare Label ist "Berliner:innen", du-->
-						<!--									möchtest aber zusätzlich "Berliner" und "Berlinerinnen" als-->
-						<!--									mögliche Option. Dann trage unten bitte ein:-->
-						<!--									"Berliner:innen;Berliner;Berlinerinnen" (ohne-->
-						<!--									Anführungszeichen)-->
-						<!--								</p>-->
-						<!--							</div>-->
-						<!--						</details>-->
-					</div>
+				<!--C4-->
+				<div class="label-block">
+					<label for="C4">Label 4</label>
+					<input type="text" name="C4" id="C4" />
+					<!--						<details>-->
+					<!--							<summary>-->
+					<!--								<label for="C4_variations">Abweichende Begriffe?</label>-->
+					<!--							</summary>-->
+					<!--							<div>-->
+					<!--								<input-->
+					<!--									type="text"-->
+					<!--									value=""-->
+					<!--									name="C4_variations"-->
+					<!--									id="C4_variations"-->
+					<!--								/>-->
+					<!--								<span>Bitte separiert mit Semikolon (;)</span>-->
+					<!--								<p>-->
+					<!--									Nur nötig, wenn du andere Begriffe als das sichtbare Label für-->
+					<!--									die Ideengenerierung benutzen willst.-->
+					<!--								</p>-->
+					<!--								<p>-->
+					<!--									Beispiel 1: Das sichtbare Label ist "?", soll aber nicht zur-->
+					<!--									Ideengenerierung benutzt werden. Dann trage unten bitte etwas-->
+					<!--									ein wie z.B. "Begriff A;Begriff B;Begriff C" (ohne-->
+					<!--									Anführungszeichen)-->
+					<!--								</p>-->
+					<!--								<p>-->
+					<!--									Beispiel 2: Das sichtbare Label ist "Berliner:innen", du-->
+					<!--									möchtest aber zusätzlich "Berliner" und "Berlinerinnen" als-->
+					<!--									mögliche Option. Dann trage unten bitte ein:-->
+					<!--									"Berliner:innen;Berliner;Berlinerinnen" (ohne-->
+					<!--									Anführungszeichen)-->
+					<!--								</p>-->
+					<!--							</div>-->
+					<!--						</details>-->
+				</div>
 
-					<!--C4-->
-					<div>
-						<label for="C4">Sichtbares Label</label>
-						<input type="text" name="C4" id="C4" />
-						<!--						<details>-->
-						<!--							<summary>-->
-						<!--								<label for="C4_variations">Abweichende Begriffe?</label>-->
-						<!--							</summary>-->
-						<!--							<div>-->
-						<!--								<input-->
-						<!--									type="text"-->
-						<!--									value=""-->
-						<!--									name="C4_variations"-->
-						<!--									id="C4_variations"-->
-						<!--								/>-->
-						<!--								<span>Bitte separiert mit Semikolon (;)</span>-->
-						<!--								<p>-->
-						<!--									Nur nötig, wenn du andere Begriffe als das sichtbare Label für-->
-						<!--									die Ideengenerierung benutzen willst.-->
-						<!--								</p>-->
-						<!--								<p>-->
-						<!--									Beispiel 1: Das sichtbare Label ist "?", soll aber nicht zur-->
-						<!--									Ideengenerierung benutzt werden. Dann trage unten bitte etwas-->
-						<!--									ein wie z.B. "Begriff A;Begriff B;Begriff C" (ohne-->
-						<!--									Anführungszeichen)-->
-						<!--								</p>-->
-						<!--								<p>-->
-						<!--									Beispiel 2: Das sichtbare Label ist "Berliner:innen", du-->
-						<!--									möchtest aber zusätzlich "Berliner" und "Berlinerinnen" als-->
-						<!--									mögliche Option. Dann trage unten bitte ein:-->
-						<!--									"Berliner:innen;Berliner;Berlinerinnen" (ohne-->
-						<!--									Anführungszeichen)-->
-						<!--								</p>-->
-						<!--							</div>-->
-						<!--						</details>-->
-					</div>
+				<!--C5-->
+				<div class="label-block">
+					<label for="C5">Label 5</label>
+					<input type="text" name="C5" id="C5" />
+					<!--						<details>-->
+					<!--							<summary>-->
+					<!--								<label for="C5_variations">Abweichende Begriffe?</label>-->
+					<!--							</summary>-->
+					<!--							<div>-->
+					<!--								<input-->
+					<!--									type="text"-->
+					<!--									value=""-->
+					<!--									name="C5_variations"-->
+					<!--									id="C5_variations"-->
+					<!--								/>-->
+					<!--								<span>Bitte separiert mit Semikolon (;)</span>-->
+					<!--								<p>-->
+					<!--									Nur nötig, wenn du andere Begriffe als das sichtbare Label für-->
+					<!--									die Ideengenerierung benutzen willst.-->
+					<!--								</p>-->
+					<!--								<p>-->
+					<!--									Beispiel 1: Das sichtbare Label ist "?", soll aber nicht zur-->
+					<!--									Ideengenerierung benutzt werden. Dann trage unten bitte etwas-->
+					<!--									ein wie z.B. "Begriff A;Begriff B;Begriff C" (ohne-->
+					<!--									Anführungszeichen)-->
+					<!--								</p>-->
+					<!--								<p>-->
+					<!--									Beispiel 2: Das sichtbare Label ist "Berliner:innen", du-->
+					<!--									möchtest aber zusätzlich "Berliner" und "Berlinerinnen" als-->
+					<!--									mögliche Option. Dann trage unten bitte ein:-->
+					<!--									"Berliner:innen;Berliner;Berlinerinnen" (ohne-->
+					<!--									Anführungszeichen)-->
+					<!--								</p>-->
+					<!--							</div>-->
+					<!--						</details>-->
+				</div>
 
-					<!--C5-->
-					<div>
-						<label for="C5">Sichtbares Label</label>
-						<input type="text" name="C5" id="C5" />
-						<!--						<details>-->
-						<!--							<summary>-->
-						<!--								<label for="C5_variations">Abweichende Begriffe?</label>-->
-						<!--							</summary>-->
-						<!--							<div>-->
-						<!--								<input-->
-						<!--									type="text"-->
-						<!--									value=""-->
-						<!--									name="C5_variations"-->
-						<!--									id="C5_variations"-->
-						<!--								/>-->
-						<!--								<span>Bitte separiert mit Semikolon (;)</span>-->
-						<!--								<p>-->
-						<!--									Nur nötig, wenn du andere Begriffe als das sichtbare Label für-->
-						<!--									die Ideengenerierung benutzen willst.-->
-						<!--								</p>-->
-						<!--								<p>-->
-						<!--									Beispiel 1: Das sichtbare Label ist "?", soll aber nicht zur-->
-						<!--									Ideengenerierung benutzt werden. Dann trage unten bitte etwas-->
-						<!--									ein wie z.B. "Begriff A;Begriff B;Begriff C" (ohne-->
-						<!--									Anführungszeichen)-->
-						<!--								</p>-->
-						<!--								<p>-->
-						<!--									Beispiel 2: Das sichtbare Label ist "Berliner:innen", du-->
-						<!--									möchtest aber zusätzlich "Berliner" und "Berlinerinnen" als-->
-						<!--									mögliche Option. Dann trage unten bitte ein:-->
-						<!--									"Berliner:innen;Berliner;Berlinerinnen" (ohne-->
-						<!--									Anführungszeichen)-->
-						<!--								</p>-->
-						<!--							</div>-->
-						<!--						</details>-->
-					</div>
+				<!--C6-->
+				<div class="label-block">
+					<label for="C6">Label 6</label>
+					<input type="text" name="C6" id="C6" />
+					<!--						<details>-->
+					<!--							<summary>-->
+					<!--								<label for="C6_variations">Abweichende Begriffe?</label>-->
+					<!--							</summary>-->
+					<!--							<div>-->
+					<!--								<input-->
+					<!--									type="text"-->
+					<!--									value=""-->
+					<!--									name="C6_variations"-->
+					<!--									id="C6_variations"-->
+					<!--								/>-->
+					<!--								<span>Bitte separiert mit Semikolon (;)</span>-->
+					<!--								<p>-->
+					<!--									Nur nötig, wenn du andere Begriffe als das sichtbare Label für-->
+					<!--									die Ideengenerierung benutzen willst.-->
+					<!--								</p>-->
+					<!--								<p>-->
+					<!--									Beispiel 1: Das sichtbare Label ist "?", soll aber nicht zur-->
+					<!--									Ideengenerierung benutzt werden. Dann trage unten bitte etwas-->
+					<!--									ein wie z.B. "Begriff A;Begriff B;Begriff C" (ohne-->
+					<!--									Anführungszeichen)-->
+					<!--								</p>-->
+					<!--								<p>-->
+					<!--									Beispiel 2: Das sichtbare Label ist "Berliner:innen", du-->
+					<!--									möchtest aber zusätzlich "Berliner" und "Berlinerinnen" als-->
+					<!--									mögliche Option. Dann trage unten bitte ein:-->
+					<!--									"Berliner:innen;Berliner;Berlinerinnen" (ohne-->
+					<!--									Anführungszeichen)-->
+					<!--								</p>-->
+					<!--							</div>-->
+					<!--						</details>-->
+				</div>
 
-					<!--C6-->
-					<div>
-						<label for="C6">Sichtbares Label</label>
-						<input type="text" name="C6" id="C6" />
-						<!--						<details>-->
-						<!--							<summary>-->
-						<!--								<label for="C6_variations">Abweichende Begriffe?</label>-->
-						<!--							</summary>-->
-						<!--							<div>-->
-						<!--								<input-->
-						<!--									type="text"-->
-						<!--									value=""-->
-						<!--									name="C6_variations"-->
-						<!--									id="C6_variations"-->
-						<!--								/>-->
-						<!--								<span>Bitte separiert mit Semikolon (;)</span>-->
-						<!--								<p>-->
-						<!--									Nur nötig, wenn du andere Begriffe als das sichtbare Label für-->
-						<!--									die Ideengenerierung benutzen willst.-->
-						<!--								</p>-->
-						<!--								<p>-->
-						<!--									Beispiel 1: Das sichtbare Label ist "?", soll aber nicht zur-->
-						<!--									Ideengenerierung benutzt werden. Dann trage unten bitte etwas-->
-						<!--									ein wie z.B. "Begriff A;Begriff B;Begriff C" (ohne-->
-						<!--									Anführungszeichen)-->
-						<!--								</p>-->
-						<!--								<p>-->
-						<!--									Beispiel 2: Das sichtbare Label ist "Berliner:innen", du-->
-						<!--									möchtest aber zusätzlich "Berliner" und "Berlinerinnen" als-->
-						<!--									mögliche Option. Dann trage unten bitte ein:-->
-						<!--									"Berliner:innen;Berliner;Berlinerinnen" (ohne-->
-						<!--									Anführungszeichen)-->
-						<!--								</p>-->
-						<!--							</div>-->
-						<!--						</details>-->
-					</div>
-
-					<button type="submit">Speichern</button>
-				</form>
-			</section>
+				<button type="submit">Speichern</button>
+			</form>
 		</main>
 	</body>
 	<script type="text/javascript">
