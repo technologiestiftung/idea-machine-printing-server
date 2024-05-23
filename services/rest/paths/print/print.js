@@ -2,6 +2,7 @@ import { getIdea } from "./idea.js";
 import { getIllustration } from "./illustration.js";
 import { createPostcard } from "./postcard.js";
 import childProcess from "child_process";
+import { saveInHistory } from "./history.js";
 
 export async function handlePrinting(response) {
 	const debugResult = await print();
@@ -23,7 +24,13 @@ async function print() {
 	await createPostcard(idea, imgURL);
 	console.timeEnd("postcard-creation");
 
+	console.time("save-in-history");
+	await saveInHistory(idea);
+	console.timeEnd("save-in-history");
+
+	console.time("print-postcard");
 	await printPostcard();
+	console.timeEnd("print-postcard");
 
 	return idea;
 }
