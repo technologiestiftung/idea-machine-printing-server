@@ -3,6 +3,7 @@ import { getIllustration } from "./illustration.js";
 import { createPostcard } from "./postcard.js";
 import childProcess from "child_process";
 import { saveInHistory } from "./history.js";
+import { pdfFilePath } from "./constants.js";
 
 export async function handlePrinting(response) {
 	const debugResult = await print();
@@ -36,25 +37,11 @@ async function print() {
 }
 
 async function printPostcard() {
-	// todo print pdf with lp -d ${process.env.PRINTER_NAME} idea.pdf
-	console.log("mock printing postcard...");
-	childProcess.execSync("open ./services/rest/paths/print/postcard.pdf");
-	// exec(printingCommand, (error, stdout, stderr) => {
-	// 	if (error) {
-	// 		console.error(error);
-	// 		response.statusCode = 500;
-	// 		response.end('error');
-	// 		return;
-	// 	}
-	//
-	// 	if (stderr) {
-	// 		console.error(stderr);
-	// 		response.statusCode = 500;
-	// 		response.end('stderr');
-	// 		return;
-	// 	}
-	//
-	// 	response.statusCode = 200;
-	// 	response.end(JSON.stringify({ message: "success" }));
-	// });
+	childProcess.execSync(`open ${pdfFilePath}`);
+
+	if (process.env.PRINT === "1") {
+		childProcess.execSync(
+			`lp -o Pagesize=A6 -o landscape -o fit-to-page -o Duplex=DuplexTumble -d ${process.env.PRINTER_NAME} ${pdfFilePath}`,
+		);
+	}
 }
