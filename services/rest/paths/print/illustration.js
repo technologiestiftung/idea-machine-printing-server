@@ -9,9 +9,9 @@ export async function getIllustration({ idea }) {
 		body: JSON.stringify({
 			model: "dall-e-3",
 			prompt: `
-			An illustration of ${idea.summary}.
-			The mode of the illustration is	playful, whimsical, energetic, hazy,
-			The style is a mix of SOLARPUNK, and studio Ghibli anime.
+			Visualize ${idea.summary}
+			The mood of the illustration is	playful, whimsical, energetic, hazy.
+			The style is a mix of SOLARPUNK, retro-futurim, concept art, studio ghibli.
 	`,
 			n: 1,
 			size: "1024x1024",
