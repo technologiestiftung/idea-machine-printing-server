@@ -13,14 +13,19 @@ export async function getIdea() {
 			model: "gpt-3.5-turbo",
 			messages: [
 				{
+					role: "system",
+					content: `You are a helpful assistant designed to output JSON. 
+					The JSON keys are "product_idea" and "summary". 
+					"product_idea" is the full version of the generated answer in German in 35 words.
+					"summary" is the product_idea in 7-10 words in English.`,
+				},
+				{
 					role: "user",
 					content: `
-	Generiere mir eine neue Produktidee für ein smartes Berlin, deren Funktion in einer Zeile beschrieben wird.
+	Generiere mir eine neue Idee für ein nachhaltiges Berlin in der Zukunft, deren Funktion in einer Zeile beschrieben wird.
 	Themenfeld: ${topic}, Zielgruppe: ${focusGroup}, Medium: ${medium}.
 	Ein bisschen futuristisch und witzig kann die Antwort auch sein.
-	Die Antwort soll wie ein persönlicher Postkarten Text formuliert sein.
-	Die Antwort ist von meinem zukünftifen ich an mich selbst geschrieben.
-	Maximal 350 Zeichen.
+	Die Antwort soll wie ein persönlicher Nachricht an mich selbst in der Vergangenheit formuliert sein.
 	`,
 				},
 			],
@@ -34,7 +39,7 @@ export async function getIdea() {
 		return "error";
 	}
 
-	const idea = choices[0].message.content;
+	const idea = JSON.parse(choices[0].message.content);
 
 	// const idea = `"ParkFit": Ein smartes Armband, das die Bewegung der Berliner:innen
 	// 	im Volkspark Friedrichshain überwacht und sie mit gesunden SnackEmpfehlungen belohnt, basierend auf ihrem Aktivitätslevel.`;
