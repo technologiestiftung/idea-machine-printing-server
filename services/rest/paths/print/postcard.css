@@ -26,16 +26,15 @@ body {
 	height: 750px;
 	display: flex;
 	justify-content: center;
-	border: solid 0.5px;
+	/* border: solid 0.5px; */
 	display: flex;
 	justify-content: center;
 	align-items: center;
 
 	img {
-		margin: 1rem;
-		height: 690px;
+		/* margin: 1rem; */
+		height: 720px;
 		border-radius: 10px;
-		border: 2px solid #2f2fa2;
 	}
 }
 
@@ -44,13 +43,14 @@ body {
 	display: flex;
 	justify-content: space-between;
 	flex-direction: row;
-	border: solid 0.5px;
+	/* border: solid 0.5px; */
 
 	.message {
 		display: flex;
 		flex-direction: column;
 		justify-content: space-between;
-		margin: 2rem;
+		margin: 1rem;
+		padding-right: 2rem;
 		gap: 2rem;
 		flex: 1;
 
@@ -59,10 +59,11 @@ body {
 				position: absolute;
 				font-family: "Jersey 20", sans-serif;
 				font-weight: 400;
-				font-size: 48px;
+				font-size: 70px;
+				width: 443px;
 				color: #2f2fa2;
 				font-style: normal;
-				padding-top: 2rem;
+				/* padding-top: 2rem; */
 				padding-bottom: 2rem;
 				z-index: -1;
 				translate: -2px 3px;
@@ -70,15 +71,14 @@ body {
 			.title {
 				font-family: "Jersey 20", sans-serif;
 				font-weight: 400;
-				font-size: 48px;
+				font-size: 70px;
 				color: #f64c72;
 				font-style: normal;
-				padding-top: 2rem;
 				padding-bottom: 2rem;
 			}
 
 			.idea {
-				font-size: 24px;
+				font-size: 28px;
 				font-weight: normal;
 				line-height: 150%;
 			}
@@ -89,7 +89,7 @@ body {
 			gap: 0.5rem;
 			align-items: start;
 			flex-direction: column;
-			margin-top: 2rem;
+			/* margin-top: 2rem; */
 			font-size: 18px;
 
 			.dice1,
@@ -117,7 +117,7 @@ body {
 	}
 
 	.sender {
-		margin: 2rem;
+		margin: 1rem;
 		margin-left: 0;
 		flex: 1;
 		display: flex;
@@ -163,7 +163,7 @@ body {
 				border-bottom: solid 1px #2f2fa2;
 			}
 			p {
-				font-size: 24px;
+				font-size: 28px;
 				line-height: 90%;
 				margin: 0.5rem;
 				margin-top: 2rem;
