@@ -16,13 +16,13 @@ export async function getIdea() {
 					role: "system",
 					content: `You are a helpful assistant designed to output JSON. 
 					The JSON keys are "product_idea" and "summary". 
-					"product_idea" is the full version of the generated answer in German in 35 words.
-					"summary" is the product_idea in 7-10 words in English.`,
+					"product_idea" is the full version of the generated answer in German in 40 words.
+					"summary" is the product_idea described in visual detail for an image generation with DALL-E in English.`,
 				},
 				{
 					role: "user",
 					content: `
-	Generiere mir eine neue Idee für ein nachhaltiges Berlin in der Zukunft, deren Funktion in einer Zeile beschrieben wird.
+	Generiere mir eine neue Idee für ein nachhaltiges Berlin, deren Funktion in einer Zeile beschrieben wird.
 	Themenfeld: ${topic}, Zielgruppe: ${focusGroup}, Medium: ${medium}.
 	Ein bisschen futuristisch und witzig kann die Antwort auch sein.
 	Die Antwort soll wie ein persönlicher Nachricht an mich selbst in der Vergangenheit formuliert sein.
