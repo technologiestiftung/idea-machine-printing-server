@@ -26,122 +26,186 @@
 			</div>
 			<form id="form">
 				<h3 class="focus-group">Würfel A: Fokus Gruppe</h3>
+				<div id="status-A" style="padding-bottom: 10px"></div>
 
 				<!--A1-->
 				<div class="label-block">
-					<label for="A1">Label 1</label>
+					<label for="A1">Label A1</label>
 					<input type="text" name="A1" id="A1" />
 				</div>
 
 				<!--A2-->
 				<div class="label-block">
-					<label for="A2">Label 2</label>
+					<label for="A2">Label A2</label>
 					<input type="text" name="A2" id="A2" />
 				</div>
 
 				<!--A3-->
 				<div class="label-block">
-					<label for="A3">Label 3</label>
+					<label for="A3">Label A3</label>
 					<input type="text" name="A3" id="A3" />
 				</div>
 
 				<!--A4-->
 				<div class="label-block">
-					<label for="A4">Label 4</label>
+					<label for="A4">Label A4</label>
 					<input type="text" name="A4" id="A4" />
 				</div>
 
 				<!--A5-->
 				<div class="label-block">
-					<label for="A5">Label 5</label>
+					<label for="A5">Label A5</label>
 					<input type="text" name="A5" id="A5" />
 				</div>
 
 				<!--A6-->
 				<div class="label-block">
-					<label for="A6">Label 6</label>
+					<label for="A6">Label A6</label>
 					<input type="text" name="A6" id="A6" />
 				</div>
 
 				<h3 class="topic">Würfel B: Thema</h3>
+				<div id="status-B" style="padding-bottom: 10px"></div>
 
 				<!--B1-->
 				<div class="label-block">
-					<label for="B1">Label 1</label>
+					<label for="B1">Label B1</label>
 					<input type="text" name="B1" id="B1" />
 				</div>
 
 				<!--B2-->
 				<div class="label-block">
-					<label for="B2">Label 2</label>
+					<label for="B2">Label B2</label>
 					<input type="text" name="B2" id="B2" />
 				</div>
 
 				<!--B3-->
 				<div class="label-block">
-					<label for="B3">Label 3</label>
+					<label for="B3">Label B3</label>
 					<input type="text" name="B3" id="B3" />
 				</div>
 
 				<!--B4-->
 				<div class="label-block">
-					<label for="B4">Label 4</label>
+					<label for="B4">Label B4</label>
 					<input type="text" name="B4" id="B4" />
 				</div>
 
 				<!--B5-->
 				<div class="label-block">
-					<label for="B5">Label 5</label>
+					<label for="B5">Label B5</label>
 					<input type="text" name="B5" id="B5" />
 				</div>
 
 				<!--B6-->
 				<div class="label-block">
-					<label for="B6">Label 6</label>
+					<label for="B6">Label B6</label>
 					<input type="text" name="B6" id="B6" />
 				</div>
 
 				<h3 class="medium">Würfel C: Medium</h3>
+				<div id="status-C" style="padding-bottom: 10px"></div>
 
 				<!--C1-->
 				<div class="label-block">
-					<label for="C1">Label 1</label>
+					<label for="C1">Label C1</label>
 					<input type="text" name="C1" id="C1" />
 				</div>
 
 				<!--C2-->
 				<div class="label-block">
-					<label for="C2">Label 2</label>
+					<label for="C2">Label C2</label>
 					<input type="text" name="C2" id="C2" />
 				</div>
 
 				<!--C3-->
 				<div class="label-block">
-					<label for="C3">Label 3</label>
+					<label for="C3">Label C3</label>
 					<input type="text" name="C3" id="C3" />
 				</div>
 
 				<!--C4-->
 				<div class="label-block">
-					<label for="C4">Label 4</label>
+					<label for="C4">Label C4</label>
 					<input type="text" name="C4" id="C4" />
 				</div>
 
 				<!--C5-->
 				<div class="label-block">
-					<label for="C5">Label 5</label>
+					<label for="C5">Label C5</label>
 					<input type="text" name="C5" id="C5" />
 				</div>
 
 				<!--C6-->
 				<div class="label-block">
-					<label for="C6">Label 6</label>
+					<label for="C6">Label C6</label>
 					<input type="text" name="C6" id="C6" />
 				</div>
 
 				<button type="submit">Speichern</button>
 			</form>
 		</main>
+
+		<template id="connected">
+			<div
+				style="
+					display: flex;
+					flex-direction: row;
+					gap: 10px;
+					align-items: center;
+					color: #2d8c64;
+					padding: 0.5rem 1rem;
+					border: 1px solid #2d8c64;
+				"
+			>
+				<svg
+					xmlns="http://www.w3.org/2000/svg"
+					fill="none"
+					viewBox="0 0 24 24"
+					stroke-width="1.5"
+					stroke="currentColor"
+					style="width: 1.5rem; height: 1.5rem"
+				>
+					<path
+						stroke-linecap="round"
+						stroke-linejoin="round"
+						d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+					/>
+				</svg>
+
+				<span id="status-connected-text">Verbunden</span>
+			</div>
+		</template>
+
+		<template id="disconnected">
+			<div
+				style="
+					display: flex;
+					flex-direction: row;
+					gap: 10px;
+					align-items: center;
+					color: #f4a203;
+					padding: 0.5rem 1rem;
+					border: 1px solid #f4a203;
+				"
+			>
+				<svg
+					xmlns="http://www.w3.org/2000/svg"
+					fill="none"
+					viewBox="0 0 24 24"
+					stroke-width="1.5"
+					stroke="currentColor"
+					style="width: 1.5rem; height: 1.5rem"
+				>
+					<path
+						stroke-linecap="round"
+						stroke-linejoin="round"
+						d="m9.75 9.75 4.5 4.5m0-4.5-4.5 4.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+					/>
+				</svg>
+				<span>Getrennt</span>
+			</div>
+		</template>
 	</body>
 	<script type="text/javascript">
 		function onSubmit(event) {
@@ -164,7 +228,8 @@
 				method: "PUT",
 			})
 				.then((response) => response.json())
-				.then((data) => console.log(data));
+				.then((data) => console.log(data))
+				.catch((error) => console.error(error));
 		}
 
 		const form = document.getElementById("form");
@@ -176,6 +241,80 @@
 				for (const [key, value] of Object.entries(labels)) {
 					document.getElementById(key).value = value;
 				}
+			})
+			.catch((error) => console.error(error));
+	</script>
+	<script type="text/javascript">
+		let webSocket = null;
+
+		function connect() {
+			try {
+				webSocket = new WebSocket("ws://localhost:8001");
+			} catch (error) {
+				console.error(error);
+				webSocket = null;
+			}
+
+			if (!webSocket) {
+				return;
+			}
+
+			webSocket.addEventListener("open", () =>
+				console.log("Connected via WebSocket"),
+			);
+
+			webSocket.addEventListener("close", () => {
+				console.log("Disconnected from WebSocket");
+				setTimeout(() => initialize(), 5000);
 			});
+
+			webSocket.addEventListener("message", (event) => {
+				const { dices } = JSON.parse(event.data);
+				updateStatus(dices);
+			});
+		}
+
+		function updateStatus(dices) {
+			for (const [key, dice] of Object.entries(dices)) {
+				const statusDiv = document.getElementById(`status-${key}`);
+				statusDiv.innerHTML = "";
+				statusDiv.appendChild(createConnectionStatusElement(key, dice));
+			}
+		}
+
+		function createConnectionStatusElement(key, dice) {
+			switch (dice.status) {
+				case "connected":
+					return cloneConnectedTemplate(key, dice.side);
+				default:
+					return cloneDisconnectedTemplate();
+			}
+		}
+
+		function cloneConnectedTemplate(key, side) {
+			const connectedTemplate = document.getElementById("connected");
+			const clone = connectedTemplate.content.cloneNode(true);
+
+			const statusText = clone.getElementById("status-connected-text");
+			statusText.innerHTML = `Verbunden, ${side !== null ? `Würfelseite oben: <b>${key}${side}</b>` : "einmal Würfeln bitte!"}`;
+
+			return clone;
+		}
+
+		function cloneDisconnectedTemplate() {
+			const disconnectedTemplate = document.getElementById("disconnected");
+			return disconnectedTemplate.content.cloneNode(true);
+		}
+
+		function initialize() {
+			updateStatus({
+				A: { status: "disconnected" },
+				B: { status: "disconnected" },
+				C: { status: "disconnected" },
+			});
+			connect();
+		}
+
+		initialize();
 	</script>
 </html>
