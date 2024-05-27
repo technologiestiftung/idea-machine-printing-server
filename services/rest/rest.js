@@ -5,7 +5,7 @@ import { handlePrinting } from "./paths/print/print.js";
 import { handleShutdown } from "./paths/shutdown.js";
 import crypto from "node:crypto";
 
-const port = process.env.PORT;
+const port = process.env.API_PORT;
 
 const server = http.createServer();
 
@@ -51,6 +51,6 @@ function handleRequest(request, response) {
 
 server.listen(port, () => console.info("listening on port:", port));
 
-server.on("close", () => console.log("server closed"));
+server.on("close", () => console.log("api server closed"));
 
 export default server;
