@@ -1,5 +1,6 @@
 import fs from "node:fs";
 import labelsJson from "./labels.json" with { type: "json" };
+import { broadcast } from "../socket/socket.js";
 let labels = labelsJson;
 
 const sides = [
@@ -24,25 +25,62 @@ const sides = [
 ];
 
 const dices = {
-	A: "6",
-	B: "6",
-	C: "6",
+	A: {
+		side: null,
+		status: "disconnected",
+	},
+	B: {
+		side: null,
+		status: "disconnected",
+	},
+	C: {
+		side: null,
+		status: "disconnected",
+	},
 };
+
+function setDices(diceId, diceState) {
+	dices[diceId] = diceState;
+
+	broadcast(JSON.stringify({ dices }));
+}
+
+export function setDiceConnectionStatus(input) {
+	for (const [diceId, diceConnectionStatus] of Object.entries(input)) {
+		if (diceConnectionStatus === "connected") {
+			setDices(diceId, {
+				side: null,
+				status: "connected",
+			});
+		}
+
+		if (diceConnectionStatus === "disconnected") {
+			setDices(diceId, {
+				side: null,
+				status: "disconnected",
+			});
+		}
+	}
+}
+
+export function getDicesAsJson() {
+	return JSON.stringify({ dices });
+}
 
 function parseDiceSide(input) {
 	return sides.filter((side) => input.includes(side))[0];
 }
 
 export function setDiceSide(input) {
-	const diceSide = parseDiceSide(input);
+	const diceIdAndSide = parseDiceSide(input);
 
-	if (!diceSide) {
+	if (!diceIdAndSide) {
 		return;
 	}
 
-	const [dice, side] = diceSide;
+	const [diceId, diceSide] = diceIdAndSide;
 
-	dices[dice] = side;
+	setDices(diceId, { ...dices[diceId], side: diceSide });
 }
 
 export function getDices() {
@@ -57,24 +95,45 @@ function getRandomElementFromArray(array) {
 	return array[Math.floor(Math.random() * array.length)];
 }
 
+export function replaceWildcards(label) {
+	switch (label) {
+		case "such dir selbst ein Medium aus":
+			return "Joker (?)";
+		case "wähle selbst eine Gruppe an Menschen":
+			return "Joker (?)";
+		case "wähle selbst eine Kategorie":
+			return "Joker (?)";
+		default:
+			return label;
+	}
+}
+
+function getLabelFromCSV(label) {
+	const labels = label.split(",");
+
+	const randomLabel = getRandomElementFromArray(labels);
+
+	return randomLabel.trim();
+}
+
 export function getLabelsForCurrentSides() {
-	const focusGroupSide = `A${dices.A}`;
-	const topicSide = `B${dices.B}`;
-	const mediumSide = `C${dices.C}`;
+	const focusGroupSide = `A${dices.A.side}`;
+	const topicSide = `B${dices.B.side}`;
+	const mediumSide = `C${dices.C.side}`;
 
 	let focusGroup = labels[focusGroupSide];
 	if (focusGroup.includes(",")) {
-		focusGroup = getRandomElementFromArray(focusGroup.split(",")).trim();
+		focusGroup = getLabelFromCSV(focusGroup);
 	}
 
 	let topic = labels[topicSide];
 	if (topic.includes(",")) {
-		topic = getRandomElementFromArray(topic.split(",")).trim();
+		topic = getLabelFromCSV(topic);
 	}
 
 	let medium = labels[mediumSide];
 	if (medium.includes(",")) {
-		medium = getRandomElementFromArray(medium.split(",")).trim();
+		medium = getLabelFromCSV(medium);
 	}
 
 	return {

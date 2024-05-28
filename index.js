@@ -1,14 +1,15 @@
 import bluetoothSerialMonitors from "./services/bluetooth/bluetooth.js";
-import "./services/browser/browser.js";
 import server from "./services/rest/rest.js";
-import "./services/state/state.js";
+import { webSocketServer } from "./services/socket/socket.js";
+import "./services/browser/browser.js";
 
-process.on("SIGINT", () => {
-	bluetoothSerialMonitors.forEach((monitor) => monitor.kill("SIGINT"));
-	server.close();
-});
+process.on("SIGINT", closeEverything);
 
-process.on("SIGTERM", () => {
-	bluetoothSerialMonitors.forEach((monitor) => monitor.kill("SIGTERM"));
+process.on("SIGTERM", closeEverything);
+
+function closeEverything() {
+	bluetoothSerialMonitors.forEach((monitor) => monitor.kill());
 	server.close();
-});
+	webSocketServer.clients.forEach((client) => client.close());
+	webSocketServer.close();
+}
