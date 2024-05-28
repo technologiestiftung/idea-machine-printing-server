@@ -1,5 +1,5 @@
 export async function getIllustration({ idea }) {
-	console.log(idea);
+	console.log(idea.image_prompt);
 	const response = await fetch("https://api.openai.com/v1/images/generations", {
 		method: "POST",
 		headers: {
@@ -9,9 +9,13 @@ export async function getIllustration({ idea }) {
 		body: JSON.stringify({
 			model: "dall-e-3",
 			prompt: `
-			Visualize ${idea.summary}
-			The mood of the illustration is	playful, whimsical, energetic, hazy.
-			The style is a mix of SOLARPUNK, retro-futurim, concept art, studio ghibli.
+			Visualize this idea:  ${idea.image_prompt}
+
+			The mood of the illustration is	joyful and futuristic.
+
+			The style is SOLARPUNK.
+
+			The illustration shows citizens of Berlin.
 	`,
 			n: 1,
 			size: "1024x1024",
