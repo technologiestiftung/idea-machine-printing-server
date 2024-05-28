@@ -14,22 +14,24 @@ export async function getIdea() {
 			messages: [
 				{
 					role: "system",
-					content: `You are a helpful assistant designed to output JSON. 
-					The JSON keys are "product_idea" and "summary". 
-					"product_idea" is the full version of the generated answer in German in 40 words.
-					"summary" is the product_idea described in visual detail for an image generation with DALL-E in English.`,
+					content: `
+						You are a helpful assistant designed to output JSON.
+						The JSON keys are "product_idea" and "image_prompt".
+						"product_idea" is the full version of the generated answer in German in 40 words.
+						"image_prompt" is brief english description of product_idea with visual details
+						for an image generated with DALL-E 3.
+
+						Die Antwort soll witzig und wie eine persönliche Nachricht klingen.
+						Du lebst einige Jahrzehnte in der Zukunft und schreibst die Nachricht an dich selbst in der Vergangenheit im Jahr 2024.
+						Die Antwort soll etwa 350 Zeichen haben.`,
 				},
 				{
 					role: "user",
-					content: `
-	Generiere mir eine neue Idee für ein nachhaltiges Berlin, deren Funktion in einer Zeile beschrieben wird.
-	Themenfeld: ${topic}, Zielgruppe: ${focusGroup}, Medium: ${medium}.
-	Ein bisschen futuristisch und witzig kann die Antwort auch sein.
-	Die Antwort soll wie ein persönlicher Nachricht an mich selbst in der Vergangenheit formuliert sein.
-	`,
+					content:
+						"Generiere eine Idee für ein lebenswertes Berlin, deren Funktion in einer Zeile beschrieben wird. Es soll eine zukunftsweisende und innovative Idee sein, die Leute inspiriert.\nThemenfeld: mobility & transport, Zielgruppe: Berlin citizens, Medium: IoT.",
 				},
 			],
-			temperature: 0.7,
+			temperature: 0.8,
 		}),
 	});
 
@@ -41,7 +43,11 @@ export async function getIdea() {
 
 	const idea = JSON.parse(choices[0].message.content);
 
-	// const idea = `"ParkFit": Ein smartes Armband, das die Bewegung der Berliner:innen
-	// 	im Volkspark Friedrichshain überwacht und sie mit gesunden SnackEmpfehlungen belohnt, basierend auf ihrem Aktivitätslevel.`;
+	// const idea = {
+	// 	product_idea:
+	// 		"Hey Vergangenheits-Ich! Ich habe die perfekte Idee für ein lebenswerteres Berlin: Ein fliegender Teppich-Verleihservice! Schwebend über den Straßen Berlins kannst du Staus umgehen und die Stadt aus der Vogelperspektive entdecken. Einfach magisch, oder? 🧞‍♂️✨",
+	// 	image_prompt:
+	// 		"A futuristic image of Berlin with flying carpets gliding above the streets, transporting people smoothly through the city. The magical scene includes colorful carpets with intricate designs, adding a touch of whimsy to urban mobility.",
+	// };
 	return { idea, focusGroup, topic, medium };
 }
