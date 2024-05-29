@@ -1,5 +1,4 @@
 export async function getIllustration(idea) {
-	console.log(idea);
 	const response = await fetch("https://api.openai.com/v1/images/generations", {
 		method: "POST",
 		headers: {
@@ -9,10 +8,10 @@ export async function getIllustration(idea) {
 		body: JSON.stringify({
 			model: "dall-e-3",
 			prompt: `
-			Visualize this idea: ${idea.idea.image_prompt}
+			Visualize this idea: ${idea.image_prompt}
 
 			The mood of the illustration is	joyful and futuristic.
-			The style is a SOLARPUNK aesthetic and studio ghibli films.
+			The style is a mix of SOLARPUNK aesthetic and studio ghibli films.
 			The colors are soft and similar to the movie spirited away.
 			DIGITAL CONCEPT ART, Semi-photorealistic.
 			The scene is illuminated by soft, warm light, creating a utopian atmosphere.
