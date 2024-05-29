@@ -19,15 +19,16 @@ export async function getIdea() {
 
 						The JSON keys are "productIdea" and "imagePrompt".
 						
-						"productIdea" is the full version of the generated answer in German in 350 characters.
+						"productIdea" is the full version of the generated answer in German.
+						1. The answer should be maximally 350 characters long.
+						2. The answer should be witty and sound like a personal message.
+						3. You live several decades in the future and write the message to yourself in the past in 2024.
 						
 						"imagePrompt" describes the productIdea in english. 
 						1. Focus on specific, visually representable elements.
 						2. Describe actions and scenarios rather than abstract concepts.
 						3. Avoid ambiguous language that could be interpreted as including text.
-
-						The answer should be witty and sound like a personal message.
-						You live several decades in the future and write the message to yourself in the past in 2024.`,
+						`,
 				},
 				{
 					role: "user",
