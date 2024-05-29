@@ -1,5 +1,5 @@
-export async function getIllustration({ idea }) {
-	console.log(idea.image_prompt);
+export async function getIllustration(idea) {
+	console.log(idea);
 	const response = await fetch("https://api.openai.com/v1/images/generations", {
 		method: "POST",
 		headers: {
@@ -9,13 +9,12 @@ export async function getIllustration({ idea }) {
 		body: JSON.stringify({
 			model: "dall-e-3",
 			prompt: `
-			Visualize this idea:  ${idea.image_prompt}
+			Visualize ${idea.idea.image_prompt}.
 
 			The mood of the illustration is	joyful and futuristic.
-
-			The style is SOLARPUNK.
-
-			The illustration shows citizens of Berlin.
+			The style is a mix of SOLARPUNK aesthetic and studio ghibli films.
+			The colors are similar to the movie spirited away.
+			DIGITAL ART.
 	`,
 			n: 1,
 			size: "1024x1024",

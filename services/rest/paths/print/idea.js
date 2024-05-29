@@ -16,19 +16,20 @@ export async function getIdea() {
 					role: "system",
 					content: `
 						You are a helpful assistant designed to output JSON.
+
 						The JSON keys are "product_idea" and "image_prompt".
-						"product_idea" is the full version of the generated answer in German in 40 words.
-						"image_prompt" is brief english description of product_idea with visual details
+						"product_idea" is the full version of the generated answer in German in 350 characters.
+						"image_prompt" is a brief english description of product_idea with visual details
 						for an image generated with DALL-E 3.
 
-						Die Antwort soll witzig und wie eine persönliche Nachricht klingen.
-						Du lebst einige Jahrzehnte in der Zukunft und schreibst die Nachricht an dich selbst in der Vergangenheit im Jahr 2024.
-						Die Antwort soll etwa 350 Zeichen haben.`,
+						The answer should be witty and sound like a personal message.
+						You live several decades in the future and write the message to yourself in the past in 2024.`,
 				},
 				{
 					role: "user",
-					content:
-						"Generiere eine Idee für ein lebenswertes Berlin, deren Funktion in einer Zeile beschrieben wird. Es soll eine zukunftsweisende und innovative Idee sein, die Leute inspiriert.\nThemenfeld: mobility & transport, Zielgruppe: Berlin citizens, Medium: IoT.",
+					content: `Generiere eine Idee für ein lebenswertes Berlin, deren Funktion in einer Zeile beschrieben wird. 
+					Es soll eine zukunftsweisende und innovative Idee sein, die Leute inspiriert.
+					\nThemenfeld: ${topic}, Zielgruppe: ${focusGroup}, Medium: ${medium}.`,
 				},
 			],
 			temperature: 0.8,
