@@ -1,15 +1,5 @@
-import { jpgFilePath } from "./constants.js";
-import fs from "node:fs";
-
-async function downloadImage(url) {
-	const response = await fetch(url);
-	const buffer = await response.arrayBuffer();
-	fs.writeFile(jpgFilePath, Buffer.from(buffer), () =>
-		console.log("finished downloading image"),
-	);
-}
-
 export async function getIllustration(idea) {
+	console.log(idea.productIdea, idea.imagePrompt);
 	const response = await fetch("https://api.openai.com/v1/images/generations", {
 		method: "POST",
 		headers: {
@@ -19,7 +9,7 @@ export async function getIllustration(idea) {
 		body: JSON.stringify({
 			model: "dall-e-3",
 			prompt: `
-			Visualize this idea: ${idea.image_prompt}
+			Visualize this idea: ${idea.imagePrompt}
 
 			The mood of the illustration is	joyful and futuristic.
 			The style is a mix of SOLARPUNK aesthetic and studio ghibli films.
@@ -34,8 +24,6 @@ export async function getIllustration(idea) {
 
 	const dalleResponse = await response.json();
 	const imgURL = dalleResponse.data[0].url;
-
-	downloadImage(imgURL);
 
 	if (!imgURL) {
 		return "error";

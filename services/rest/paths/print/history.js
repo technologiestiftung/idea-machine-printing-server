@@ -1,6 +1,6 @@
 import { createClient } from "@supabase/supabase-js";
 import fs from "node:fs";
-import { pdfFilePath, jpgFilePath } from "./constants.js";
+import { pdfFilePath, illustrationFilePath } from "./constants.js";
 
 // Create a single supabase client for interacting with your database
 const supabase = createClient(
@@ -24,8 +24,16 @@ async function savePostcard(timestamp) {
 	console.error("upload error", error);
 }
 
+async function downloadImage(url) {
+	const response = await fetch(url);
+	const buffer = await response.arrayBuffer();
+	fs.writeFile(illustrationFilePath, Buffer.from(buffer), () =>
+		console.log("finished downloading image"),
+	);
+}
+
 async function savePostcardImage(timestamp) {
-	const file = fs.createReadStream(jpgFilePath);
+	const file = fs.createReadStream(illustrationFilePath);
 
 	const { error } = await supabase.storage
 		.from("postcardImages")
@@ -42,7 +50,7 @@ async function savePostcardImage(timestamp) {
 
 async function saveIdea(idea, timestamp) {
 	const { error } = await supabase.from("ideas").insert({
-		idea: idea.idea,
+		idea: idea.productIdea,
 		focus_group: idea.focusGroup,
 		topic: idea.topic,
 		medium: idea.medium,
@@ -56,9 +64,15 @@ async function saveIdea(idea, timestamp) {
 	console.error("insert error", error);
 }
 
-export async function saveInHistory(idea) {
+export async function saveInHistory(idea, imgURL) {
 	const timestamp = new Date().toISOString();
 	await savePostcard(timestamp);
-	await savePostcardImage(timestamp);
 	await saveIdea(idea, timestamp);
+
+	try {
+		await downloadImage(imgURL);
+		await savePostcardImage(timestamp);
+	} catch (error) {
+		console.error(error);
+	}
 }
