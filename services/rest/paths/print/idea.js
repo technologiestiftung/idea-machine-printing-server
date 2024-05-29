@@ -17,11 +17,11 @@ export async function getIdea() {
 					content: `
 						You are a helpful assistant designed to output JSON.
 
-						The JSON keys are "product_idea" and "image_prompt".
+						The JSON keys are "productIdea" and "imagePrompt".
 						
-						"product_idea" is the full version of the generated answer in German in 350 characters.
+						"productIdea" is the full version of the generated answer in German in 350 characters.
 						
-						"image_prompt" describes the product_idea in english. 
+						"imagePrompt" describes the productIdea in english. 
 						1. Focus on specific, visually representable elements.
 						2. Describe actions and scenarios rather than abstract concepts.
 						3. Avoid ambiguous language that could be interpreted as including text.
@@ -46,13 +46,13 @@ export async function getIdea() {
 		return "error";
 	}
 
-	const idea = JSON.parse(choices[0].message.content);
+	const { productIdea, imagePrompt } = JSON.parse(choices[0].message.content);
 
 	// const idea = {
-	// 	product_idea:
+	// 	productIdea:
 	// 		"Hey Vergangenheits-Ich! Ich habe die perfekte Idee für ein lebenswerteres Berlin: Ein fliegender Teppich-Verleihservice! Schwebend über den Straßen Berlins kannst du Staus umgehen und die Stadt aus der Vogelperspektive entdecken. Einfach magisch, oder? 🧞‍♂️✨",
-	// 	image_prompt:
+	// 	imagePrompt:
 	// 		"A futuristic image of Berlin with flying carpets gliding above the streets, transporting people smoothly through the city. The magical scene includes colorful carpets with intricate designs, adding a touch of whimsy to urban mobility.",
 	// };
-	return { idea, focusGroup, topic, medium };
+	return { productIdea, imagePrompt, focusGroup, topic, medium };
 }
