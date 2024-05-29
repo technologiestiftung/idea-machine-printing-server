@@ -1,3 +1,14 @@
+import { jpgFilePath } from "./constants.js";
+import fs from "node:fs";
+
+async function downloadImage(url) {
+	const response = await fetch(url);
+	const buffer = await response.arrayBuffer();
+	fs.writeFile(jpgFilePath, Buffer.from(buffer), () =>
+		console.log("finished downloading image"),
+	);
+}
+
 export async function getIllustration(idea) {
 	const response = await fetch("https://api.openai.com/v1/images/generations", {
 		method: "POST",
@@ -24,7 +35,7 @@ export async function getIllustration(idea) {
 	const dalleResponse = await response.json();
 	const imgURL = dalleResponse.data[0].url;
 
-	// const imgURL = "./img/img_placeholder.png";
+	downloadImage(imgURL);
 
 	if (!imgURL) {
 		return "error";
