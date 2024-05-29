@@ -13,18 +13,30 @@ export async function getIdea() {
 			model: "gpt-3.5-turbo",
 			messages: [
 				{
-					role: "user",
+					role: "system",
 					content: `
-	Generiere mir eine neue Produktidee für ein smartes Berlin, deren Funktion in einer Zeile beschrieben wird.
-	Themenfeld: ${topic}, Zielgruppe: ${focusGroup}, Medium: ${medium}.
-	Ein bisschen futuristisch und witzig kann die Antwort auch sein.
-	Die Antwort soll wie ein persönlicher Postkarten Text formuliert sein.
-	Die Antwort ist von meinem zukünftifen ich an mich selbst geschrieben.
-	Maximal 350 Zeichen.
-	`,
+						You are a helpful assistant designed to output JSON.
+
+						The JSON keys are "productIdea" and "imagePrompt".
+						
+						"productIdea" is the full version of the generated answer in German in 350 characters.
+						
+						"imagePrompt" describes the productIdea in english. 
+						1. Focus on specific, visually representable elements.
+						2. Describe actions and scenarios rather than abstract concepts.
+						3. Avoid ambiguous language that could be interpreted as including text.
+
+						The answer should be witty and sound like a personal message.
+						You live several decades in the future and write the message to yourself in the past in 2024.`,
+				},
+				{
+					role: "user",
+					content: `Generiere eine Idee für ein lebenswertes Berlin, deren Funktion in einer Zeile beschrieben wird. 
+					Es soll eine zukunftsweisende und innovative Idee sein, die Leute inspiriert.
+					\nThemenfeld: ${topic}, Zielgruppe: ${focusGroup}, Medium: ${medium}.`,
 				},
 			],
-			temperature: 0.7,
+			temperature: 0.8,
 		}),
 	});
 
@@ -34,9 +46,13 @@ export async function getIdea() {
 		return "error";
 	}
 
-	const idea = choices[0].message.content;
+	const { productIdea, imagePrompt } = JSON.parse(choices[0].message.content);
 
-	// const idea = `"ParkFit": Ein smartes Armband, das die Bewegung der Berliner:innen
-	// 	im Volkspark Friedrichshain überwacht und sie mit gesunden SnackEmpfehlungen belohnt, basierend auf ihrem Aktivitätslevel.`;
-	return { idea, focusGroup, topic, medium };
+	// const idea = {
+	// 	productIdea:
+	// 		"Hey Vergangenheits-Ich! Ich habe die perfekte Idee für ein lebenswerteres Berlin: Ein fliegender Teppich-Verleihservice! Schwebend über den Straßen Berlins kannst du Staus umgehen und die Stadt aus der Vogelperspektive entdecken. Einfach magisch, oder? 🧞‍♂️✨",
+	// 	imagePrompt:
+	// 		"A futuristic image of Berlin with flying carpets gliding above the streets, transporting people smoothly through the city. The magical scene includes colorful carpets with intricate designs, adding a touch of whimsy to urban mobility.",
+	// };
+	return { productIdea, imagePrompt, focusGroup, topic, medium };
 }

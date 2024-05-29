@@ -34,7 +34,7 @@ function createPostcardHtml(idea, imgURL) {
 					<div class="text">
 						<div class="title-behind">Grüße aus der Zukunft!</div>
 						<div class="title">Grüße aus der Zukunft!</div>
-						<div class="idea">${idea.idea}</div>
+						<div class="idea">${idea.productIdea}</div>
 					</div>
 					<div class="dices">
 						<div class="dice1"><img src="./img/cube.svg" /> Wer? ${focusGroup}</div>

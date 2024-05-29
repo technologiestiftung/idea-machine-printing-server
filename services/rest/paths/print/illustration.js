@@ -1,4 +1,4 @@
-export async function getIllustration({ idea }) {
+export async function getIllustration(idea) {
 	const response = await fetch("https://api.openai.com/v1/images/generations", {
 		method: "POST",
 		headers: {
@@ -8,10 +8,13 @@ export async function getIllustration({ idea }) {
 		body: JSON.stringify({
 			model: "dall-e-3",
 			prompt: `
-			Generiere ein Bild das folgende als Idee als Illustration darstellt: ${idea}.
-			Die Illustration zeigt einen medium bis wide Shot der Stadtszene.
-			Die Stimmung is positiv. Menschen sollen im Mittelpunkt stehen.
-			Solarpunk, Retro-Futurism, Concept Art.
+			Visualize this idea: ${idea.image_prompt}
+
+			The mood of the illustration is	joyful and futuristic.
+			The style is a mix of SOLARPUNK aesthetic and studio ghibli films.
+			The colors are soft and similar to the movie spirited away.
+			DIGITAL CONCEPT ART, Semi-photorealistic.
+			The scene is illuminated by soft, warm light, creating a utopian atmosphere.
 	`,
 			n: 1,
 			size: "1024x1024",
