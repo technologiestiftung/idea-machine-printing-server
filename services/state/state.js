@@ -1,6 +1,7 @@
 import fs from "node:fs";
 import labelsJson from "./labels.json" with { type: "json" };
 import { broadcast } from "../socket/socket.js";
+
 let labels = labelsJson;
 
 const sides = [
@@ -116,10 +117,10 @@ function getLabelFromCSV(label) {
 	return randomLabel.trim();
 }
 
-export function getLabelsForCurrentSides() {
-	const focusGroupSide = `A${dices.A.side}`;
-	const topicSide = `B${dices.B.side}`;
-	const mediumSide = `C${dices.C.side}`;
+export function getLabelsForSides({ A, B, C }) {
+	const focusGroupSide = A;
+	const topicSide = B;
+	const mediumSide = C;
 
 	let focusGroup = labels[focusGroupSide];
 	if (focusGroup.includes(",")) {
@@ -141,6 +142,51 @@ export function getLabelsForCurrentSides() {
 		topic,
 		medium,
 	};
+}
+
+export function getLabelsForCurrentSides() {
+	const dices = getDices();
+
+	const A = `A${dices.A.side}`;
+	const B = `B${dices.B.side}`;
+	const C = `C${dices.C.side}`;
+
+	return getLabelsForSides({
+		A,
+		B,
+		C,
+	});
+}
+
+/**
+ * Returns an array of labels for a given side
+ * @param side
+ * @returns {string[]}
+ */
+function getLabelFromSide(side) {
+	const label = /** @type string */ labels[side];
+
+	if (label.includes(",")) {
+		return label.split(",").map((label) => label.trim());
+	}
+
+	return [label];
+}
+
+/**
+ * Returns all labels as array for the current dice sides
+ * @returns {{focusGroup: string[], topic: string[], medium: string[]}}
+ */
+export function getAllLabelsForCurrentSides() {
+	const A = `A${dices.A.side}`;
+	const B = `B${dices.B.side}`;
+	const C = `C${dices.C.side}`;
+
+	const focusGroup = getLabelFromSide(A);
+	const topic = getLabelFromSide(B);
+	const medium = getLabelFromSide(C);
+
+	return { focusGroup, topic, medium };
 }
 
 export function setLabels(newLabels) {
