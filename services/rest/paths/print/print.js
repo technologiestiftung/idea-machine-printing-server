@@ -1,47 +1,57 @@
-import { getIdea } from "./idea.js";
-import { getIllustration } from "./illustration.js";
-import { createPostcard } from "./postcard.js";
 import childProcess from "child_process";
-import { saveInHistory } from "./history.js";
-import { pdfFilePath } from "./constants.js";
+import { supabase } from "../../supabase.js";
+import fs from "node:fs";
 
-export async function handlePrinting(response) {
-	const debugResult = await print();
+const PDF_FILE_PATH = "./services/rest/paths/print/postcard.pdf";
 
-	response.statusCode = 200;
-	response.end(JSON.stringify({ message: debugResult }));
-}
+/**
+ * Handles the printing of a postcard.
+ * @param {Uint8Array[]} body
+ * @param {ServerResponse} response
+ * @returns {Promise<void>}
+ */
+export async function handlePrinting({ body, response }) {
+	const requestBody = Buffer.concat(body).toString();
+	const { postcard_url } = JSON.parse(requestBody);
 
-async function print() {
-	console.time("idea-generation");
-	const idea = await getIdea();
-	console.timeEnd("idea-generation");
-
-	console.time("illustration-generation");
-	const imgURL = await getIllustration(idea);
-	console.timeEnd("illustration-generation");
-
-	console.time("postcard-creation");
-	await createPostcard(idea, imgURL);
-	console.timeEnd("postcard-creation");
-
-	console.time("save-in-history");
-	await saveInHistory(idea);
-	console.timeEnd("save-in-history");
+	console.time("download-postcard");
+	await downloadPostcard(postcard_url);
+	console.timeEnd("download-postcard");
 
 	console.time("print-postcard");
-	await printPostcard();
+	await print();
 	console.timeEnd("print-postcard");
 
-	return idea;
+	response.statusCode = 200;
+	response.end(JSON.stringify({ message: `printing job sent` }));
 }
 
-async function printPostcard() {
-	childProcess.execSync(`open ${pdfFilePath}`);
+/**
+ * Downloads the postcard from the supabase bucket.
+ * @param {string} postcard_url
+ * @returns {Promise<void>}
+ */
+async function downloadPostcard(postcard_url) {
+	const { data, error } = await supabase.storage
+		.from("postcards")
+		.download(postcard_url);
+
+	const buffer = Buffer.from(await data.arrayBuffer());
+
+	fs.writeFileSync(PDF_FILE_PATH, buffer);
+}
+
+/**
+ * Prints the postcard.
+ * @returns {Promise<void>}
+ */
+async function print() {
+	childProcess.execSync(`open ${PDF_FILE_PATH}`);
 
 	if (process.env.PRINT === "1") {
 		childProcess.execSync(
-			`lp -o Pagesize=A6 -o landscape -o fit-to-page -o Duplex=DuplexTumble -d ${process.env.PRINTER_NAME} ${pdfFilePath}`,
+			`lp -o Pagesize=A6 -o landscape -o fit-to-page -o Duplex=DuplexTumble -d ${process.env.PRINTER_NAME} ${PDF_FILE_PATH}`,
+			// `lp -o Pagesize=A6 -o landscape -o fit-to-page -o Duplex=DuplexTumble -d "EPSON XP-8700 Series" ./services/rest/paths/print/postcard.pdf`,
 		);
 	}
 }

@@ -1,0 +1,99 @@
+import { getAllLabelsForCurrentSides } from "../../../state/state.js";
+import { supabase } from "../../supabase.js";
+import { generateIdea } from "../../idea-generation/idea-generation.js";
+import { strategies } from "../../idea-generation/constants.js";
+
+/**
+ * @typedef dbIdea
+ * @property {string} idea
+ * @property {string} focus_group
+ * @property {string} medium
+ * @property {string} topic
+ * @property {string} created_at
+ * @property {string} id
+ * @property {string} illustration_url
+ * @property {string} postcard_url
+ */
+
+/**
+ * Handles the pick-idea endpoint.
+ * @param {ServerResponse} response
+ */
+export async function handlePickIdea(response) {
+	const { idea, error } = await pickIdea();
+
+	response.end(JSON.stringify({ idea, error }));
+}
+
+/**
+ * This will pick an idea from the pregenerated ideas
+ * and move it to the idea (=history) table.
+ * @returns {Promise<{error: string}|{idea: dbIdea}>}
+ */
+async function pickIdea() {
+	const { focusGroup, topic, medium } = getAllLabelsForCurrentSides();
+
+	const { data, error } = await supabase
+		.from("pregenerated_ideas")
+		.select("*")
+		.in("focus_group", focusGroup)
+		.in("topic", topic)
+		.in("medium", medium)
+		.order("created_at", { ascending: true });
+
+	if (error) {
+		return { error: error.message };
+	}
+
+	const pickedIdea = /** @type {dbIdea} */ data[0];
+
+	await supabase.from("pregenerated_ideas").delete().eq("id", pickedIdea.id);
+
+	delete pickedIdea.id;
+	delete pickedIdea.created_at;
+
+	await supabase.from("ideas").insert([pickedIdea]);
+
+	/**
+	 * this promise is not awaited by design, so it runs in the background
+	 */
+	regenerate();
+
+	return {
+		idea: pickedIdea,
+	};
+}
+
+/**
+ * Flag to prevent multiple regenerations at once
+ * @type {boolean}
+ */
+let isRegenerating = false;
+
+/**
+ * Regenerates an idea for the current dice sides
+ * @returns {Promise<void>}
+ */
+export async function regenerate() {
+	console.time("regeneration");
+	if (isRegenerating) {
+		return;
+	}
+
+	isRegenerating = true;
+
+	const { focusGroup, medium, topic } = getLabelsForCurrentSides();
+
+	await generateIdea({
+		focusGroup,
+		medium,
+		topic,
+		strategy: strategies.pregenerate,
+	});
+
+	isRegenerating = false;
+	console.timeEnd("regeneration");
+	// todo should check the amount of pregenerated ideas
+	//  and call regenerate recursively while there are
+	//  less than X pregenerated ideas?
+}
