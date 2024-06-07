@@ -12,3 +12,9 @@ export const strategies = {
 	realtime: "realtime",
 	pregenerate: "pregenerate",
 };
+
+/**
+ * The amount of pregenerated ideas that need to be generated in advance.
+ * @type {number}
+ */
+export const MIN_AMOUNT_OF_PREGENERATED_IDEAS = 2;
