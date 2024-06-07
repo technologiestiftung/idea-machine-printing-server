@@ -1,7 +1,13 @@
-import { getAllLabelsForCurrentSides } from "../../../state/state.js";
+import {
+	getAllLabelsForCurrentSides,
+	getLabelsForCurrentSides,
+} from "../../../state/state.js";
 import { supabase } from "../../supabase.js";
 import { generateIdea } from "../../idea-generation/idea-generation.js";
-import { strategies } from "../../idea-generation/constants.js";
+import {
+	MIN_AMOUNT_OF_PREGENERATED_IDEAS,
+	strategies,
+} from "../../idea-generation/constants.js";
 
 /**
  * @typedef dbIdea
@@ -28,7 +34,7 @@ export async function handlePickIdea(response) {
 /**
  * This will pick an idea from the pregenerated ideas
  * and move it to the idea (=history) table.
- * @returns {Promise<{error: string}|{idea: dbIdea}>}
+ * @returns {Promise<{error: string}|{idea: dbIdea}|{idea:Idea}>}
  */
 async function pickIdea() {
 	const { focusGroup, topic, medium } = getAllLabelsForCurrentSides();
@@ -43,6 +49,19 @@ async function pickIdea() {
 
 	if (error) {
 		return { error: error.message };
+	}
+
+	if (data.length === 0) {
+		const { focusGroup, topic, medium } = getLabelsForCurrentSides();
+
+		const idea = await generateIdea({
+			focusGroup,
+			medium,
+			topic,
+			strategy: strategies.realtime,
+		});
+
+		return { idea };
 	}
 
 	const pickedIdea = /** @type {dbIdea} */ data[0];
@@ -75,12 +94,12 @@ let isRegenerating = false;
  * @returns {Promise<void>}
  */
 export async function regenerate() {
-	console.time("regeneration");
 	if (isRegenerating) {
 		return;
 	}
-
 	isRegenerating = true;
+
+	console.time("regeneration");
 
 	const { focusGroup, medium, topic } = getLabelsForCurrentSides();
 
@@ -90,10 +109,41 @@ export async function regenerate() {
 		topic,
 		strategy: strategies.pregenerate,
 	});
+	console.timeEnd("regeneration");
 
 	isRegenerating = false;
-	console.timeEnd("regeneration");
-	// todo should check the amount of pregenerated ideas
-	//  and call regenerate recursively while there are
-	//  less than X pregenerated ideas?
+
+	if (await hasEnoughIdeas()) {
+		return;
+	}
+
+	/**
+	 * this promise is not awaited by design, so it runs in the background
+	 */
+	regenerate();
+}
+
+/**
+ * Checks if there are enough pregenerated ideas for the current dice sides
+ * @returns {Promise<boolean>}
+ */
+async function hasEnoughIdeas() {
+	const { focusGroup, topic, medium } = getAllLabelsForCurrentSides();
+
+	const { data, error } = await supabase
+		.from("pregenerated_ideas")
+		.select("*")
+		.in("focus_group", focusGroup)
+		.in("topic", topic)
+		.in("medium", medium);
+
+	if (error) {
+		throw error;
+	}
+
+	if (data.length < MIN_AMOUNT_OF_PREGENERATED_IDEAS) {
+		return false;
+	}
+
+	return true;
 }
