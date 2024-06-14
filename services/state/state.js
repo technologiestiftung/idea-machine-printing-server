@@ -174,6 +174,21 @@ function getLabelFromSide(side) {
 }
 
 /**
+ *
+ * @param {string} A
+ * @param {string} B
+ * @param {string} C
+ * @returns {{focusGroup: string[], topic: string[], medium: string[]}}
+ */
+export function getAllLabelsForSides({ A, B, C }) {
+	const focusGroup = getLabelFromSide(A);
+	const topic = getLabelFromSide(B);
+	const medium = getLabelFromSide(C);
+
+	return { focusGroup, topic, medium };
+}
+
+/**
  * Returns all labels as array for the current dice sides
  * @returns {{focusGroup: string[], topic: string[], medium: string[]}}
  */
