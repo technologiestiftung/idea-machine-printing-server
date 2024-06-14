@@ -22,13 +22,30 @@ import {
  */
 
 /**
+ * Flag to prevent high idea picking frequency
+ * @type {boolean}
+ */
+let isThrottling = false;
+
+/**
  * Handles the pick-idea endpoint.
  * @param {ServerResponse} response
  */
 export async function handlePickIdea(response) {
+	if (isThrottling) {
+		response.end(JSON.stringify({ message: "throttling timeout not over" }));
+		return;
+	}
+
+	isThrottling = true;
+
 	const { idea, error } = await pickIdea();
 
 	response.end(JSON.stringify({ idea, error }));
+
+	setTimeout(() => {
+		isThrottling = false;
+	}, 5000);
 }
 
 /**
