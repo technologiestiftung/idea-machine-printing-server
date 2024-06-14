@@ -1,9 +1,14 @@
-import { getLabels, getLabelsForSides } from "../../../state/state.js";
+import {
+	getAllLabelsForSides,
+	getLabels,
+	getLabelsForSides,
+} from "../../../state/state.js";
 import { generateIdea } from "../../idea-generation/idea-generation.js";
 import {
 	MIN_AMOUNT_OF_PREGENERATED_IDEAS,
 	strategies,
 } from "../../idea-generation/constants.js";
+import { supabase } from "../../supabase.js";
 
 /**
  * Handles the pregenerate endpoint
@@ -34,13 +39,13 @@ async function pregenerate() {
 		ASides.length *
 		BSides.length *
 		CSides.length;
-	let counter = 1;
+	const args = { ASides, BSides, CSides, counter: 1, total };
 	for (
 		let amountOfGeneratedIdeas = 0;
 		amountOfGeneratedIdeas < MIN_AMOUNT_OF_PREGENERATED_IDEAS;
 		amountOfGeneratedIdeas++
 	) {
-		await generateIdeas({ ASides, BSides, CSides, counter, total });
+		await generateIdeas(args);
 	}
 }
 
@@ -54,44 +59,48 @@ function getSidesByLabels(labels) {
 	const BSides = [];
 	const CSides = [];
 
-	/**
-	 * temporary comment. This will be re-added for once we are ready for pregeneration
-	 */
-	// for (const id in labels) {
-	// 	if (id.includes("A")) {
-	// 		ASides.push(id);
-	// 	}
-	//
-	// 	if (id.includes("B")) {
-	// 		BSides.push(id);
-	// 	}
-	//
-	// 	if (id.includes("C")) {
-	// 		CSides.push(id);
-	// 	}
-	// }
+	for (const id in labels) {
+		if (id.includes("A")) {
+			ASides.push(id);
+		}
 
-	ASides.push("A6");
-	BSides.push("B6");
-	CSides.push("C6");
+		if (id.includes("B")) {
+			BSides.push(id);
+		}
+
+		if (id.includes("C")) {
+			CSides.push(id);
+		}
+	}
+
+	/**
+	 * the code below can be used for debugging purposes
+	 */
+	// ASides.push("A6");
+	// BSides.push("B6");
+	// CSides.push("C6");
 
 	return { ASides, BSides, CSides };
 }
 
 /**
  * Generates ideas for all possible combinations of the dice sides
- * @param ASides
- * @param BSides
- * @param CSides
- * @param counter
- * @param total
+ * @param {{ ASides: string[], BSides: string[], CSides: string[], counter: number, total: number }} args
  * @returns {Promise<void>}
  */
-async function generateIdeas({ ASides, BSides, CSides, counter, total }) {
+async function generateIdeas(args) {
+	const { ASides, BSides, CSides, total } = args;
+
 	for (const A of ASides) {
 		for (const B of BSides) {
 			for (const C of CSides) {
-				console.log(`pregenerating ${counter}/${total}`);
+				console.log(`pregenerating ${args.counter}/${total}, ${A}, ${B}, ${C}`);
+				args.counter = args.counter + 1;
+
+				if (await hasEnoughIdeas({ A, B, C })) {
+					console.log(`has enough ideas, skipping pregeneration`);
+					continue;
+				}
 
 				const { focusGroup, topic, medium } = getLabelsForSides({ A, B, C });
 				await generateIdea({
@@ -100,9 +109,28 @@ async function generateIdeas({ ASides, BSides, CSides, counter, total }) {
 					medium,
 					strategy: strategies.pregenerate,
 				});
-
-				counter = counter + 1;
 			}
 		}
 	}
+}
+
+async function hasEnoughIdeas({ A, B, C }) {
+	const { focusGroup, topic, medium } = getAllLabelsForSides({ A, B, C });
+
+	const { data, error } = await supabase
+		.from("pregenerated_ideas")
+		.select("*")
+		.in("focus_group", focusGroup)
+		.in("topic", topic)
+		.in("medium", medium);
+
+	if (error) {
+		throw error;
+	}
+
+	if (data.length < MIN_AMOUNT_OF_PREGENERATED_IDEAS) {
+		return false;
+	}
+
+	return true;
 }

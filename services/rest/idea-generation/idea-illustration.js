@@ -41,6 +41,19 @@ export async function createIllustration(imagePrompt) {
 	});
 
 	const dalleResponse = await response.json();
+
+	if (dalleResponse.errors) {
+		console.log(imagePrompt);
+		console.log(dalleResponse);
+		throw new Error(dalleResponse.errors[0].message);
+	}
+
+	if (!dalleResponse.data?.[0]?.url) {
+		console.log(imagePrompt);
+		console.log(dalleResponse);
+		throw new Error("No image URL was returned from the DALL-E API.");
+	}
+
 	const imgUrl = dalleResponse.data[0].url;
 
 	await download(imgUrl);
