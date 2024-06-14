@@ -22,33 +22,38 @@ import { strategies } from "./constants.js";
  * @returns {Promise<{focusGroup: string, imagePrompt: string, productIdea: string, topic: string, medium: string}>}
  */
 export async function generateIdea({ focusGroup, topic, medium, strategy }) {
-	console.time("idea-generation");
-	const { productIdea, imagePrompt } = await getIdea({
-		focusGroup,
-		topic,
-		medium,
-	});
-	console.timeEnd("idea-generation");
+	try {
+		console.time("idea-generation");
+		const { productIdea, imagePrompt } = await getIdea({
+			focusGroup,
+			topic,
+			medium,
+		});
+		console.timeEnd("idea-generation");
 
-	console.time("illustration-generation");
-	await createIllustration(imagePrompt);
-	console.timeEnd("illustration-generation");
+		console.time("illustration-generation");
+		await createIllustration(imagePrompt);
+		console.timeEnd("illustration-generation");
 
-	console.time("postcard-creation");
-	await createPostcard({ focusGroup, topic, medium, productIdea });
-	console.timeEnd("postcard-creation");
+		console.time("postcard-creation");
+		await createPostcard({ focusGroup, topic, medium, productIdea });
+		console.timeEnd("postcard-creation");
 
-	if (strategy === strategies.pregenerate) {
-		console.time("save-in-pregenerated");
-		await saveInPregenerated({ focusGroup, topic, medium, productIdea });
-		console.timeEnd("save-in-pregenerated");
+		if (strategy === strategies.pregenerate) {
+			console.time("save-in-pregenerated");
+			await saveInPregenerated({ focusGroup, topic, medium, productIdea });
+			console.timeEnd("save-in-pregenerated");
+		}
+
+		if (strategy === strategies.realtime) {
+			console.time("save-in-history");
+			await saveInHistory({ focusGroup, topic, medium, productIdea });
+			console.timeEnd("save-in-history");
+		}
+		return { productIdea, imagePrompt, focusGroup, topic, medium };
+	} catch (error) {
+		console.error(error);
+		console.error("Error while generating idea. Retrying...");
+		return generateIdea({ focusGroup, topic, medium, strategy });
 	}
-
-	if (strategy === strategies.realtime) {
-		console.time("save-in-history");
-		await saveInHistory({ focusGroup, topic, medium, productIdea });
-		console.timeEnd("save-in-history");
-	}
-
-	return { productIdea, imagePrompt, focusGroup, topic, medium };
 }
