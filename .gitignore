@@ -276,3 +276,6 @@ cython_debug/
 /services/rest/idea-generation/postcard/postcard.html
 /services/rest/idea-generation/postcard/img/illustration.png
 /services/rest/paths/print/postcard.pdf
+
+# webstorm
+.idea
