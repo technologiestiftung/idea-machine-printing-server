@@ -1,6 +1,7 @@
 import bluetoothSerialMonitors from "./services/bluetooth/bluetooth.js";
 import server from "./services/rest/rest.js";
 import { webSocketServer } from "./services/socket/socket.js";
+import { gpioProcess } from "./services/gpio/gpio.js";
 import "./services/browser/browser.js";
 
 process.on("SIGINT", closeEverything);
@@ -12,4 +13,5 @@ function closeEverything() {
 	server.close();
 	webSocketServer.clients.forEach((client) => client.close());
 	webSocketServer.close();
+	gpioProcess.kill();
 }
