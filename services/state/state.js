@@ -193,6 +193,14 @@ export function getAllLabelsForSides({ A, B, C }) {
  * @returns {{focusGroup: string[], topic: string[], medium: string[]}}
  */
 export function getAllLabelsForCurrentSides() {
+	if (dices.A.side === null || dices.B.side === null || dices.C.side === null) {
+		return {
+			focusGroup: dices.A.side,
+			topic: dices.B.side,
+			medium: dices.C.side,
+		};
+	}
+
 	const A = `A${dices.A.side}`;
 	const B = `B${dices.B.side}`;
 	const C = `C${dices.C.side}`;
