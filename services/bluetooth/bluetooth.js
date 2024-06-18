@@ -43,7 +43,17 @@ function createBluetoothSerialMonitor({ diceId, diceMacAddress, rfcomm }) {
 	);
 
 	picocom.stdout.on("data", (data) => {
-		setDiceSide(data);
+		/**
+		 * The old dices send the side in the format "A1", "B2", "C3".
+		 * The new dices send the side in the format "1", "2", "3".
+		 * To have more flexibility, we strip the letter, if it exists,
+		 * and only use the number. That way, we can define which dice
+		 * is which based on its mac address. No need to hardcode the
+		 * dice id in the firmware anymore.
+		 */
+		const side = data.toString().replace(/^\D+/g, "");
+
+		setDiceSide(`${diceId}${side}`);
 		console.log(getDices());
 	});
 
