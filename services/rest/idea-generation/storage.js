@@ -1,6 +1,6 @@
 import fs from "node:fs";
 import { ILLUSTRATION_FILE_PATH, PDF_FILE_PATH } from "./constants.js";
-import { supabase } from "../supabase.js";
+import { supabase } from "../../supabase/supabase.js";
 
 async function saveIllustration(timestamp) {
 	const file = fs.createReadStream(ILLUSTRATION_FILE_PATH);

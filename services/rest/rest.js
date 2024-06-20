@@ -2,7 +2,6 @@ import http from "node:http";
 import crypto from "node:crypto";
 import { handleIsApiAlive } from "./paths/default.js";
 import { handleLabels } from "./paths/labels/labels.js";
-import { handlePrinting } from "./paths/print/print.js";
 import { handleShutdown } from "./paths/shutdown/shutdown.js";
 import { handlePregenerate } from "./paths/pregenerate/pregenerate.js";
 import { handlePickIdea } from "./paths/pick-idea/pick-idea.js";
@@ -57,9 +56,6 @@ function handleRequest(request, response) {
 					break;
 				case "/pregenerate":
 					await handlePregenerate(response);
-					break;
-				case "/print":
-					await handlePrinting({ body, response });
 					break;
 				case "/shutdown":
 					handleShutdown(response);

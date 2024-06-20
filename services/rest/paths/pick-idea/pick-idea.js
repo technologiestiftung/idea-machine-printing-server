@@ -2,7 +2,7 @@ import {
 	getAllLabelsForCurrentSides,
 	getLabelsForCurrentSides,
 } from "../../../state/state.js";
-import { supabase } from "../../supabase.js";
+import { supabase } from "../../../supabase/supabase.js";
 import { generateIdea } from "../../idea-generation/idea-generation.js";
 import {
 	MIN_AMOUNT_OF_PREGENERATED_IDEAS,
