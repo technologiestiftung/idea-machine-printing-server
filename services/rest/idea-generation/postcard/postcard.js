@@ -28,6 +28,8 @@ function createPostcardHtml(idea) {
 			<meta charset="utf-8" />
 			<link rel="stylesheet" href="./postcard.css">
 			<link href="./font/jersey20.woff2" rel="stylesheet">
+			<link href="./font/IBMPlexSans-Regular.woff2" rel="stylesheet">
+			<link href="./font/IBMPlexSans-SemiBold.woff2" rel="stylesheet">
 			<title>Postcard</title>
 		</head>
 		<body>

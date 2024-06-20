@@ -2,6 +2,9 @@
 	@page {
 		margin: 0;
 		size: A4 landscape;
+		font-family: "IBM Plex Sans", sans-serif;
+		font-weight: 400;
+		font-style: normal;
 	}
 }
 
@@ -9,7 +12,9 @@ body {
 	width: 1064px;
 	margin-left: 27px;
 	margin-top: 19px;
-	font-family: Arial, Helvetica, sans-serif;
+	font-family: "IBM Plex Sans", sans-serif;
+	font-weight: 400;
+	font-style: normal;
 	font-size: 20px;
 	display: flex;
 	justify-content: center;
@@ -75,7 +80,7 @@ body {
 			}
 
 			.idea {
-				font-size: 26px;
+				font-size: 27px;
 				font-weight: normal;
 				line-height: 150%;
 			}
