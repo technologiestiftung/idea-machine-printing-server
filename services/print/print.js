@@ -1,18 +1,24 @@
 import childProcess from "child_process";
-import { supabase } from "../../supabase.js";
 import fs from "node:fs";
+import { supabase } from "../supabase/supabase.js";
 
-const PDF_FILE_PATH = "./services/rest/paths/print/postcard.pdf";
+const PDF_FILE_PATH = "./services/print/postcard.pdf";
 
-/**
- * Handles the printing of a postcard.
- * @param {Uint8Array[]} body
- * @param {ServerResponse} response
- * @returns {Promise<void>}
- */
-export async function handlePrinting({ body, response }) {
-	const requestBody = Buffer.concat(body).toString();
-	const { postcard_url } = JSON.parse(requestBody);
+supabase
+	.channel("schema-db-changes")
+	.on(
+		"postgres_changes",
+		{
+			event: "insert",
+			schema: "public",
+			table: "printing_jobs",
+		},
+		(data) => handlePrinting(data),
+	)
+	.subscribe();
+
+export async function handlePrinting(data) {
+	const { new: { postcard_url, id } } = data;
 
 	try {
 		console.time("download-postcard");
@@ -22,15 +28,13 @@ export async function handlePrinting({ body, response }) {
 		console.time("print-postcard");
 		await print();
 		console.timeEnd("print-postcard");
+
+		console.time("update-printing-job");
+		await updatePrintingJob(id);
+		console.timeEnd("update-printing-job");
 	} catch (error) {
 		console.error(error);
-		response.statusCode = 500;
-		response.end(JSON.stringify({ message: `error printing postcard` }));
-		return;
 	}
-
-	response.statusCode = 200;
-	response.end(JSON.stringify({ message: `printing job sent` }));
 }
 
 /**
@@ -64,5 +68,21 @@ async function print() {
 			`lp -o Pagesize=A6 -o portrait -o fit-to-page -o media=Lower -d ${process.env.PRINTER_NAME} ${PDF_FILE_PATH}`,
 			// `lp -o Pagesize=A6 -o portrait -o fit-to-page -o media=Lower -d "EPSON_XP_8700_Series_USB_" ./services/rest/paths/print/postcard.pdf`,
 		);
+	}
+}
+
+/**
+ * Set the printing job as printed in the database.
+ * @param {string} id
+ * @returns {Promise<void>}
+ */
+async function updatePrintingJob(id) {
+	const { error } = await supabase
+		.from('printing_jobs')
+		.update({ printed: true })
+		.eq("id", id);
+
+	if (error) {
+		console.log(error)
 	}
 }

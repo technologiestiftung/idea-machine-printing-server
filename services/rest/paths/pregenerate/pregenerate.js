@@ -8,7 +8,7 @@ import {
 	MIN_AMOUNT_OF_PREGENERATED_IDEAS,
 	strategies,
 } from "../../idea-generation/constants.js";
-import { supabase } from "../../supabase.js";
+import { supabase } from "../../../supabase/supabase.js";
 
 /**
  * Handles the pregenerate endpoint
