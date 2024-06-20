@@ -24,17 +24,68 @@ body {
 }
 
 .frontside {
-	height: 750px;
+	height: 740px;
 	display: flex;
-	justify-content: center;
+	justify-content: end;
 	/* border: solid 0.5px; */
 	display: flex;
-	justify-content: center;
 	align-items: center;
 
+	.title-text {
+		font-family: "Jersey 20", sans-serif;
+		font-weight: 400;
+
+		.title-big-behind {
+			transform: rotate(-90deg);
+			position: absolute;
+			left: -270px;
+			bottom: 307px;
+			position: absolute;
+			z-index: -1;
+			translate: 6px 6px;
+			font-size: 190px;
+			font-style: normal;
+		}
+
+		.title-big {
+			transform: rotate(-90deg);
+			position: absolute;
+			left: -270px;
+			bottom: 307px;
+			position: absolute;
+			color: #f64c72;
+			font-size: 190px;
+			font-style: normal;
+		}
+
+		.title-small-behind {
+			transform: rotate(-90deg);
+			position: absolute;
+			left: -125px;
+			bottom: 325px;
+			width: 750px;
+			font-size: 159px;
+			color: #2f2fa2;
+			z-index: -1;
+			translate: 6px 6px;
+		}
+		.title-small {
+			transform: rotate(-90deg);
+			position: absolute;
+			left: -125px;
+			bottom: 325px;
+			width: 750px;
+			font-size: 158px;
+			color: #f64c72;
+		}
+	}
+
 	img {
-		height: 755px;
-		border-radius: 10px;
+		margin-top: 1rem;
+		margin-right: 0.5rem;
+		height: 740px;
+		border-radius: 15px;
+		align-self: center;
 	}
 }
 
@@ -44,7 +95,7 @@ body {
 	justify-content: space-between;
 	flex-direction: row;
 
-	margin-top: 1rem;
+	margin-top: 1.5rem;
 	/* border: solid 0.5px; */
 
 	.message {
@@ -68,7 +119,7 @@ body {
 				/* padding-top: 2rem; */
 				padding-bottom: 2rem;
 				z-index: -1;
-				translate: -2px 3px;
+				translate: -2px -7px;
 			}
 			.title {
 				font-family: "Jersey 20", sans-serif;
@@ -77,6 +128,7 @@ body {
 				color: #f64c72;
 				font-style: normal;
 				padding-bottom: 2rem;
+				translate: 0px -10px;
 			}
 
 			.idea {

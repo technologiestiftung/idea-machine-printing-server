@@ -34,6 +34,12 @@ function createPostcardHtml(idea) {
 		</head>
 		<body>
 			<div class="frontside">
+				<div class="title-text">
+					<div class="title-big">GREETINGS</div>
+					<div class="title-small">FROM BERLIN</div>
+					<div class="title-big-behind">GREETINGS</div>
+					<div class="title-small-behind">FROM BERLIN</div>
+				</div>
 				<img src="img/illustration.png" alt="Illustration"/>
 			</div>
 			<div class="backside">
