@@ -1,40 +1,91 @@
-@page {
-	size: A5;
-}
-
 @media print {
 	@page {
 		margin: 0;
-		size: landscape;
-	}
-	body {
-		margin: 0.75cm;
+		size: A4 landscape;
+		font-family: "IBM Plex Sans", sans-serif;
+		font-weight: 400;
+		font-style: normal;
 	}
 }
 
 body {
-	width: 1000px;
-	font-family: Arial, Helvetica, sans-serif;
+	width: 1064px;
+	margin-left: 27px;
+	margin-top: 19px;
+	font-family: "IBM Plex Sans", sans-serif;
+	font-weight: 400;
+	font-style: normal;
+	font-size: 20px;
 	display: flex;
 	justify-content: center;
 	flex-direction: column;
-	gap: 4rem;
+	gap: 2rem;
 	color: #2f2fa2;
 }
 
 .frontside {
-	height: 750px;
+	height: 740px;
 	display: flex;
-	justify-content: center;
+	justify-content: end;
 	/* border: solid 0.5px; */
 	display: flex;
-	justify-content: center;
 	align-items: center;
 
+	.title-text {
+		font-family: "Jersey 20", sans-serif;
+		font-weight: 400;
+
+		.title-big-behind {
+			transform: rotate(-90deg);
+			position: absolute;
+			left: -270px;
+			bottom: 307px;
+			position: absolute;
+			z-index: -1;
+			translate: 6px 6px;
+			font-size: 190px;
+			font-style: normal;
+		}
+
+		.title-big {
+			transform: rotate(-90deg);
+			position: absolute;
+			left: -270px;
+			bottom: 307px;
+			position: absolute;
+			color: #f64c72;
+			font-size: 190px;
+			font-style: normal;
+		}
+
+		.title-small-behind {
+			transform: rotate(-90deg);
+			position: absolute;
+			left: -125px;
+			bottom: 325px;
+			width: 750px;
+			font-size: 159px;
+			color: #2f2fa2;
+			z-index: -1;
+			translate: 6px 6px;
+		}
+		.title-small {
+			transform: rotate(-90deg);
+			position: absolute;
+			left: -125px;
+			bottom: 325px;
+			width: 750px;
+			font-size: 158px;
+			color: #f64c72;
+		}
+	}
+
 	img {
-		/* margin: 1rem; */
-		height: 720px;
-		border-radius: 10px;
+		margin-top: 1rem;
+		margin-right: 0.5rem;
+		height: 740px;
+		border-radius: 15px;
+		align-self: center;
 	}
 }
 
@@ -43,13 +94,15 @@ body {
 	display: flex;
 	justify-content: space-between;
 	flex-direction: row;
+
+	margin-top: 1.5rem;
 	/* border: solid 0.5px; */
 
 	.message {
 		display: flex;
 		flex-direction: column;
 		justify-content: space-between;
-		margin: 1rem;
+		margin: 0.5rem;
 		padding-right: 2rem;
 		gap: 2rem;
 		flex: 1;
@@ -66,7 +119,7 @@ body {
 				/* padding-top: 2rem; */
 				padding-bottom: 2rem;
 				z-index: -1;
-				translate: -2px 3px;
+				translate: -2px -7px;
 			}
 			.title {
 				font-family: "Jersey 20", sans-serif;
@@ -75,10 +128,11 @@ body {
 				color: #f64c72;
 				font-style: normal;
 				padding-bottom: 2rem;
+				translate: 0px -10px;
 			}
 
 			.idea {
-				font-size: 24px;
+				font-size: 27px;
 				font-weight: normal;
 				line-height: 150%;
 			}
@@ -90,12 +144,12 @@ body {
 			align-items: start;
 			flex-direction: column;
 			/* margin-top: 2rem; */
-			font-size: 18px;
+			font-size: 20px;
 
 			.dice1,
 			.dice2,
 			.dice3 {
-				padding: 0.25rem 0.5rem;
+				padding: 0.25rem 0.75rem;
 				color: white;
 
 				img {
@@ -106,67 +160,96 @@ body {
 
 			.dice1 {
 				background-color: #2f2fa2;
+				border-radius: 25px;
 			}
 			.dice2 {
 				background-color: #f64c72;
+				border-radius: 25px;
 			}
 			.dice3 {
-				background-color: #daaa00;
+				background-color: #f4cd03;
+				border-radius: 25px;
 			}
 		}
 	}
 
 	.sender {
-		margin: 1rem;
+		margin: 0.5rem;
 		margin-left: 0;
 		flex: 1;
 		display: flex;
 		flex-direction: column;
-		justify-content: start;
-		border-left: solid 1px;
+		justify-content: space-between;
+		border-left: solid 2px;
 		padding-left: 2rem;
+
+		.vertical-text {
+			background-color: white;
+			padding-left: 1rem;
+			padding-right: 1rem;
+			position: absolute;
+			bottom: -430px;
+			left: 405px;
+			transform: rotate(90deg);
+			font-size: 20px;
+		}
 
 		.header {
 			display: flex;
 			flex-direction: row;
 			justify-content: space-between;
 
-			.credits {
-				font-size: 18px;
+			.qr-code {
+				display: flex;
+				flex-direction: row;
+				width: 70%;
+				gap: 0.5rem;
+				color: #2f2fa2;
+				transform: translateY(-4px);
+
+				img {
+					width: 75px;
+					height: 75px;
+				}
 			}
 
 			.stamp {
-				background-color: #2f2fa2;
 				border-radius: 6px;
-				border: 2px dashed #fff;
+				border: 2px dashed #2f2fa2;
 				align-self: flex-end;
-				display: flex;
-				justify-content: center;
-				height: 90px;
-				display: flex;
-				align-items: center;
-				width: 150px;
-
-				img {
-					height: 30px;
-					margin: 0.5rem;
-				}
+				height: 150px;
+				width: 120px;
 			}
 		}
 
 		.address {
 			align-self: center;
-			padding-top: 10rem;
 			width: 100%;
 
 			.line {
-				border-bottom: solid 1px #2f2fa2;
+				border-bottom: solid 2px #2f2fa2;
+				height: 80px;
 			}
-			p {
-				font-size: 28px;
-				line-height: 90%;
-				margin: 0.5rem;
-				margin-top: 2rem;
+		}
+
+		.project-info {
+			display: flex;
+			flex-direction: column;
+			justify-content: space-between;
+			gap: 1rem;
+
+			.credits {
+				display: flex;
+				flex-direction: row;
+				gap: 2rem;
+
+				.more-info {
+					width: fit-content;
+				}
+				img {
+					width: 30%;
+					align-self: flex-end;
+				}
 			}
 		}
 	}
