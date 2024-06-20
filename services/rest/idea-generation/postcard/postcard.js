@@ -28,10 +28,18 @@ function createPostcardHtml(idea) {
 			<meta charset="utf-8" />
 			<link rel="stylesheet" href="./postcard.css">
 			<link href="./font/jersey20.woff2" rel="stylesheet">
+			<link href="./font/IBMPlexSans-Regular.woff2" rel="stylesheet">
+			<link href="./font/IBMPlexSans-SemiBold.woff2" rel="stylesheet">
 			<title>Postcard</title>
 		</head>
 		<body>
 			<div class="frontside">
+				<div class="title-text">
+					<div class="title-big">GREETINGS</div>
+					<div class="title-small">FROM BERLIN</div>
+					<div class="title-big-behind">GREETINGS</div>
+					<div class="title-small-behind">FROM BERLIN</div>
+				</div>
 				<img src="img/illustration.png" alt="Illustration"/>
 			</div>
 			<div class="backside">
@@ -48,25 +56,32 @@ function createPostcardHtml(idea) {
 					</div>
 				</div>
 				<div class="sender">
+					<div class="vertical-text">Sommerkonferenz 27 Juni 2024</div>
 					<div class="header">
-						<div class="credits">
-							Sommerkonferenz 
-							<br/>
-							27 Juni 2024
+						<div class="qr-code">
+							<img src="img/QR-code-Ideenwürfel.svg" alt="QR Code" />
+							Scanne den QR Code und entdecke weitere Ideen unseres Würfelspiels!
 						</div>
-						<div class="stamp">
-							<img src="img/citylab-logo_white.png" alt="Stamp" width="90%">
-						</div>
+						<div class="stamp"></div>
 					</div>
 					<div class="address">
-						<div class="line">
-							<p>Platz der Luftbrücke 4</p>
+						<div class="line"></div>
+						<div class="line"></div>
+						<div class="line"></div>
+					</div>
+					<div class="project-info">
+						<div>
+							Diese Postkarte ist mit den Ideenwürfeln entstanden, einem
+							interaktivem Würfelspiel vom CityLAB Berlin.
 						</div>
-						<div class="line">
-							<p>12101 Berlin</p>
-						</div>
-						<div class="line">
-							<p>info@citylab-berlin.org</p>
+						<div class="credits">
+							<div class="more-info">
+								<div>
+									Mehr Infos: <br />
+									<b>future-greetings.vercel.app</b>
+								</div>
+							</div>
+							<img src="img/logo-citylab-color.svg" alt="Stamp" width="90%" />
 						</div>
 					</div>
 				</div>
@@ -92,7 +107,7 @@ function createPostcardPdf() {
 		);
 
 		// execSync(
-		// 	`chromium-browser --headless --print-to-pdf=${pdfFilePath} ${htmlFilePath}`,
+		// 	`chromium-browser --headless --print-to-pdf=./services/rest/idea-generation/postcard/postcard.pdf ./services/rest/idea-generation/postcard/postcard.html`,
 		// );
 	} catch (error) {
 		console.error(error);
