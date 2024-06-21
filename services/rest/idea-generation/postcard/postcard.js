@@ -56,7 +56,7 @@ function createPostcardHtml(idea) {
 					</div>
 				</div>
 				<div class="sender">
-					<div class="vertical-text">Sommerkonferenz 27 Juni 2024</div>
+					<div class="vertical-text">Sommerkonferenz 27. Juni 2024</div>
 					<div class="header">
 						<div class="qr-code">
 							<img src="img/QR-code-Ideenwürfel.svg" alt="QR Code" />
@@ -72,7 +72,7 @@ function createPostcardHtml(idea) {
 					<div class="project-info">
 						<div>
 							Diese Postkarte ist mit den Ideenwürfeln entstanden, einem
-							interaktivem Würfelspiel vom CityLAB Berlin.
+							interaktiven Würfelspiel vom CityLAB Berlin.
 						</div>
 						<div class="credits">
 							<div class="more-info">
