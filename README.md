@@ -1,88 +1,97 @@
 ![](https://img.shields.io/badge/Built%20with%20%E2%9D%A4%EF%B8%8F-at%20Technologiestiftung%20Berlin-blue)
 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-3-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-3-orange.svg?style=flat-square)](#contributors)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
-# Idea Machine Printing Server
+# Idea Machine Backend
 
-This code is meant to run a http server locally on a raspberry pi 32bit to orchestrate print requests coming from
-the idea-machine webapp ([see here](https://github.com/technologiestiftung/idea-machine)).
+This code is meant to run a http server locally on a raspberry pi to orchestrate print requests
+coming from the idea-machine webapp ([see here](https://github.com/technologiestiftung/idea-machine-frontend)),
+handle bluetooth connections to the dices, administrate the labels of the dices, read the buzzer input 
+and (pre-) generate ideas.
 
 
 ## Prerequisites
 
-Please have a look at the main repository: [https://github.com/technologiestiftung/idea-machine](https://github.com/technologiestiftung/idea-machine)
+These are the other necessary repositories: 
+- [https://github.com/technologiestiftung/idea-machine-frontend](https://github.com/technologiestiftung/idea-machine-frontend)
+- [https://github.com/technologiestiftung/idea-machine-dices](https://github.com/technologiestiftung/idea-machine-dices)
 
-## Installation
-
-### Install pm2 globally
-```bash
-npm i pm2 -g
-```
-
-### Make pm2 run automatically on system startup
-
-Executing the following command will return another command that you
-need to enter in your terminal to automatically start pm2 on system startup!
-```bash
-pm2 startup
-```
-
-For example (this is different on every machine!):
-```console
-admin@raspberrypi:~$ pm2 startup
-[PM2] Init System found: launchd
-[PM2] To setup the Startup Script, copy/paste the following command:
-sudo env PATH=$PATH:/home/admin/.config/nvm/versions/node/v18.16.0/bin /home/admin/.config/nvm/versions/node/v18.16.0/lib/node_modules/pm2/bin/pm2 startup systemd -u admin --hp /home/admin
-admin@raspberrypi:~$ sudo env PATH=$PATH:/home/admin/.config/nvm/versions/node/v18.16.0/bin /home/admin/.config/nvm/versions/node/v18.16.0/lib/node_modules/pm2/bin/pm2 startup systemd -u admin --hp /home/admin
-```
+If you want to run this yourself, you also need a supabase project (to store ideas) and
+an openai api key (to generate ideas).  
 
 
 ### Install npm dependencies
 If you are not in the project folder, cd into it and install dependencies:
 ```bash
-cd idea-machine-printing-server && npm ci
+cd idea-machine-backend && npm ci
 ```
 
-## Usage or Deployment
-
-### Uncomment the lines you need
-inside the [index.js](index.js) file you'll see this at the end:
-```javascript
-function getPrintingCommand(idea) {
-
-//   return  `echo 'Betreff: Idee
-// Von: Ideenwürfel
-// An: idee@ts.berlin
-// ------------------
-//   ${idea}' | fold -w 18 -s | lp -d ${process.env.PRINTER_NAME}`
-
-  return `echo ${idea}`;
-}
-```
-
-This is to make sure nothing gets printed by accident.
-Uncomment the upper return once you're ready to print.
-
-### Start and save processes with pm2
-Start the processes with pm2 using the ecosystem config:
+### Add the .env file
+Create a `.env` file in the root of the project and add the needed variables:
 ```bash
-pm2 start ecosystem.config.js
+cp .env.example .env
 ```
 
-Save the processes with pm2, so it automatically restarts them:
+### Run it
+You can run the server with the following command:
 ```bash
-pm2 save
+npm run start
 ```
 
-Pm2 will now automatically start processes from the ecosystem config on each system startup.
+or the dev mode (watching the directory):
+```bash
+npm run dev
+```
 
-### Shutdown
+### Architecture / Flow
 
-We have implemented a `POST /shutdown` route that will result in this server and its host system shutting down gracefully. The route is necessary because we want to be able to control the shutdown of the system remotely.
+The server uses multiple technologies to handle the different tasks:
 
-Note that the environment variable `SHUTDOWNABLE` needs to be set to `1` for this to work. This is useful because in development mode we might not want to trigger the actual shutdown of the development system.
+- Bluetooth to connect to the dices and receive side change events
+- GPIO to read the buzzer input
+- A REST API to:
+  - handle read/update dice labels, 
+  - live generate ideas, 
+  - pregenerate ideas,
+  - pick an idea from pregenerated ideas
+  - regenerate pdfs (in case of design changes)
+  - shutdown
+  - is alive check
+- WebSockets to update the connection status to the dice administration website, and listen for new printing jobs in the DB
+
+
+The main flow can be visually represented as follows:
+
+![architecture-flow.png](./architecture-flow.png)
+
+
+### How are the ideas generated?
+
+The ideas are generated using gpt-4o and dall-e 3. 
+A prompt is sent to the gpt-4o model, and the output is sent to the dall-e model to generate an image.
+The idea text and idea image are then used to generate an HTML (postcard), which is then converted to a PDF (postcard).
+
+### How do you connect to dices via bluetooth?
+
+You first need to pair the dices with the raspberry pi. 
+You can do this by running the following command:
+```bash
+bluetoothctl
+```
+
+Then, in the bluetoothctl console, run the following commands:
+```bash
+scan on
+```
+
+You should see the dices in the list of devices.
+Then, pair the dice with the following command:
+```bash
+pair <MAC_ADDRESS_OF_DICE>
+```
+
 
 ## Contributing
 
@@ -98,9 +107,9 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <table>
   <tbody>
     <tr>
-      <td align="center" valign="top" width="14.28%"><a href="https://github.com/raphael-arce"><img src="https://avatars.githubusercontent.com/u/8709861?v=4?s=64" width="64px;" alt="Raphael.A"/><br /><sub><b>Raphael.A</b></sub></a><br /><a href="https://github.com/technologiestiftung/idea-machine-printing-server/commits?author=raphael-arce" title="Code">💻</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/raphael-arce"><img src="https://avatars.githubusercontent.com/u/8709861?v=4?s=64" width="64px;" alt="Raphael.A"/><br /><sub><b>Raphael.A</b></sub></a><br /><a href="https://github.com/technologiestiftung/idea-machine-printing-server/commits?author=raphael-arce" title="Code">💻</a>  <a href="https://github.com/technologiestiftung/idea-machine-printing-server/pulls?q=is%3Apr+reviewed-by%3Araphael-arce" title="Reviewed Pull Requests">👀</a> <a title="Ideas, Planning, & Feedback">🤔</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/dnsos"><img src="https://avatars.githubusercontent.com/u/15640196?v=4?s=64" width="64px;" alt="Dennis Ostendorf"/><br /><sub><b>Dennis Ostendorf</b></sub></a><br /><a href="https://github.com/technologiestiftung/idea-machine-printing-server/commits?author=dnsos" title="Code">💻</a></td>
-      <td align="center" valign="top" width="14.28%"><a href="http://annaeschenbacher.com"><img src="https://avatars.githubusercontent.com/u/56318362?v=4?s=64" width="64px;" alt="aeschi"/><br /><sub><b>aeschi</b></sub></a><br /><a href="https://github.com/technologiestiftung/idea-machine-printing-server/commits?author=aeschi" title="Code">💻</a> <a href="#design-aeschi" title="Design">🎨</a> <a href="https://github.com/technologiestiftung/idea-machine-printing-server/pulls?q=is%3Apr+reviewed-by%3Aaeschi" title="Reviewed Pull Requests">👀</a> <a href="#ideas-aeschi" title="Ideas, Planning, & Feedback">🤔</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="http://annaeschenbacher.com"><img src="https://avatars.githubusercontent.com/u/56318362?v=4?s=64" width="64px;" alt="aeschi"/><br /><sub><b>aeschi</b></sub></a><br /><a href="https://github.com/technologiestiftung/idea-machine-printing-server/commits?author=aeschi" title="Code">💻</a> <a title="Design">🎨</a> <a href="https://github.com/technologiestiftung/idea-machine-printing-server/pulls?q=is%3Apr+reviewed-by%3Aaeschi" title="Reviewed Pull Requests">👀</a> <a title="Ideas, Planning, & Feedback">🤔</a></td>
     </tr>
   </tbody>
 </table>
@@ -120,21 +129,21 @@ This project follows the [all-contributors](https://github.com/all-contributors/
       Made by <a href="https://citylab-berlin.org/de/start/">
         <br />
         <br />
-        <img width="200" src="https://logos.citylab-berlin.org/logo-citylab-berlin.svg" />
+        <img width="200" src="https://logos.citylab-berlin.org/logo-citylab-berlin.svg" alt="Link to CityLAB Berlin website" />
       </a>
     </td>
     <td>
       A project by <a href="https://www.technologiestiftung-berlin.de/">
         <br />
         <br />
-        <img width="150" src="https://logos.citylab-berlin.org/logo-technologiestiftung-berlin-de.svg" />
+        <img width="150" src="https://logos.citylab-berlin.org/logo-technologiestiftung-berlin-de.svg" alt="Link to Technologiestiftung Berlin website" />
       </a>
     </td>
     <td>
       Supported by <a href="https://www.berlin.de/rbmskzl/">
         <br />
         <br />
-        <img width="80" src="https://logos.citylab-berlin.org/logo-berlin-senatskanzelei-de.svg" />
+        <img width="80" src="https://logos.citylab-berlin.org/logo-berlin-senatskanzelei-de.svg" alt="Link to Senatskanzlei Berlin website"/>
       </a>
     </td>
   </tr>
@@ -142,6 +151,6 @@ This project follows the [all-contributors](https://github.com/all-contributors/
 
 ## Related Projects
 
-https://github.com/technologiestiftung/idea-machine
+https://github.com/technologiestiftung/idea-machine-frontend
 
 https://github.com/technologiestiftung/idea-machine-dice
