@@ -16,7 +16,7 @@ and (pre-) generate ideas.
 
 These are the other necessary repositories: 
 - [https://github.com/technologiestiftung/idea-machine-frontend](https://github.com/technologiestiftung/idea-machine-frontend)
-- [https://github.com/technologiestiftung/idea-machine-dices](https://github.com/technologiestiftung/idea-machine-dices)
+- [https://github.com/technologiestiftung/idea-machine-dice](https://github.com/technologiestiftung/idea-machine-dice)
 
 If you want to run this yourself, you also need a supabase project (to store ideas) and
 an openai api key (to generate ideas).  
