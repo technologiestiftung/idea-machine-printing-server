@@ -6,6 +6,7 @@ import { handleShutdown } from "./paths/shutdown/shutdown.js";
 import { handlePregenerate } from "./paths/pregenerate/pregenerate.js";
 import { handlePickIdea } from "./paths/pick-idea/pick-idea.js";
 import { handleGenerate } from "./paths/generate/generate.js";
+import { handleRegenerateOnlyPdfs } from "./paths/regenerate-only-pdfs/regenerate-only-pdfs.js";
 
 const port = process.env.API_PORT;
 
@@ -56,6 +57,9 @@ function handleRequest(request, response) {
 					break;
 				case "/pregenerate":
 					await handlePregenerate(response);
+					break;
+				case "/regenerate-only-pdfs":
+					await handleRegenerateOnlyPdfs(response);
 					break;
 				case "/shutdown":
 					handleShutdown(response);
