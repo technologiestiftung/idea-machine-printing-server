@@ -18,7 +18,9 @@ supabase
 	.subscribe();
 
 export async function handlePrinting(data) {
-	const { new: { postcard_url, id } } = data;
+	const {
+		new: { postcard_url, id },
+	} = data;
 
 	try {
 		console.time("download-postcard");
@@ -61,7 +63,9 @@ async function downloadPostcard(postcard_url) {
  * @returns {Promise<void>}
  */
 async function print() {
-	childProcess.execSync(`open ${PDF_FILE_PATH}`);
+	if (process.env.PRINT === "0") {
+		console.warn("Printing is disabled.");
+	}
 
 	if (process.env.PRINT === "1") {
 		childProcess.execSync(
@@ -78,11 +82,11 @@ async function print() {
  */
 async function updatePrintingJob(id) {
 	const { error } = await supabase
-		.from('printing_jobs')
+		.from("printing_jobs")
 		.update({ printed: true })
 		.eq("id", id);
 
 	if (error) {
-		console.log(error)
+		console.log(error);
 	}
 }
